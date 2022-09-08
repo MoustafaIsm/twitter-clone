@@ -38,6 +38,16 @@ img {
 .logo {
     height: 50px;
     width: 50px;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo:hover {
+    cursor: pointer;
+    background-color:  rgb(212, 238, 255);
 }
 
 .logo-wrapper {
@@ -48,6 +58,8 @@ img {
     background-repeat: no-repeat;
     background-size: contain;
 }
+
+
 
 /* Page Contents */
 .page-contents {
