@@ -94,6 +94,12 @@ img {
     margin: 0px 20px;
 }
 
+/* Navigation Bar Tweet Button */
+.nav-bar-tweet {
+    margin: 3% 0%;
+    margin-right: 10%;
+}
+
 
 /* Page Contents */
 .page-contents {
@@ -114,5 +120,22 @@ img {
     background-color: #e2e2e2;
 }
 
+.btn {
+    width: 100%;
+    border-radius: 30px;
+    border: 0px;
+    padding: 5% 0%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn-blue {
+    background-color:  rgb(29, 155, 240);
+    color: white;
+}
 
 /* Media Query */
