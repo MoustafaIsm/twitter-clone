@@ -29,7 +29,24 @@ img {
 }
 
 .nav-bar {
-    width: 200px;
+    width: 250px;
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    height: 50px;
+    width: 50px;
+}
+
+.logo-wrapper {
+    width: 50%;
+    height: 50%;
+    background-image: url("/twitter-clone/images/twitter-logo.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 /* Page Contents */
