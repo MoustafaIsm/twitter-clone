@@ -76,14 +76,9 @@ img {
 .nav-btn {
     display: flex;
     padding: 12px;
-    margin: 5% 0%;
+    margin: 3% 0%;
     border-radius: 30px;
     width: fit-content;
-}
-
-.nav-btn:hover {
-    cursor: pointer;
-    background-color: #e2e2e2;
 }
 
 .nav-btn-active p {
@@ -114,6 +109,10 @@ img {
 
 
 /* Utilities */
+.grey-background:hover {
+    cursor: pointer;
+    background-color: #e2e2e2;
+}
 
 
 /* Media Query */
