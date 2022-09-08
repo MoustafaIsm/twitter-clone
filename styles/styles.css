@@ -11,7 +11,8 @@
 
 .background {
 	width: 54%;
-	height: 98vh;
+	height: 48vw;
+	min-height: 95vh;
 	object-fit: cover;
 }
 
@@ -50,12 +51,16 @@ button {
 	font-weight: 700;
 	border-radius: 30px;
 	border: none;
-	margin: 17vh 0 0 0;
+	margin: 8vw 0 0 0;
+}
+
+button:hover {
+	background-color: #1e8ad2;
 }
 
 .title > p {
 	margin: 1vh 0 0 0;
-	font-size: 10px;
+	font-size: 11px;
 	color: rgb(83, 100, 113);
 	line-height: 12px;
 	width: 300px;
@@ -64,8 +69,9 @@ button {
 	text-align: justify;
 }
 
-.blue {
+.hyperlink {
 	color: #1d9bf0;
+	text-decoration: none;
 }
 
 .title > h3 {
@@ -82,4 +88,34 @@ button {
 	background-color: white;
 	border: 1px solid #dbdbdb;
 	margin: 2vh 0 0 0;
+}
+
+.sign-in:hover {
+	background-color: #e6f0f7;
+}
+
+.footer {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	flex-wrap: wrap;
+	font-size: 12px;
+	color: rgb(83, 100, 113);
+	padding: 5px 45px 15px;
+	margin-top: 5px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.footer > a {
+	text-decoration: none;
+	color: rgb(83, 100, 113);
+	padding: 6px 10px;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.footer > p {
+	padding: 6px 10px;
 }
