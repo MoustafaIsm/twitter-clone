@@ -1,0 +1,51 @@
+/* Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    height: 100%;
+}
+
+/*** Site Sections ***/
+.body {
+    display: flex;
+}
+
+.container {
+   
+}
+
+
+/* Side Navigation Bar */
+.nav-bar-wrapper {
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.nav-bar {
+    width: 200px;
+}
+
+/* Page Contents */
+.page-contents {
+    width: 50vw;
+    border-left: 2px solid #D9D9D9;
+    border-right: 2px solid #D9D9D9;
+}
+
+/* Suggestions */
+.suggestions {
+    width: 25vw;
+}
+
+
+/* Utilities */
+
+
+/* Media Query */
