@@ -110,6 +110,70 @@ img {
     border-right: 2px solid #D9D9D9;
 }
 
+.page-title-wrapper {
+    padding: 1%;
+    height: 50px;
+    position: fixed;
+    background-color: rgb(255, 255, 255, 0.7);
+}
+
+.page-title-wrapper p {
+    font-weight: bold;
+    font-size: 1.5vw;
+}
+
+/* Write tweet section */
+.write-tweet-wrapper {
+    padding-top: 50px;
+    display: flex;
+    border-bottom: 2px solid #D9D9D9;
+}
+
+.tweet-wrapper {
+    flex-grow: 1;
+}
+
+.tweet-wrapper > form {
+    display: flex;
+    flex-direction: column;
+}
+
+.tweet-text-wrapper {
+
+}
+
+.tweet-text-wrapper > textarea {
+    width: 100%;
+}
+
+.upload-tweet-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.upload-tweet-wrapper > button {
+    width: fit-content;
+    padding: 1% 5% !important;
+    margin: 2%;
+}
+
+.upload-tweet-wrapper > label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(29, 155, 240);
+    width: 48px;
+    height: 48px;
+    margin: 2% 0%;
+    border-radius: 100px;
+}
+
+.upload-tweet-wrapper > label:hover {
+    cursor: pointer;
+    background-color: rgb(212, 238, 255);
+}
+
 /* Suggestions */
 .suggestions {
     width: 25vw;
@@ -138,6 +202,18 @@ img {
 .btn-blue {
     background-color:  rgb(29, 155, 240);
     color: white;
+}
+
+.small-round-profile-picture {
+    height: 48px;
+    width: 48px;
+    border-radius: 50px;
+    background-color: #939393;
+    margin: 20px;
+}
+
+.hide {
+    display: none;
 }
 
 /* Media Query */
