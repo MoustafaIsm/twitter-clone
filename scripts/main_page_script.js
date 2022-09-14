@@ -1,6 +1,7 @@
 // Variables
 const homeNavButton = document.getElementById("home-nav-btn");
 const profileNavButton = document.getElementById("profile-nav-btn");
+const backBtn = document.getElementById("back-btn");
 
 const homeTitle = document.getElementById("home-title");
 const profileTitle = document.getElementById("profile-title");
@@ -12,6 +13,7 @@ const profile = document.getElementById("profile");
 // Event listeners
 profileNavButton.addEventListener("click", openProfilePage);
 homeNavButton.addEventListener("click", openHomePage);
+backBtn.addEventListener("click", openHomePage);
 
 // Functions
 function openProfilePage() {
