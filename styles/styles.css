@@ -186,6 +186,64 @@ img {
     background-color: rgb(212, 238, 255);
 }
 
+/* Feeds */
+.feeds {
+    display: flex;
+    flex-direction: column;
+}
+
+.feed-wrapper {
+    display: flex;
+}
+
+.tweet-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    width: 90%;
+}
+
+.user-info > p {
+    padding: 0% 1%;
+}
+
+.tweet-text-wrapper {
+    padding-top: 3%;
+    width: 90%;
+}
+
+.tweet-img-wrapper {
+    width: 90%;
+    height: 80vh;
+    background-color: #939393;
+    border-radius: 30px;
+    margin: 3% 0%;
+}
+
+.tweet-likes-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 90%;
+}
+
+.tweet-likes-wrapper > span {
+    padding: 1%;
+    border-radius: 50px;
+}
+
+.tweet-likes-wrapper > span:hover {
+    cursor: pointer;
+    border: 1px solid rgb(29, 155, 240);
+}
+
+
 /* Suggestions */
 .suggestions {
     width: 25vw;
@@ -193,6 +251,14 @@ img {
 
 
 /* Utilities */
+.bold-text {
+    font-weight: bold;
+}
+
+.grey-text {
+    color: #939393;
+}
+
 .grey-background:hover {
     cursor: pointer;
     background-color: #e2e2e2;
@@ -225,7 +291,7 @@ img {
     width: 48px;
     border-radius: 50px;
     background-color: #939393;
-    margin: 20px;
+    margin: 15px;
 }
 
 .hide {
