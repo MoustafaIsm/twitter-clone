@@ -13,6 +13,7 @@ img {
 /*** Site Sections ***/
 .body {
     display: flex;
+    font-family: 'Roboto', sans-serif;
 }
 
 .container {
@@ -139,11 +140,22 @@ img {
 }
 
 .tweet-text-wrapper {
-
+    padding-right: 2%;
 }
 
 .tweet-text-wrapper > textarea {
     width: 100%;
+    resize: none;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #D9D9D9;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5vw;
+    
+}
+
+.tweet-text-wrapper > textarea::placeholder {
+    font-size: 2vw;
 }
 
 .upload-tweet-wrapper {
@@ -202,6 +214,10 @@ img {
 .btn-blue {
     background-color:  rgb(29, 155, 240);
     color: white;
+}
+
+.btn-blue:hover {
+    background-color:  rgb(25, 125, 193);
 }
 
 .small-round-profile-picture {
