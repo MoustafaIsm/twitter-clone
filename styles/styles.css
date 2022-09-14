@@ -114,13 +114,14 @@ img {
 .page-title-wrapper {
     padding: 1%;
     height: 50px;
+    width: 100%;
     position: fixed;
     background-color: rgb(255, 255, 255, 0.7);
 }
 
 .page-title-wrapper p {
     font-weight: bold;
-    font-size: 1.5vw;
+    font-size: 20px;
 }
 
 /* Write tweet section */
@@ -150,12 +151,12 @@ img {
     border: none;
     border-bottom: 2px solid #D9D9D9;
     font-family: 'Roboto', sans-serif;
-    font-size: 1.5vw;
+    font-size: 20px;
     
 }
 
 .tweet-text-wrapper > textarea::placeholder {
-    font-size: 2vw;
+    font-size: 20px;
 }
 
 .upload-tweet-wrapper {
@@ -299,3 +300,38 @@ img {
 }
 
 /* Media Query */
+
+@media screen and (max-width: 1290px) {
+    .nav-bar-wrapper {
+        width: 20vw;
+    }
+
+    .nav-btn {
+        width: 90%;
+        justify-content: end;
+    }
+
+    .nav-btn-text {
+        display: none;
+    }
+
+    .logo {
+        align-self: flex-end;
+        margin-right: 10%;
+    }
+
+    .nav-bar-tweet {
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 1000px) {
+    .suggestions {
+        display: none;
+    }
+
+    .page-contents {
+        flex-grow: 1;
+    }
+}
