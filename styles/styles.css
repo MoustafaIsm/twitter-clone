@@ -94,6 +94,35 @@ button:hover {
 	background-color: #e6f0f7;
 }
 
+/* Sign up modal */
+
+.modal {
+	display: block;
+	background-color: white;
+	border-radius: 10px;
+	margin: auto auto;
+	width: 600px;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	border: transparent;
+}
+
+.modal-quit {
+	width: 20px;
+	height: 20px;
+	margin: 10px;
+}
+
+.modal-form {
+	display: block;
+	margin: 20px auto;
+	width: 75%;
+}
+
+.modal-form h1 {
+	font-size: 30px;
+	margin-bottom: 20px;
+}
+
 .footer {
 	display: flex;
 	width: 100%;
