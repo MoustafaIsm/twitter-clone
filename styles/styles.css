@@ -100,16 +100,16 @@ button:hover {
 	background-color: #e6f0f7;
 }
 
-/* Signup modal */
+/* Signup/Signin modal */
 .modal {
-	display: block;
+	/* display: block; */
 	background-color: white;
-	border-radius: 10px;
+	border-radius: 15px;
 	margin: auto auto;
 	width: 600px;
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-	min-height: 615px;
-	/* border: transparent; */
+	min-height: 640px;
+	border: transparent;
 	position: relative;
 }
 
@@ -133,6 +133,12 @@ button:hover {
 	height: 22px;
 	margin: 15px;
 }
+
+/* #quit_effect {
+	display: block;
+	width: fit-content;
+	border-radius: 50%;
+} */
 
 .modal-form {
 	display: block;
@@ -221,9 +227,9 @@ button:hover {
 	position: absolute;
 	left: 50%;
 	top: 15px;
-	margin-left: -17.5px;
-	width: 35px;
-	height: 35px;
+	margin-left: -15px;
+	width: 30px;
+	height: 30px;
 }
 
 /* Signin form */
