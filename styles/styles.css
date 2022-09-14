@@ -4,11 +4,13 @@
 	box-sizing: border-box;
 }
 
+/* Signin/Signup page */
 .page {
 	display: flex;
 	width: 100%;
 }
 
+/* Page banner */
 .background {
 	width: 54%;
 	height: 48vw;
@@ -16,6 +18,7 @@
 	object-fit: cover;
 }
 
+/* Header */
 .title {
 	padding-left: 2.4vw;
 }
@@ -41,6 +44,7 @@
 	margin: 5vh 0 0 0;
 }
 
+/* Signup/Signin buttons */
 button {
 	width: 300px;
 	height: 41px;
@@ -83,6 +87,7 @@ button:hover {
 	margin: 7vh 0 0 0;
 }
 
+/* Signin button */
 .sign-in {
 	color: #1d9bf0;
 	background-color: white;
@@ -94,8 +99,7 @@ button:hover {
 	background-color: #e6f0f7;
 }
 
-/* Sign up modal */
-
+/* Signup modal */
 .modal {
 	/* display: block; */
 	background-color: white;
@@ -103,9 +107,12 @@ button:hover {
 	margin: auto auto;
 	width: 600px;
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	min-height: 615px;
 	border: transparent;
+	position: relative;
 }
 
+/* When modal is opened */
 .modal.active {
 	display: block;
 	position: absolute;
@@ -113,10 +120,17 @@ button:hover {
 	overflow: auto;
 }
 
+/* Main page behind the modal while modal is open */
+.modal::backdrop {
+	background: black;
+	opacity: 0.4;
+}
+
+/* Quir icon */
 .modal-quit {
-	width: 20px;
-	height: 20px;
-	margin: 10px;
+	width: 22px;
+	height: 22px;
+	margin: 15px;
 }
 
 .modal-form {
@@ -131,10 +145,11 @@ button:hover {
 }
 
 #name_input,
-#email_input {
+#email_input,
+#password_input {
 	width: 100%;
 	margin: 10px 0;
-	height: 55px;
+	height: 60px;
 	font-size: 17px;
 	color: gray;
 	border: 1px solid rgb(204, 204, 204);
@@ -183,8 +198,9 @@ button:hover {
 	flex-grow: 3;
 }
 
-#submit {
-	width: 100%;
+/* Submit button */
+.submit {
+	width: 75%;
 	height: 55px;
 	background-color: black;
 	color: white;
@@ -193,10 +209,15 @@ button:hover {
 	font-size: 17px;
 	font-weight: 600;
 	border: transparent;
+	position: absolute;
+	bottom: 20px;
+}
+
+.hide {
+	display: none;
 }
 
 /* Footer */
-
 .footer {
 	display: flex;
 	width: 100%;
@@ -209,6 +230,7 @@ button:hover {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Footer hyperlinks */
 .footer > a {
 	text-decoration: none;
 	color: rgb(83, 100, 113);
