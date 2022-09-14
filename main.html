@@ -25,13 +25,13 @@
                 <!-- Navigation Bar Buttons -->
                 <div class="nav-btns">
                     <ul class="nav-btns-list">
-                        <li class="nav-btn nav-btn-active grey-background">
+                        <li class="nav-btn nav-btn-active grey-background" id="home-nav-btn">
                             <div><span class="material-symbols-outlined">home</span></div>
                             <div class="nav-btn-text">
                                 <p> Home </p>
                             </div>
                         </li>
-                        <li class="nav-btn grey-background">
+                        <li class="nav-btn grey-background" id="profile-nav-btn">
                             <div><span class="material-symbols-outlined">person</span></div>
                             <div class="nav-btn-text">
                                 <p> Profile </p>
@@ -54,11 +54,16 @@
         <section class="container page-contents">
             <!-- Page title -->
             <section class="page-title-wrapper">
-                <p> Home </p>
-                <p style="display: none;"> Profile </p>
+                <p id="home-title"> Home </p>
+                <div class="profile-title hide" id="profile-title">
+                    <span class="material-symbols-outlined grey-background">
+                        arrow_back
+                    </span>
+                    <p> Profile </p>
+                </div>
             </section>
             <!-- Write a tweet -->
-            <section class="write-tweet-wrapper hide">
+            <section class="write-tweet-wrapper hide" id="tweet-writing">
                 <!-- Profile picture -->
                 <div class="small-round-profile-picture">
 
@@ -80,7 +85,7 @@
                 </div>
             </section>
             <!-- Feeds -->
-            <section class="feeds hide">
+            <section class="feeds hide" id="feeds">
                 <div class="feed-wrapper">
                     <!-- Picture -->
                     <div>
@@ -115,7 +120,7 @@
                 </div>
             </section>
             <!-- Profile -->
-            <section class="profile-wrapper">
+            <section class="profile-wrapper" id="profile">
                 <!-- Banner -->
                 <div class="profile-banner">
                     <!-- Profile Picture -->
@@ -188,6 +193,7 @@
         </section>
 
     </div>
+    <script src="./scripts/main_page_script.js"></script>
 </body>
 
 </html>
