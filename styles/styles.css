@@ -269,6 +269,47 @@ img {
     margin-left: 30px;
 }
 
+.profile-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-details {
+    margin-left: 20px;
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+}
+
+.date-wrapper {
+    display: flex;
+    align-items: center;
+    margin: 20px 0px;
+}
+
+.following-followers-wrapper {
+    display: flex;
+}
+
+.following-followers-wrapper > p {
+    margin-right: 20px;
+}
+
+.edit-profile-btn-wrapper {
+    width: 20%;
+    margin: 10px;
+}
+
+.edit-profile-btn-wrapper > button {
+    border-radius: 30px;
+    border: 0px;
+    padding: 5% 2%;
+    font-weight: bold;
+    width: 100%;
+    background-color: white;
+    border: 2px solid #dadedf;
+}
+
 
 /* Suggestions */
 .suggestions {
@@ -315,7 +356,7 @@ img {
 }
 
 .grey-text {
-    color: #939393;
+    color: #536471;
 }
 
 .grey-background:hover {
