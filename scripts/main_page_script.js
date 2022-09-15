@@ -3,6 +3,7 @@ const homeNavBtn = document.getElementById("home-nav-btn");
 const profileNavBtn = document.getElementById("profile-nav-btn");
 const backBtn = document.getElementById("back-btn");
 const editProfileBtn = document.getElementById("edit-profile-btn");
+const closeModalBtn = document.getElementById("close-modal");
 
 const homeTitle = document.getElementById("home-title");
 const profileTitle = document.getElementById("profile-title");
@@ -22,6 +23,7 @@ profileNavBtn.addEventListener("click", openProfilePage);
 homeNavBtn.addEventListener("click", openHomePage);
 backBtn.addEventListener("click", openHomePage);
 editProfileBtn.addEventListener("click", openEditProfileModal);
+closeModalBtn.addEventListener("click", closeModal);
 
 /** Functions **/
 
@@ -45,6 +47,9 @@ function openEditProfileModal() {
 
 }
 
+function closeModal() {
+    editProfileModal.close();
+}
 
 // Other functions
 function changeNavBtnsStyle(page) {
