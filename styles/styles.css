@@ -400,6 +400,49 @@ img {
     margin-top: 0% !important;
 }
 
+.edit-profile-banner > div > label {
+    margin-top: 17%;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-profile-banner > div > label > span {
+    align-self: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10%;
+    border-radius: 50px;
+}
+
+.edit-profile-banner > div > label > span:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0);
+}
+
+.edit-profile-banner  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-profile-picture > label {
+    margin: 0% !important;
+}
+
+.edit-profile-banner > div > span {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50px;
+}
+
+.edit-profile-banner > div > span:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0);
+}
+
 .edit-profile-form {
     display: flex;
     flex-direction: column;
