@@ -426,6 +426,18 @@ img {
     border-radius: 5px;
 }
 
+.date-of-birth-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0% 3%;
+    margin-bottom: 10%;
+}
+
+.date-of-birth-wrapper > div {
+    font-size: 20px;
+    display: flex;
+}
+
 /* Tabs */
 .nav-tabs {
     display: flex;
