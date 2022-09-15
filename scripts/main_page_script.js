@@ -11,6 +11,15 @@ const profileTitle = document.getElementById("profile-title");
 const tweetWriting = document.getElementById("tweet-writing");
 const feeds = document.getElementById("feeds");
 const profile = document.getElementById("profile");
+const followingFollowers = document.getElementById("following-followers")
+
+const following = document.getElementById("following");
+const followingTabBtn = document.getElementById("following-tab-btn")
+const followingTab = document.getElementById("following-tab");
+
+const followers = document.getElementById("followers");
+const followersTab = document.getElementById("followers-tab");
+const followersTabBtn = document.getElementById("followers-tab-btn");
 
 // Modal related stuff
 const editProfileModal = document.getElementById("edit-profile-modal");
@@ -24,6 +33,10 @@ homeNavBtn.addEventListener("click", openHomePage);
 backBtn.addEventListener("click", openHomePage);
 editProfileBtn.addEventListener("click", openEditProfileModal);
 closeModalBtn.addEventListener("click", closeModal);
+following.addEventListener("click", openFollowingTab);
+followingTabBtn.addEventListener("click", openFollowingTab)
+followers.addEventListener("click", openFollowersTab);
+followersTabBtn.addEventListener("click", openFollowersTab);
 
 /** Functions **/
 
@@ -38,6 +51,14 @@ function openHomePage() {
     changeNavBtnsStyle("home");
     changePageTitle("home");
     changePage("home");
+}
+
+function openFollowingTab() {
+    changePage("following");
+}
+
+function openFollowersTab() {
+    changePage("followers");
 }
 
 function openEditProfileModal() {
@@ -78,9 +99,29 @@ function changePage(page) {
         profile.classList.remove("hide");
         feeds.classList.add("hide");
         tweetWriting.classList.add("hide");
-    } else {
+        followingFollowers.classList.add("hide");
+    } else if (page == "home") {
         profile.classList.add("hide");
         feeds.classList.remove("hide");
         tweetWriting.classList.remove("hide");
+        followingFollowers.classList.add("hide");
+    } else if (page == "following") {
+        profile.classList.add("hide");
+        feeds.classList.add("hide");
+        tweetWriting.classList.add("hide");
+        followingFollowers.classList.remove("hide");
+        followingTab.classList.remove("hide");
+        followersTab.classList.add("hide");
+        followingTabBtn.classList.add("active-tab");
+        followersTabBtn.classList.remove("active-tab");
+    } else {
+        profile.classList.add("hide");
+        feeds.classList.add("hide");
+        tweetWriting.classList.add("hide");
+        followingFollowers.classList.remove("hide");
+        followingTab.classList.add("hide");
+        followersTab.classList.remove("hide");
+        followingTabBtn.classList.remove("active-tab");
+        followersTabBtn.classList.add("active-tab");
     }
 }

@@ -328,12 +328,17 @@ img {
     margin: 20px 0px;
 }
 
-.following-followers-wrapper {
+.following-followers-info-wrapper {
     display: flex;
 }
 
-.following-followers-wrapper > p {
+.following-followers-info-wrapper > p {
     margin-right: 20px;
+}
+
+.following-followers-info-wrapper > p:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .edit-profile-btn-wrapper {
@@ -530,6 +535,32 @@ img {
 .active-tab > p {
     padding: 1% 0%;
     border-bottom: 5px solid rgb(29, 155, 240);
+}
+
+/* Following and followers */
+.following-followers-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.following-followers-tabs {
+    display: flex;
+    border-bottom: 1px solid #dadedf;
+}
+
+.following-followers-tabs > div {
+    width: 50% !important;
+}
+
+.other-user-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.other-user-info {
+    display: flex;
+    flex-direction: column;
 }
 
 
