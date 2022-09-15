@@ -4,6 +4,8 @@ const profileNavBtn = document.getElementById("profile-nav-btn");
 const backBtn = document.getElementById("back-btn");
 const editProfileBtn = document.getElementById("edit-profile-btn");
 const closeModalBtn = document.getElementById("close-modal");
+const moreBtn = document.getElementById("more-btn");
+const logoutWrapper = document.getElementById("logout-wrapper");
 
 const homeTitle = document.getElementById("home-title");
 const profileTitle = document.getElementById("profile-title");
@@ -11,10 +13,10 @@ const profileTitle = document.getElementById("profile-title");
 const tweetWriting = document.getElementById("tweet-writing");
 const feeds = document.getElementById("feeds");
 const profile = document.getElementById("profile");
-const followingFollowers = document.getElementById("following-followers")
+const followingFollowers = document.getElementById("following-followers");
 
 const following = document.getElementById("following");
-const followingTabBtn = document.getElementById("following-tab-btn")
+const followingTabBtn = document.getElementById("following-tab-btn");
 const followingTab = document.getElementById("following-tab");
 
 const followers = document.getElementById("followers");
@@ -31,6 +33,8 @@ if (typeof editProfileModal.showModal !== "function") {
 profileNavBtn.addEventListener("click", openProfilePage);
 homeNavBtn.addEventListener("click", openHomePage);
 backBtn.addEventListener("click", openHomePage);
+
+moreBtn.addEventListener("click", openLogoutWrapper);
 
 editProfileBtn.addEventListener("click", openEditProfileModal);
 
@@ -54,6 +58,10 @@ function openHomePage() {
     changeNavBtnsStyle("home");
     changePageTitle("home");
     changePage("home");
+}
+
+function openLogoutWrapper() {
+    logoutWrapper.classList.toggle("hide");
 }
 
 function openFollowingTab() {
