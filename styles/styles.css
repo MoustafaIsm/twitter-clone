@@ -108,9 +108,8 @@ button:hover {
 	margin: auto auto;
 	width: 600px;
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-	min-height: 640px;
+	height: 640px;
 	border: transparent;
-	position: relative;
 }
 
 /* When modal is opened */
@@ -125,6 +124,8 @@ button:hover {
 .modal::backdrop {
 	background: black;
 	opacity: 0.4;
+	overflow: hidden;
+	user-select: none;
 }
 
 /* Quit icon */
@@ -134,15 +135,14 @@ button:hover {
 	margin: 15px;
 }
 
-/* #quit_effect {
-	display: block;
-	width: fit-content;
-	border-radius: 50%;
-} */
+.modal-quit path:hover {
+	fill: gray;
+}
 
 .modal-form {
-	display: block;
-	margin: 20px auto;
+	display: flex;
+	flex-direction: column;
+	margin: 20px auto 0;
 	width: 75%;
 }
 
@@ -163,7 +163,17 @@ button:hover {
 	border: 1px solid rgb(204, 204, 204);
 	border-radius: 5px;
 	padding: 5px 5px;
-	outline: transparent;
+	outline-color: #1d9bf0;
+}
+
+#name_input:focus,
+#email_input:focus,
+#password_input:focus,
+.signin-input:focus,
+#month:focus,
+#day:focus,
+#year:focus {
+	box-shadow: 0 0 1px 1px #1d9bf0;
 }
 
 .modal-form h3 {
@@ -192,6 +202,7 @@ button:hover {
 	border: 1px solid rgb(169, 169, 169);
 	border-radius: 5px;
 	padding: 5px 5px;
+	outline-color: #1d9bf0;
 }
 
 #month {
@@ -213,12 +224,25 @@ button:hover {
 	background-color: black;
 	color: white;
 	border-radius: 30px;
-	margin: 80px 0 15px;
 	font-size: 17px;
 	font-weight: 600;
 	border: transparent;
-	position: absolute;
-	bottom: 20px;
+	margin-bottom: 20px;
+}
+
+.first-section {
+	height: 500px;
+	vertical-align: baseline;
+	width: 75%;
+}
+
+.second-section {
+	text-align: center;
+	width: 75%;
+}
+
+.pass-table {
+	width: 100%;
 }
 
 /* Signin twitter icon */
@@ -265,11 +289,11 @@ button:hover {
 	color: rgb(83, 100, 113);
 }
 
-#signup-link {
+#signup_link {
 	color: rgb(29, 155, 240);
 }
 
-#signup-link:hover {
+#signup_link:hover {
 	text-decoration: underline;
 }
 

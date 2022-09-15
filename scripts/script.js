@@ -7,7 +7,7 @@ const signin = document.getElementById('signin');
 const signin_modal = document.getElementById('signin_modal');
 const signin_quit = document.getElementById('signin_quit');
 const back = document.getElementById('back');
-const effect = document.getElementById('quit_effect');
+const signup_link = document.getElementById('signup_link');
 
 signup.addEventListener('click', () => {
 	signup_modal.showModal();
@@ -43,8 +43,7 @@ signin_quit.addEventListener('click', () => {
 	document.body.style.userSelect = 'auto';
 });
 
-/* effect.addEventListener('mouseover', () => {
-	effect.style.background = 'black';
-	effect.style.opacity = 0.3;
+signup_link.addEventListener('click', () => {
+	signin_modal.close();
+	signup_modal.showModal();
 });
- */
