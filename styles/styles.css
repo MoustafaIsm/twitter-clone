@@ -49,6 +49,7 @@ img {
 .logo:hover {
     cursor: pointer;
     background-color:  rgb(212, 238, 255);
+    transition: 500ms;
 }
 
 .logo-wrapper {
@@ -224,6 +225,7 @@ img {
 .upload-tweet-wrapper > label:hover {
     cursor: pointer;
     background-color: rgb(212, 238, 255);
+    transition: 500ms;
 }
 
 /* Feeds */
@@ -394,6 +396,7 @@ img {
 .save-btn:hover {
     cursor: pointer;
     background-color: rgb(52, 52, 52);
+    transition: 500ms;
 }
 
 .edit-profile-banner {
@@ -420,6 +423,7 @@ img {
 .edit-profile-banner > div > label > span:hover {
     cursor: pointer;
     background-color: rgba(0, 0, 0);
+    transition: 500ms;
 }
 
 .edit-profile-banner  > div {
@@ -580,6 +584,7 @@ img {
 .grey-background:hover {
     cursor: pointer;
     background-color: #e2e2e2;
+    transition: 500ms;
 }
 
 .btn {
