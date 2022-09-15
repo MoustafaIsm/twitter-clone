@@ -191,10 +191,23 @@
                         <!-- Form -->
                         <form>
                             <div class="edit-profile-form">
-                                <input type="text" placeholder="Name">
-                                <textarea cols="30" rows="3" placeholder="Bio"></textarea>
-                                <input type="text" placeholder="Location">
-                                <input type="text" placeholder="Website">
+                                <div class="input-wrapper">
+                                    <input type="text" class="edit-profile-input" id="name-input" required>
+                                    <label for="name-input" class="label"> Name </label>
+                                </div>
+                                <div class="input-wrapper">
+                                    <textarea rows="3" class="edit-profile-input" id="bio-input" required></textarea>
+                                    <label for="bio-input" class="label"> Bio </label>
+                                </div>
+
+                                <div class="input-wrapper">
+                                    <input type="text" class="edit-profile-input" id="location-input" required>
+                                    <label for="location-input" class="label"> Location </label>
+                                </div>
+                                <div class="input-wrapper">
+                                    <input type="text" class="edit-profile-input" id="website-input" required>
+                                    <label for="website-input" class="label"> Website </label>
+                                </div>
                             </div>
                         </form>
                         <!-- Date of birth -->
