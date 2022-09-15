@@ -9,6 +9,23 @@ const signin_quit = document.getElementById('signin_quit');
 const back = document.getElementById('back');
 const signup_link = document.getElementById('signup_link');
 
+const day = document.getElementById('day');
+const year = document.getElementById('year');
+
+for (let i = 1; i < 32; i++) {
+	const option = document.createElement('option');
+	option.value = i;
+	option.textContent = i;
+	day.appendChild(option);
+}
+
+for (let i = 2022; i > 1901; i--) {
+	const option = document.createElement('option');
+	option.value = i;
+	option.textContent = i;
+	year.appendChild(option);
+}
+
 signup.addEventListener('click', () => {
 	signup_modal.showModal();
 	document.body.style.overflow = 'hidden';

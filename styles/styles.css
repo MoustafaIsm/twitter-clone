@@ -130,13 +130,18 @@ button:hover {
 
 /* Quit icon */
 .modal-quit {
-	width: 22px;
-	height: 22px;
-	margin: 15px;
+	width: 36px;
+	height: 36px;
+	margin: 7px;
+	cursor: pointer;
+	border-radius: 50%;
+	padding: 6px 0 0 6px;
+	transition: 300ms;
+	user-select: none;
 }
 
-.modal-quit path:hover {
-	fill: gray;
+.modal-quit:hover {
+	background-color: rgb(223, 223, 223);
 }
 
 .modal-form {
