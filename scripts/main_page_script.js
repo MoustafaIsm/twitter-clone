@@ -1,7 +1,8 @@
 // Variables
-const homeNavButton = document.getElementById("home-nav-btn");
-const profileNavButton = document.getElementById("profile-nav-btn");
+const homeNavBtn = document.getElementById("home-nav-btn");
+const profileNavBtn = document.getElementById("profile-nav-btn");
 const backBtn = document.getElementById("back-btn");
+const editProfileBtn = document.getElementById("edit-profile-btn");
 
 const homeTitle = document.getElementById("home-title");
 const profileTitle = document.getElementById("profile-title");
@@ -10,12 +11,21 @@ const tweetWriting = document.getElementById("tweet-writing");
 const feeds = document.getElementById("feeds");
 const profile = document.getElementById("profile");
 
-// Event listeners
-profileNavButton.addEventListener("click", openProfilePage);
-homeNavButton.addEventListener("click", openHomePage);
-backBtn.addEventListener("click", openHomePage);
+// Modal related stuff
+const editProfileModal = document.getElementById("edit-profile-modal");
+if (typeof editProfileModal.showModal !== "function") {
+    favDialog.hidden = true;
+}
 
-// Functions
+// Event listeners
+profileNavBtn.addEventListener("click", openProfilePage);
+homeNavBtn.addEventListener("click", openHomePage);
+backBtn.addEventListener("click", openHomePage);
+editProfileBtn.addEventListener("click", openEditProfileModal);
+
+/** Functions **/
+
+// Eventlisteners function
 function openProfilePage() {
     changeNavBtnsStyle("profile");
     changePageTitle("profile");
@@ -28,13 +38,22 @@ function openHomePage() {
     changePage("home");
 }
 
+function openEditProfileModal() {
+    if (typeof editProfileModal.showModal === "function") {
+        editProfileModal.showModal();
+    }
+
+}
+
+
+// Other functions
 function changeNavBtnsStyle(page) {
     if (page == "profile") {
-        homeNavButton.classList.remove("nav-btn-active");
-        profileNavButton.classList.add("nav-btn-active");
+        homeNavBtn.classList.remove("nav-btn-active");
+        profileNavBtn.classList.add("nav-btn-active");
     } else {
-        homeNavButton.classList.add("nav-btn-active");
-        profileNavButton.classList.remove("nav-btn-active");
+        homeNavBtn.classList.add("nav-btn-active");
+        profileNavBtn.classList.remove("nav-btn-active");
     }
 
 }

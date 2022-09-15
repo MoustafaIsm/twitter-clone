@@ -349,6 +349,52 @@ img {
     border: 2px solid #dadedf;
 }
 
+/* Modal */
+.edit-profile-modal {
+    width: 600px;
+    height: 650px;
+    margin: auto;
+}
+
+.edit-profile-modal > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 3% 3%;
+}
+
+.modal-header > div:first-child {
+    display: flex;
+    align-items: center;
+    flex-grow: 2;
+}
+
+.modal-header > div > span {
+    border-radius: 50px;
+    margin-right: 3%;
+}
+
+.save-btn-wrapper {
+    width: 15%;
+}
+
+.save-btn {
+    background-color: black;
+    color: white;
+    padding: 10% 25%;
+    border-radius: 50px;
+}
+
+.save-btn:hover {
+    cursor: pointer;
+    background-color: rgb(52, 52, 52);
+}
+
+/* Tabs */
 .nav-tabs {
     display: flex;
     margin-top: 5%;
