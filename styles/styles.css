@@ -354,6 +354,8 @@ img {
     width: 600px;
     height: 650px;
     margin: auto;
+    border: none;
+    border-radius: 15px;
 }
 
 .edit-profile-modal > div {
@@ -392,6 +394,36 @@ img {
 .save-btn:hover {
     cursor: pointer;
     background-color: rgb(52, 52, 52);
+}
+
+.edit-profile-banner {
+    margin-top: 0% !important;
+}
+
+.edit-profile-form {
+    display: flex;
+    flex-direction: column;
+    margin: 0% 3%;
+    margin-top: 10%;
+}
+
+.edit-profile-form > input {
+    outline: none;
+    border: 1px solid #D9D9D9;
+    margin: 3% 0%;
+    padding: 2%;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.edit-profile-form > textarea{
+    resize: none;
+    outline: none;
+    border: 1px solid #D9D9D9;
+    margin: 3% 0%;
+    padding: 2%;
+    font-size: 20px;
+    border-radius: 5px;
 }
 
 /* Tabs */
