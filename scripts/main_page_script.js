@@ -31,8 +31,11 @@ if (typeof editProfileModal.showModal !== "function") {
 profileNavBtn.addEventListener("click", openProfilePage);
 homeNavBtn.addEventListener("click", openHomePage);
 backBtn.addEventListener("click", openHomePage);
+
 editProfileBtn.addEventListener("click", openEditProfileModal);
+
 closeModalBtn.addEventListener("click", closeModal);
+
 following.addEventListener("click", openFollowingTab);
 followingTabBtn.addEventListener("click", openFollowingTab)
 followers.addEventListener("click", openFollowersTab);
