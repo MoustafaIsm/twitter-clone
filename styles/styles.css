@@ -199,6 +199,11 @@ input:not(:focus):valid ~ .label {
 }
 
 #name_input,
+#email_input {
+	margin-bottom: 30px !important;
+}
+
+#name_input,
 #email_input,
 #password_input,
 .signin-input {
@@ -221,6 +226,21 @@ input:not(:focus):valid ~ .label {
 #day:focus,
 #year:focus {
 	box-shadow: 0 0 1px 1px #1d9bf0;
+}
+
+.red {
+	outline-color: red;
+	box-shadow: 0 0 1px 1px red;
+}
+
+#invalid_name,
+#invalid_email {
+	display: none;
+	position: absolute;
+	bottom: -7px;
+	left: 10px;
+	font-size: 13px;
+	color: red;
 }
 
 .modal-form h3 {

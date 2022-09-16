@@ -10,6 +10,9 @@ const back = document.getElementById('back');
 const signup_link = document.getElementById('signup_link');
 const submit = document.getElementById('submit');
 const signin_next = document.getElementById('signin_next');
+const name_label = document.getElementById('name_label');
+const invalid_name = document.getElementById('invalid_name');
+const invalid_email = document.getElementById('invalid_email');
 
 const day = document.getElementById('day');
 const year = document.getElementById('year');
@@ -110,8 +113,8 @@ email_input.addEventListener('focus', () => {
 	email_label.style.color = '#1d9bf0';
 });
 
-name_input.addEventListener('keyup', enableNext);
-email_input.addEventListener('keyup', enableNext);
+name_input.addEventListener('keyup', enableNextInput);
+email_input.addEventListener('keyup', enableNextEmail);
 month.addEventListener('change', enableNext);
 day.addEventListener('change', enableNext);
 year.addEventListener('change', enableNext);
@@ -265,4 +268,26 @@ function enableNext() {
 
 function enableSignin() {
 	signinNext(signin_input, signin_pass);
+}
+
+function enableNextInput() {
+	signupNext(name_input, email_input.value, month, day, year);
+	if (nameValid == false) {
+		/* name_input.style.outlineColor = 'red';
+		name_label.style.color = 'red'; */
+		invalid_name.style.display = 'block';
+	} else {
+		/* name_input.style.removeProperty('outlineColor');
+		name_label.style.removeProperty('color'); */
+		invalid_name.style.removeProperty('display');
+	}
+}
+
+function enableNextEmail() {
+	signupNext(name_input, email_input.value, month, day, year);
+	if (emailValid == false) {
+		invalid_email.style.display = 'block';
+	} else {
+		invalid_email.style.removeProperty('display');
+	}
 }
