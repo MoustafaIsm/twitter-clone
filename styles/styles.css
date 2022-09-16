@@ -16,8 +16,8 @@ button {
 
 /* Page banner */
 .background {
-	width: 54%;
-	height: 48vw;
+	width: 54vw;
+	/* height: 48vw; */
 	min-height: 95vh;
 	object-fit: cover;
 }
@@ -34,7 +34,7 @@ button {
 
 .title > h1 {
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-	font-size: clamp(35px, 4.2vw, 70px);
+	font-size: 65px;
 	color: black;
 	font-weight: 900;
 	margin: 8vh 0 0 0;
@@ -42,7 +42,7 @@ button {
 
 .title > h2 {
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-	font-size: clamp(20px, 2.2vw, 30px);
+	font-size: 30px;
 	color: black;
 	font-weight: 800;
 	margin: 5vh 0 0 0;
@@ -413,4 +413,58 @@ a:hover {
 
 .footer > p {
 	padding: 6px 10px;
+}
+
+.media {
+	display: none;
+}
+
+@media screen and (max-width: 1300px) {
+	.background {
+		width: 48vw;
+		min-height: 700px;
+	}
+}
+
+@media screen and (max-width: 1190px) {
+	.background {
+		width: 42vw;
+		min-height: 700px;
+	}
+}
+
+@media screen and (max-width: 1016px) {
+	.page {
+		flex-direction: column-reverse;
+	}
+
+	.title {
+		width: 45vw;
+		margin-left: 19vw;
+		margin-bottom: 4vw;
+	}
+
+	.background {
+		display: none;
+	}
+
+	.media {
+		display: block;
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 740px) {
+	.title {
+		margin-left: 20px;
+		width: 400px;
+	}
+
+	.title h1 {
+		font-size: 40px;
+	}
+
+	.title h2 {
+		font-size: 25px;
+	}
 }
