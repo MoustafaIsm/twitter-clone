@@ -9,6 +9,7 @@ const signin_quit = document.getElementById('signin_quit');
 const back = document.getElementById('back');
 const signup_link = document.getElementById('signup_link');
 const submit = document.getElementById('submit');
+const signin_next = document.getElementById('signin_next');
 
 const day = document.getElementById('day');
 const year = document.getElementById('year');
@@ -18,6 +19,8 @@ const name_input = document.getElementById('name_input');
 const email_input = document.getElementById('email_input');
 const email_label = document.getElementById('email_label');
 const password_input = document.getElementById('password_input');
+const signin_input = document.getElementById('signin_input');
+const signin_pass = document.getElementById('signin_input_pass');
 
 const valid_email_form = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 let nameValid;
@@ -26,6 +29,8 @@ let monthValid;
 let dayValid;
 let yearValid;
 let passwordValid;
+let signinInputValid;
+let signinPassValid;
 
 for (let i = 1; i < 32; i++) {
 	const option = document.createElement('option');
@@ -51,6 +56,11 @@ quit.addEventListener('click', () => {
 	signup_modal.close();
 	document.body.style.overflow = 'auto';
 	document.body.style.userSelect = 'auto';
+	name_input.value = '';
+	email_input.value = '';
+	month.value = '';
+	day.value = '';
+	year.value = '';
 });
 
 signup_next.addEventListener('click', () => {
@@ -73,6 +83,8 @@ signin_quit.addEventListener('click', () => {
 	signin_modal.close();
 	document.body.style.overflow = 'auto';
 	document.body.style.userSelect = 'auto';
+	signin_input.value = '';
+	signin_pass.value = '';
 });
 
 signup_link.addEventListener('click', () => {
@@ -98,80 +110,11 @@ email_input.addEventListener('focus', () => {
 	email_label.style.color = '#1d9bf0';
 });
 
-name_input.addEventListener('keyup', () => {
-	check_name(name_input);
-	check_email(email_input.value);
-	check_month(month);
-	check_day(day);
-	checkYear(year);
-	if (nameValid == true && emailValid == true && monthValid == true && dayValid == true && yearValid == true) {
-		signup_next.disabled = false;
-		signup_next.style.opacity = 1;
-	} else {
-		signup_next.disabled = true;
-		signup_next.style.opacity = 0.4;
-	}
-});
-
-email_input.addEventListener('keyup', () => {
-	check_name(name_input);
-	check_email(email_input.value);
-	check_month(month);
-	check_day(day);
-	checkYear(year);
-	if (nameValid == true && emailValid == true && monthValid == true && dayValid == true && yearValid == true) {
-		signup_next.disabled = false;
-		signup_next.style.opacity = 1;
-	} else {
-		signup_next.disabled = true;
-		signup_next.style.opacity = 0.4;
-	}
-});
-
-month.addEventListener('change', () => {
-	check_name(name_input);
-	check_email(email_input.value);
-	check_month(month);
-	check_day(day);
-	checkYear(year);
-	if (nameValid == true && emailValid == true && monthValid == true && dayValid == true && yearValid == true) {
-		signup_next.disabled = false;
-		signup_next.style.opacity = 1;
-	} else {
-		signup_next.disabled = true;
-		signup_next.style.opacity = 0.4;
-	}
-});
-
-day.addEventListener('change', () => {
-	check_name(name_input);
-	check_email(email_input.value);
-	check_month(month);
-	check_day(day);
-	checkYear(year);
-	if (nameValid == true && emailValid == true && monthValid == true && dayValid == true && yearValid == true) {
-		signup_next.disabled = false;
-		signup_next.style.opacity = 1;
-	} else {
-		signup_next.disabled = true;
-		signup_next.style.opacity = 0.4;
-	}
-});
-
-year.addEventListener('change', () => {
-	check_email(email_input.value);
-	check_month(month);
-	check_day(day);
-	checkYear(year);
-	check_name(name_input);
-	if (nameValid == true && emailValid == true && monthValid == true && dayValid == true && yearValid == true) {
-		signup_next.disabled = false;
-		signup_next.style.opacity = 1;
-	} else {
-		signup_next.disabled = true;
-		signup_next.style.opacity = 0.4;
-	}
-});
+name_input.addEventListener('keyup', enableNext);
+email_input.addEventListener('keyup', enableNext);
+month.addEventListener('change', enableNext);
+day.addEventListener('change', enableNext);
+year.addEventListener('change', enableNext);
 
 password_input.addEventListener('keyup', () => {
 	checkPassword(password_input);
@@ -181,6 +124,45 @@ password_input.addEventListener('keyup', () => {
 	} else {
 		submit.disabled = true;
 		submit.style.opacity = 0.4;
+	}
+});
+
+signin_input.addEventListener('keyup', enableSignin);
+signin_pass.addEventListener('keyup', enableSignin);
+
+signup_next.addEventListener('mouseenter', () => {
+	if (!signup_next.disabled) {
+		signup_next.style.opacity = 0.9;
+	}
+});
+
+signup_next.addEventListener('mouseleave', () => {
+	if (!signup_next.disabled) {
+		signup_next.style.opacity = 1;
+	}
+});
+
+submit.addEventListener('mouseenter', () => {
+	if (!submit.disabled) {
+		submit.style.opacity = 0.9;
+	}
+});
+
+submit.addEventListener('mouseleave', () => {
+	if (!submit.disabled) {
+		submit.style.opacity = 1;
+	}
+});
+
+signin_next.addEventListener('mouseenter', () => {
+	if (!signin_next.disabled) {
+		signin_next.style.opacity = 0.9;
+	}
+});
+
+signin_next.addEventListener('mouseleave', () => {
+	if (!signin_next.disabled) {
+		signin_next.style.opacity = 1;
 	}
 });
 
@@ -230,4 +212,57 @@ function checkPassword(password) {
 	} else {
 		passwordValid = false;
 	}
+}
+
+function checkUsername(username) {
+	if (username.value) {
+		signinInputValid = true;
+	} else {
+		signinInputValid = false;
+	}
+}
+
+function checkUserPassword(password) {
+	if (password.value.length >= 8) {
+		signinPassValid = true;
+	} else {
+		signinPassValid = false;
+	}
+}
+
+function signupNext(name, email, month, day, year) {
+	check_name(name);
+	check_email(email);
+	check_month(month);
+	check_day(day);
+	checkYear(year);
+	if (nameValid == true && emailValid == true && monthValid == true && dayValid == true && yearValid == true) {
+		signup_next.disabled = false;
+		signup_next.style.opacity = 1;
+		enabled = true;
+	} else {
+		signup_next.disabled = true;
+		signup_next.style.opacity = 0.4;
+		enabled = false;
+	}
+}
+
+function signinNext(username, password) {
+	checkUsername(username);
+	checkUserPassword(password);
+	if (signinInputValid == true && signinPassValid == true) {
+		signin_next.disabled = false;
+		signin_next.style.opacity = 1;
+	} else {
+		signin_next.disabled = true;
+		signin_next.style.opacity = 0.4;
+	}
+}
+
+function enableNext() {
+	signupNext(name_input, email_input.value, month, day, year);
+}
+
+function enableSignin() {
+	signinNext(signin_input, signin_pass);
 }

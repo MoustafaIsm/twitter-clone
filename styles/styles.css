@@ -4,6 +4,10 @@
 	box-sizing: border-box;
 }
 
+button {
+	cursor: pointer;
+}
+
 /* Signin/Signup page */
 .page {
 	display: flex;
@@ -290,6 +294,7 @@ input:not(:focus):valid ~ .label {
 	border: transparent;
 	margin-bottom: 20px;
 	opacity: 0.4;
+	transition: 300ms;
 }
 
 .first-section {
@@ -343,6 +348,8 @@ input:not(:focus):valid ~ .label {
 	margin: 20px 0 0;
 	font-size: 15px;
 	font-weight: 600;
+	opacity: 0.4;
+	transition: 300ms;
 }
 
 .modal-signin-form p {
@@ -353,6 +360,7 @@ input:not(:focus):valid ~ .label {
 
 #signup_link {
 	color: rgb(29, 155, 240);
+	cursor: pointer;
 }
 
 #signup_link:hover {
