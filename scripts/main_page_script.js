@@ -173,6 +173,18 @@ function setupMiniProfile() {
 }
 
 function addUserInfo() {
+    addUserBanner();
+    addUserProfilePicture();
+}
+
+function addUserProfilePicture() {
+    const profilePicture = document.getElementsByClassName("profile-picture");
+    for (const pic of profilePicture) {
+        pic.innerHTML = `<img src="${localStorage.getItem("profile_picture_link")}" alt="profile-picture">`;
+    }
+}
+
+function addUserBanner() {
     if (localStorage.getItem("banner_picture_link") != "NA") {
         const profileBanner = document.getElementsByClassName("profile-banner");
         for (const banner of profileBanner) {

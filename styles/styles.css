@@ -346,6 +346,11 @@ img {
     margin-left: 2%;
 }
 
+.profile-picture > img {
+    width: 100%;
+    border-radius: inherit;
+}
+
 .profile-info {
     display: flex;
     justify-content: space-between;
