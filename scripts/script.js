@@ -13,6 +13,7 @@ const signin_next = document.getElementById('signin_next');
 const name_label = document.getElementById('name_label');
 const invalid_name = document.getElementById('invalid_name');
 const invalid_email = document.getElementById('invalid_email');
+const valid_account = document.getElementById('valid_account');
 
 const day = document.getElementById('day');
 const year = document.getElementById('year');
@@ -24,6 +25,9 @@ const email_label = document.getElementById('email_label');
 const password_input = document.getElementById('password_input');
 const signin_input = document.getElementById('signin_input');
 const signin_pass = document.getElementById('signin_input_pass');
+
+const signupForm = document.getElementById('signupForm');
+const signinForm = document.getElementById('signinForm');
 
 const valid_email_form = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 let nameValid;
@@ -74,6 +78,7 @@ signup_next.addEventListener('click', () => {
 back.addEventListener('click', () => {
 	signup_modal_password.close();
 	signup_modal.showModal();
+	password_input.value = '';
 });
 
 signin.addEventListener('click', () => {
@@ -287,7 +292,70 @@ function enableNextEmail() {
 	signupNext(name_input, email_input.value, month, day, year);
 	if (emailValid == false) {
 		invalid_email.style.display = 'block';
+		invalid_email.innerHTML = 'Please enter a valid email.';
 	} else {
 		invalid_email.style.removeProperty('display');
 	}
 }
+
+signupForm.addEventListener('submit', (e) => {
+	e.preventDefault();
+
+	const signupData = new FormData(signupForm);
+	signupData.append('name', name_input.value);
+	signupData.append('email', email_input.value);
+	signupData.append('month', month.value);
+	signupData.append('day', day.value);
+	signupData.append('year', year.value);
+	fetch('http://localhost/twitter-clone-backend/APIs/signup.php', {
+		method: 'POST',
+		body: signupData
+	})
+		.then((response) => {
+			return response.json();
+		})
+		.then((text) => {
+			if (text.valid == false) {
+				signup_modal.showModal();
+				signup_modal_password.close();
+				invalid_email.innerHTML = 'This email already has an account';
+				invalid_email.style.display = 'block';
+			}
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+});
+
+signin_next.addEventListener('click', (e) => {
+	e.preventDefault;
+
+	const signinData = new FormData(signinForm);
+
+	fetch('http://localhost/twitter-clone-backend/APIs/signin.php', {
+		method: 'POST',
+		body: signinData
+	})
+		.then((response) => {
+			return response.json();
+		})
+		.then((ResponseJson) => {
+			if (ResponseJson.length == 0) {
+				valid_account.style.display = 'block';
+			} else {
+				localStorage.setItem('username', ResponseJson[0].username);
+				localStorage.setItem('email', ResponseJson[0].email);
+				localStorage.setItem('name', ResponseJson[0].name);
+				localStorage.setItem('password', ResponseJson[0].password);
+				localStorage.setItem('date_of_birth', ResponseJson[0].date_of_birth);
+				localStorage.setItem('date_of_registration', ResponseJson[0].date_of_registration);
+				localStorage.setItem('bio', ResponseJson[0].bio);
+				localStorage.setItem('location', ResponseJson[0].location);
+				localStorage.setItem('profile_picture_link', ResponseJson[0].profile_picture_link);
+				localStorage.setItem('banner_picture_link', ResponseJson[0].banner_picture_link);
+				localStorage.setItem('website', ResponseJson[0].website);
+
+				window.location.href = 'test.html';
+			}
+		});
+});

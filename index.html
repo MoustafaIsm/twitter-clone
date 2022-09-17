@@ -35,67 +35,67 @@
         </div>
         <!-- Modal form -->
         <table>
-            <tr>
-                <td class="first-section">
-                    <div class="modal-form">
-                        <h1>Create your account</h1>
-                        <div class="container">
-                            <input type="text" name="fname" id="name_input" class="name-input" required>
-                            <label for="name-input" class="label" id="name_label">Name</label>
-                            <p id="invalid_name">What's your name?</p>
-                        </div>
-                        
-                        <div class="container">
-                            <input type="email" name="" id="email_input" required>
-                            <label for="email_input" class="label" id="email_label">Email</label>
-                            <p id="invalid_email">Please enter a valid email.</p>
-                        </div>
-                        
-                        <h3>Date of birth</h3>
-                        <p>This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.</p>
-                        <!-- Modal date of birth selections -->
-                        <div class="select"> 
-                            <div class="container-1">
-                                <select name="" id="month">
-                                    <option value="" disabled="true"  selected="true"></option>
-                                    <option value="January">Januaury</option>
-                                    <option value="February">February</option>
-                                    <option value="March">March</option>
-                                    <option value="April">April</option>
-                                    <option value="May">May</option>
-                                    <option value="June">June</option>
-                                    <option value="July">July</option>
-                                    <option value="August">August</option>
-                                    <option value="September">September</option>
-                                    <option value="October">October</option>
-                                    <option value="November">November</option>
-                                    <option value="December">December</option>
-                                </select>
-                                <label for="month" class="select-label">Month</label>
-                            </div>
-                            <div class="container-2">
-                                <select name="" id="day">
-                                    <option value="" disabled="true" selected="true"></option>
-                                </select>
-                                <label for="day" class="select-label">Day</label>
-                            </div>
-                            <div class="container-3">
-                                <select name="" id="year">
-                                    <option value="" disabled="true" selected="true"></option>
-                                </select>
-                                <label for="year" class="select-label">Year</label>
+                <tr>
+                    <td class="first-section">
+                        <div class="modal-form">
+                            <h1>Create your account</h1>
+                            <div class="container">
+                                <input type="text" name="fname" id="name_input" class="name-input" required>
+                                <label for="name-input" class="label" id="name_label">Name</label>
+                                <p id="invalid_name">What's your name?</p>
                             </div>
                             
+                            <div class="container">
+                                <input type="email" name="" id="email_input" required>
+                                <label for="email_input" class="label" id="email_label">Email</label>
+                                <p id="invalid_email">Please enter a valid email.</p>
+                            </div>
+                            
+                            <h3>Date of birth</h3>
+                            <p>This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.</p>
+                            <!-- Modal date of birth selections -->
+                            <div class="select"> 
+                                <div class="container-1">
+                                    <select name="" id="month">
+                                        <option value="" disabled="true"  selected="true"></option>
+                                        <option value="January">Januaury</option>
+                                        <option value="February">February</option>
+                                        <option value="March">March</option>
+                                        <option value="April">April</option>
+                                        <option value="May">May</option>
+                                        <option value="June">June</option>
+                                        <option value="July">July</option>
+                                        <option value="August">August</option>
+                                        <option value="September">September</option>
+                                        <option value="October">October</option>
+                                        <option value="November">November</option>
+                                        <option value="December">December</option>
+                                    </select>
+                                    <label for="month" class="select-label">Month</label>
+                                </div>
+                                <div class="container-2">
+                                    <select name="" id="day">
+                                        <option value="" disabled="true" selected="true"></option>
+                                    </select>
+                                    <label for="day" class="select-label">Day</label>
+                                </div>
+                                <div class="container-3">
+                                    <select name="" id="year">
+                                        <option value="" disabled="true" selected="true"></option>
+                                    </select>
+                                    <label for="year" class="select-label">Year</label>
+                                </div>
+                                
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="second-section">
-                    <!-- Submit button -->
-                    <input type="submit" value="Next" id="next" class="submit" disabled>
-                </td>
-            </tr>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="second-section">
+                        <!-- Submit button -->
+                        <input type="submit" value="Next" id="next" class="submit" disabled>
+                    </td>
+                </tr>    
         </table>
     </dialog>
     <!-- End Signup modal -->
@@ -107,48 +107,53 @@
             <span class="material-symbols-outlined modal-quit" id="back">arrow_back</span>
         </div>
         <!-- Modal form -->
-        <table class="pass-table">
-            <tr>
-                <td class="first-section">
-                    <div class="modal-form">
-                        <h1>You'll need a password</h1>
-                        <p>Make sure it's 8 characters or more</p>
-                        <div class="container">
-                            <input type="password" name="" id="password_input" class="name-input" required>
-                            <label for="password_input" class="label">Password</label>
+        <form id="signupForm">
+            <table class="pass-table">
+                <tr>
+                    <td class="first-section">
+                        <div class="modal-form">
+                            <h1>You'll need a password</h1>
+                            <p>Make sure it's 8 characters or more</p>
+                            <div class="container">
+                                <input type="password" name="password" id="password_input" class="name-input" required>
+                                <label for="password_input" class="label">Password</label>
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="second-section">
-                    <!-- Submit button -->
-                    <input type="submit" value="Next" id="submit" class="submit margin" disabled>
-                </td>
-            </tr>
-        </table>  
+                    </td>
+                </tr>
+                <tr>
+                    <td class="second-section">
+                        <!-- Submit button -->
+                        <input type="submit" value="Next" id="submit" class="submit margin" disabled>
+                    </td>
+                </tr>
+            </table>  
+        </form>
     </dialog>
     <!-- End Signup Password modal -->
     
     <!-- Start Signin modal -->
     <dialog class="modal" id="signin_modal">
-        <div class="signin-header">
-            <span class="material-symbols-outlined modal-quit" id="signin_quit">close</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="signin-icon"><path fill="#1d9bf0" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
-        </div>
-        <div class="modal-signin-form">
-            <h1>Sign in to Twitter</h1>
-            <div class="container">
-                <input type="text" name="" id="signin_input" class="signin-input" required>
-                <label for="signin_input" class="label">Phone, email, or username</label>
+            <div class="signin-header">
+                <span class="material-symbols-outlined modal-quit" id="signin_quit">close</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="signin-icon"><path fill="#1d9bf0" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
             </div>
-            <div class="container">
-                <input type="password" name="" id="signin_input_pass" class="signin-input" required>
-                <label for="signin_input_pass" class="label">Password</label>
-            </div>
-            <div><input type="submit" value="Next" id="signin_next" class="signin-next" disabled></div>
-            <p>Don't have an account? <span id="signup_link">Sign up</span></p>
-        </div>
+            <form id="signinForm">
+                <div class="modal-signin-form">
+                    <h1>Sign in to Twitter</h1>
+                    <div class="container">
+                        <input type="email" name="email" id="signin_input" class="signin-input" required>
+                        <label for="signin_input" class="label">Email</label>
+                    </div>
+                    <div class="container">
+                        <input type="password" name="password" id="signin_input_pass" class="signin-input" required>
+                        <label for="signin_input_pass" class="label">Password</label>
+                    </div>
+                    <button type="button" id="signin_next" class="signin-next" disabled>Next</button>
+                    <p>Don't have an account? <span id="signup_link">Sign up</span></p>
+                    <p id="valid_account">Your email or password are incorrect, try again</p>
+                </div>
+            </form>
     </dialog>
     <!-- End Signin modal -->
 
