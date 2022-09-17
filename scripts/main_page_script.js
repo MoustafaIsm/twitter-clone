@@ -9,7 +9,7 @@ localStorage.setItem("date_of_registration", "2022-02-03");
 localStorage.setItem("bio", "lebanese student");
 localStorage.setItem("location", "lebanon");
 localStorage.setItem("profile_picture_link", "http://localhost/SEF/twitter-clone-data/images/profile/2/6325962684131.jpeg");
-localStorage.setItem("banner_picture_link", "NA");
+localStorage.setItem("banner_picture_link", "http://localhost/SEF/twitter-clone-data/images/profile/2/6325962684131.jpeg");
 localStorage.setItem("website", "NA");
 // Variables
 const homeNavBtn = document.getElementById("home-nav-btn");
@@ -64,27 +64,13 @@ followers.addEventListener("click", openFollowersTab);
 followersTabBtn.addEventListener("click", openFollowersTab);
 
 /** Functions **/
-// Important functions
-function setupMiniProfile() {
-    const miniProfiles = document.getElementsByClassName("mini-user-info");
-    for (const prof of miniProfiles) {
-        const child = `
-        <div class="small-round-profile-picture">
-            <img src="${localStorage.getItem("profile_picture_link")}" alt="profile-picture">
-        </div>
-        <div>
-            <p class="bold-text"> ${localStorage.getItem("name")} </p>
-            <p class="grey-text"> @${localStorage.getItem("username")}  </p>
-        </div>`;
-        prof.innerHTML = child;
-    }
-}
 
 // Eventlisteners function
 function openProfilePage() {
     changeNavBtnsStyle("profile");
     changePageTitle("profile");
     changePage("profile");
+    addUserInfo();
 }
 
 function openHomePage() {
@@ -167,5 +153,30 @@ function changePage(page) {
         followersTab.classList.remove("hide");
         followingTabBtn.classList.remove("active-tab");
         followersTabBtn.classList.add("active-tab");
+    }
+}
+
+function setupMiniProfile() {
+    const miniProfiles = document.getElementsByClassName("mini-user-info");
+    const writeTweetProfile = document.getElementById("write-tweet-profile-img");
+    for (const prof of miniProfiles) {
+        prof.innerHTML = `
+        <div class="small-round-profile-picture">
+            <img src="${localStorage.getItem("profile_picture_link")}" alt="profile-picture">
+        </div>
+        <div>
+            <p class="bold-text"> ${localStorage.getItem("name")} </p>
+            <p class="grey-text"> @${localStorage.getItem("username")}  </p>
+        </div>`;
+    }
+    writeTweetProfile.innerHTML = `<img src="${localStorage.getItem("profile_picture_link")}" alt="profile-picture">`;
+}
+
+function addUserInfo() {
+    if (localStorage.getItem("banner_picture_link") != "NA") {
+        const profileBanner = document.getElementsByClassName("profile-banner");
+        for (const banner of profileBanner) {
+            banner.style.backgroundImage = `url(${localStorage.getItem("banner_picture_link")})`
+        }
     }
 }

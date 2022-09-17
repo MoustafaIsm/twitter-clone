@@ -331,6 +331,9 @@ img {
     height: 35vh;
     background-color: #b8bebf;
     position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .profile-picture {
