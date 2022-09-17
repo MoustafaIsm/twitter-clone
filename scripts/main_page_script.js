@@ -363,6 +363,7 @@ function addPersonalLikes(tweets, container) {
     for (const tweet of tweets) {
         let imgHolder = "";
         let ppHolder = "";
+        // check if the tweet has image
         if (tweet.tweet_image_link != "NA") {
             imgHolder = `
                 <!-- Tweet Image -->
@@ -371,6 +372,7 @@ function addPersonalLikes(tweets, container) {
                 </div>
             `;
         }
+        // check if the user of the tweet has profile picture
         if (tweet.profile_picture_link != "NA") {
             ppHolder = `
                 <img src="${tweet.profile_picture_link}" alt="profile-picture">    
