@@ -36,6 +36,15 @@ const followers = document.getElementById("followers");
 const followersTab = document.getElementById("followers-tab");
 const followersTabBtn = document.getElementById("followers-tab-btn");
 
+const personalTweets = document.getElementById("personal-tweets");
+const personalTweetsTab = document.getElementById("personal-tweets-tab");
+
+const personalMedia = document.getElementById("personal-media");
+const personalMediaTab = document.getElementById("personal-media-tab");
+
+const personalLikes = document.getElementById("personal-likes");
+const personalLikesTab = document.getElementById("personal-likes-tab");
+
 // Modal related stuff
 const editProfileModal = document.getElementById("edit-profile-modal");
 if (typeof editProfileModal.showModal !== "function") {
@@ -59,9 +68,14 @@ editProfileBtn.addEventListener("click", openEditProfileModal);
 closeModalBtn.addEventListener("click", closeModal);
 
 following.addEventListener("click", openFollowingTab);
-followingTabBtn.addEventListener("click", openFollowingTab)
+followingTabBtn.addEventListener("click", openFollowingTab);
+
 followers.addEventListener("click", openFollowersTab);
 followersTabBtn.addEventListener("click", openFollowersTab);
+
+personalTweetsTab.addEventListener("click", openPersonalTweetsTab);
+personalMediaTab.addEventListener("click", openPersonalMediaTab);
+personalLikesTab.addEventListener("click", openPersonalLikesTab);
 
 /** Functions **/
 
@@ -103,6 +117,39 @@ function openEditProfileModal() {
 
 function closeModal() {
     editProfileModal.close();
+}
+
+function openPersonalTweetsTab() {
+    personalTweets.classList.remove("hide");
+    personalTweetsTab.classList.add("active-tab");
+
+    personalMedia.classList.add("hide");
+    personalMediaTab.classList.remove("active-tab");
+
+    personalLikes.classList.add("hide");
+    personalLikesTab.classList.remove("active-tab");
+}
+
+function openPersonalMediaTab() {
+    personalTweets.classList.add("hide");
+    personalTweetsTab.classList.remove("active-tab");
+
+    personalMedia.classList.remove("hide");
+    personalMediaTab.classList.add("active-tab");
+
+    personalLikes.classList.add("hide");
+    personalLikesTab.classList.remove("active-tab");
+}
+
+function openPersonalLikesTab() {
+    personalTweets.classList.add("hide");
+    personalTweetsTab.classList.remove("active-tab");
+
+    personalMedia.classList.add("hide");
+    personalMediaTab.classList.remove("active-tab");
+
+    personalLikes.classList.remove("hide");
+    personalLikesTab.classList.add("active-tab");
 }
 
 // Helper functions
@@ -210,7 +257,6 @@ function addUserBanner() {
 }
 
 function populatePersonalTweets(userId) {
-    const personalTweets = document.getElementById("personal-tweets");
     fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_tweets_noMedia.php?userId=" + userId)
         .then((response) => response.json())
         .then((data) => addPersonalTweets(data.tweets, personalTweets));
