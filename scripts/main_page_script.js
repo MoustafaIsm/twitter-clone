@@ -172,6 +172,11 @@ function uploadTweet() {
     let tweetImgBase64 = "";
     if (tweetUploadedImage.files.length == 0) {
         tweetImgBase64 = "NA";
+        formData.append("tweetImageText", tweetImgBase64);
+        fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_tweet.php", {
+            method: 'post',
+            body: formData
+        }).then((response) => response.json());
     } else {
         // User selected file
         let fileToLoad = tweetUploadedImage.files[0];
@@ -180,6 +185,11 @@ function uploadTweet() {
         // Convert to base64 after load
         fileReader.onload = function (fileLoadedEvent) {
             tweetImgBase64 = fileLoadedEvent.target.result;
+            formData.append("tweetImageText", tweetImgBase64);
+            fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_tweet.php", {
+                method: 'post',
+                body: formData
+            }).then((response) => response.json());
         }
         // Trigger load
         fileReader.readAsDataURL(fileToLoad);
@@ -326,7 +336,7 @@ function populateFollowing(userId) {
 }
 
 function populateFollowers(userId) {
-    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_tweets_noMedia.php" + userId)
+    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_followers.php?userId=" + userId)
         .then((response) => response.json())
         .then((data) => addFollowers(data.followers));
 }

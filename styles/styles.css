@@ -297,10 +297,14 @@ img {
 
 .tweet-img-wrapper {
     width: 90%;
-    height: 80vh;
+    height: auto;
     background-color: #939393;
     border-radius: 30px;
     margin: 3% 0%;
+}
+
+.tweet-img-wrapper > img {
+    width: 100%;
 }
 
 .tweet-likes-wrapper {
