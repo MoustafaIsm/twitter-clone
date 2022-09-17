@@ -122,6 +122,7 @@ function closeModal() {
 function openPersonalTweetsTab() {
     personalTweets.classList.remove("hide");
     personalTweetsTab.classList.add("active-tab");
+    populatePersonalTweets(localStorage.getItem("userId"));
 
     personalMedia.classList.add("hide");
     personalMediaTab.classList.remove("active-tab");
@@ -136,6 +137,7 @@ function openPersonalMediaTab() {
 
     personalMedia.classList.remove("hide");
     personalMediaTab.classList.add("active-tab");
+    populatePersonalMedia(localStorage.getItem("userId"));
 
     personalLikes.classList.add("hide");
     personalLikesTab.classList.remove("active-tab");
@@ -150,6 +152,7 @@ function openPersonalLikesTab() {
 
     personalLikes.classList.remove("hide");
     personalLikesTab.classList.add("active-tab");
+    populatePersonalLikes(localStorage.getItem("userId"));
 }
 
 // Helper functions
@@ -257,9 +260,24 @@ function addUserBanner() {
 }
 
 function populatePersonalTweets(userId) {
+    personalTweets.innerHTML = "";
     fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_tweets_noMedia.php?userId=" + userId)
         .then((response) => response.json())
         .then((data) => addPersonalTweets(data.tweets, personalTweets));
+}
+
+function populatePersonalMedia(userId) {
+    personalMedia.innerHTML = "";
+    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_tweets_media.php?userId=" + userId)
+        .then((response) => response.json())
+        .then((data) => addPersonalMedia(data.tweets, personalMedia));
+}
+
+function populatePersonalLikes(userId) {
+    personalLikes.innerHTML = "";
+    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_liked_tweets.php?userId=" + userId)
+        .then((response) => response.json())
+        .then((data) => addPersonalLikes(data.tweets, personalLikes));
 }
 
 function populateFollowing(userId) {
@@ -303,6 +321,46 @@ function addPersonalTweets(tweets, container) {
         </div>
     </div>`;
     }
+}
+
+function addPersonalMedia(tweets, container) {
+    for (const tweet of tweets) {
+        container.innerHTML += `
+        <div class="feed-wrapper">
+        <div>
+            <div class="small-round-profile-picture">
+                <img src="${localStorage.getItem("profile_picture_link")}" alt="profile-picture">
+            </div>
+        </div>
+        <!-- Tweet content -->
+        <div class="tweet-content">
+            <!-- Username nad name -->
+            <div class="user-info">
+                <p class="bold-text"> ${localStorage.getItem("name")} </p>
+                <p class="grey-text"> @${localStorage.getItem("username")} </p>
+                <p class="grey-text"> . ${tweet.date_time_of_creation}</p>
+            </div>
+            <!-- Tweet text -->
+            <div class="tweet-text-wrapper">
+                <p>${tweet.tweet_text}</p>
+            </div>
+            <!-- Tweet Image -->
+            <div class="tweet-img-wrapper">
+                <img src="${tweet.tweet_image_link}" alt="">
+            </div>
+            <!-- Likes -->
+            <div class="tweet-likes-wrapper">
+                <span class="material-symbols-outlined"> favorite </span>
+                <p class="likes-number"> 123 </p>
+            </div>
+        </div>
+    </div>
+        `;
+    }
+}
+
+function addPersonalLikes(tweets, container) {
+
 }
 
 function addFollowing(followingUsers) {

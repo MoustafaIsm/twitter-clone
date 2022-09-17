@@ -179,6 +179,7 @@ img {
     width: 49vw;
     position: fixed;
     background-color: rgb(255, 255, 255, 0.7);
+    z-index: 50;
 }
 
 .profile-title {
