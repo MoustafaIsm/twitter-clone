@@ -45,6 +45,9 @@ const personalMediaTab = document.getElementById("personal-media-tab");
 const personalLikes = document.getElementById("personal-likes");
 const personalLikesTab = document.getElementById("personal-likes-tab");
 
+const uploadTweetBtn = document.getElementById("upload-tweet");
+const tweetTextArea = document.getElementById("tweet-text");
+
 // Modal related stuff
 const editProfileModal = document.getElementById("edit-profile-modal");
 if (typeof editProfileModal.showModal !== "function") {
@@ -77,6 +80,8 @@ followersTabBtn.addEventListener("click", openFollowersTab);
 personalTweetsTab.addEventListener("click", openPersonalTweetsTab);
 personalMediaTab.addEventListener("click", openPersonalMediaTab);
 personalLikesTab.addEventListener("click", openPersonalLikesTab);
+
+uploadTweetBtn.addEventListener("click", uploadTweet);
 
 /** Functions **/
 
@@ -155,6 +160,16 @@ function openPersonalLikesTab() {
     personalLikes.classList.remove("hide");
     personalLikesTab.classList.add("active-tab");
     populatePersonalLikes(localStorage.getItem("userId"));
+}
+
+function uploadTweet() {
+    const tweetText = tweetTextArea.value;
+    let accepted = checkTweetText(tweetText);
+    if (accepted) {
+
+    } else {
+
+    }
 }
 
 // Helper functions
@@ -525,4 +540,8 @@ function getLikesCount(id) {
         });
     console.log("After fetch: " + count);
     return count;
+}
+
+function checkTweetText(text) {
+    return text.lenght < 280 ? true : false;
 }
