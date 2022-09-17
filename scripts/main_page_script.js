@@ -175,6 +175,18 @@ function setupMiniProfile() {
 function addUserInfo() {
     addUserBanner();
     addUserProfilePicture();
+    addUserDetails();
+}
+
+function addUserDetails() {
+    document.getElementById("user-name-display").textContent = localStorage.getItem("name");
+    document.getElementById("username-display").textContent = "@" + localStorage.getItem("username");
+    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_followers.php?userId=" + localStorage.getItem("userId"))
+        .then((response) => response.json())
+        .then((data) => followers.textContent = data.count + " Followers");
+    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_following.php?userId=" + localStorage.getItem("userId"))
+        .then((response) => response.json())
+        .then((data) => following.textContent = data.count + " Following");
 }
 
 function addUserProfilePicture() {
