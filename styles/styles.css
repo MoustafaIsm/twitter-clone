@@ -681,6 +681,11 @@ img {
     margin: 15px;
 }
 
+.small-round-profile-picture > img {
+    width: 100%;
+    border-radius: inherit;
+}
+
 .hide {
     display: none;
 }

@@ -1,3 +1,16 @@
+// Temporary items before merging with the signin-signup branch
+localStorage.setItem("userId", 2);
+localStorage.setItem("username", "moustafaism123");
+localStorage.setItem("email", "moustafa@gmail.com");
+localStorage.setItem("name", "moustafaIsmail013");
+localStorage.setItem("password", 12341234);
+localStorage.setItem("date_of_birth", "2001-01-01");
+localStorage.setItem("date_of_registration", "2022-02-03");
+localStorage.setItem("bio", "lebanese student");
+localStorage.setItem("location", "lebanon");
+localStorage.setItem("profile_picture_link", "http://localhost/SEF/twitter-clone-data/images/profile/2/6325962684131.jpeg");
+localStorage.setItem("banner_picture_link", "NA");
+localStorage.setItem("website", "NA");
 // Variables
 const homeNavBtn = document.getElementById("home-nav-btn");
 const profileNavBtn = document.getElementById("profile-nav-btn");
@@ -29,6 +42,11 @@ if (typeof editProfileModal.showModal !== "function") {
     favDialog.hidden = true;
 }
 
+// Stuff to do on page load
+window.onload = () => {
+    setupMiniProfile();
+};
+
 // Event listeners
 profileNavBtn.addEventListener("click", openProfilePage);
 homeNavBtn.addEventListener("click", openHomePage);
@@ -46,6 +64,21 @@ followers.addEventListener("click", openFollowersTab);
 followersTabBtn.addEventListener("click", openFollowersTab);
 
 /** Functions **/
+// Important functions
+function setupMiniProfile() {
+    const miniProfiles = document.getElementsByClassName("mini-user-info");
+    for (const prof of miniProfiles) {
+        const child = `
+        <div class="small-round-profile-picture">
+            <img src="${localStorage.getItem("profile_picture_link")}" alt="profile-picture">
+        </div>
+        <div>
+            <p class="bold-text"> ${localStorage.getItem("name")} </p>
+            <p class="grey-text"> @${localStorage.getItem("username")}  </p>
+        </div>`;
+        prof.innerHTML = child;
+    }
+}
 
 // Eventlisteners function
 function openProfilePage() {
@@ -83,7 +116,7 @@ function closeModal() {
     editProfileModal.close();
 }
 
-// Other functions
+// Helper functions
 function changeNavBtnsStyle(page) {
     if (page == "profile") {
         homeNavBtn.classList.remove("nav-btn-active");
