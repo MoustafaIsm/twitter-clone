@@ -54,6 +54,7 @@ if (typeof editProfileModal.showModal !== "function") {
 // Stuff to do on page load
 window.onload = () => {
     setupMiniProfile();
+    populateFeeds(localStorage.getItem("userId"));
 };
 
 // Event listeners
@@ -92,6 +93,7 @@ function openHomePage() {
     changeNavBtnsStyle("home");
     changePageTitle("home");
     changePage("home");
+    populateFeeds(localStorage.getItem("userId"));
 }
 
 function openLogoutWrapper() {
@@ -259,6 +261,13 @@ function addUserBanner() {
     }
 }
 
+function populateFeeds(userId) {
+    feeds.innerHTML = ``;
+    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_following_tweets.php?userId=" + userId)
+        .then((response) => response.json())
+        .then((data) => addFeeds(data.feeds, feeds));
+}
+
 function populatePersonalTweets(userId) {
     personalTweets.innerHTML = "";
     fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_tweets_noMedia.php?userId=" + userId)
@@ -290,6 +299,51 @@ function populateFollowers(userId) {
     fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_tweets_noMedia.php" + userId)
         .then((response) => response.json())
         .then((data) => addFollowers(data.followers));
+}
+
+function addFeeds(feeds, container) {
+    for (const tweet of feeds) {
+        let imgHolder = "";
+        let ppHolder = "";
+        // check if the tweet has image
+        if (tweet.tweet_image_link != "NA") {
+            imgHolder = `
+                <!-- Tweet Image -->
+                <div class="tweet-img-wrapper">
+                    <img src="${tweet.tweet_image_link}" alt="">
+                </div>`;
+        }
+        // check if the user of the tweet has profile picture
+        if (tweet.profile_picture_link != "NA") {
+            ppHolder = `<img src="${tweet.profile_picture_link}" alt="profile-picture">`;
+        }
+        container.innerHTML += `
+            <div class="feed-wrapper">
+            <div>
+                <div class="small-round-profile-picture">${ppHolder}</div>
+            </div>
+            <!-- Tweet content -->
+            <div class="tweet-content">
+                <!-- Username nad name -->
+                <div class="user-info">
+                    <p class="bold-text"> ${tweet.name} </p>
+                    <p class="grey-text"> @${tweet.username} </p>
+                    <p class="grey-text"> . ${tweet.date_time_of_creation}</p>
+                </div>
+                <!-- Tweet text -->
+                <div class="tweet-text-wrapper">
+                    <p>${tweet.tweet_text}</p>
+                </div>
+                ${imgHolder}
+                <!-- Likes -->
+                <div class="tweet-likes-wrapper">
+                    <span class="material-symbols-outlined"> favorite </span>
+                    <p class="likes-number"> 123 </p>
+                </div>
+            </div>
+        </div>
+    `;
+    }
 }
 
 function addPersonalTweets(tweets, container) {
@@ -369,14 +423,11 @@ function addPersonalLikes(tweets, container) {
                 <!-- Tweet Image -->
                 <div class="tweet-img-wrapper">
                     <img src="${tweet.tweet_image_link}" alt="">
-                </div>
-            `;
+                </div>`;
         }
         // check if the user of the tweet has profile picture
         if (tweet.profile_picture_link != "NA") {
-            ppHolder = `
-                <img src="${tweet.profile_picture_link}" alt="profile-picture">    
-            `;
+            ppHolder = `<img src="${tweet.profile_picture_link}" alt="profile-picture">`;
         }
         container.innerHTML += `
             <div class="feed-wrapper">
@@ -461,4 +512,17 @@ function addFollowers(followerUsers) {
         </div>`;
         }
     }
+}
+
+function getLikesCount(id) {
+    let count = 0;
+    console.log("Before fetch: " + count);
+    count = fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + id)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log("Actual count: " + data.likes_count);
+            return data.likes_count;
+        });
+    console.log("After fetch: " + count);
+    return count;
 }
