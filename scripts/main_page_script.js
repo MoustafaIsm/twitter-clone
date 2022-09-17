@@ -55,6 +55,8 @@ const nameInput = document.getElementById("name-input");
 const bioInput = document.getElementById("bio-input");
 const locationInput = document.getElementById("location-input");
 const websiteInput = document.getElementById("website-input");
+const profileImageInput = document.getElementById("profile-image");
+const bannerImageInput = document.getElementById("banner-image");
 
 // Modal related stuff
 const editProfileModal = document.getElementById("edit-profile-modal");
@@ -207,6 +209,7 @@ function uploadTweet() {
 
 function updateUserInfo() {
     let formData = new FormData();
+    formData.append("userId", localStorage.getItem("userId"));
     if (nameInput.value == "")
         formData.append("name", "NA");
     else
@@ -223,6 +226,60 @@ function updateUserInfo() {
         formData.append("website", "NA");
     else
         formData.append("website", websiteInput.value);
+    if (bannerImageInput.files.length == 0) {
+        if (profileImageInput.files.length > 0) {
+            let fileToLoad = profileImageInput[0];
+            let fileReader = new FileReader();
+            fileReader.onload = function (fileLoadedEvent) {
+                let profileImgBase64 = fileLoadedEvent.target.result;
+                formData.append("bannerPicture", profileImgBase64);
+                fetch("http://localhost/SEF/twitter-clone-backend/APIs/update_user.php", {
+                    method: 'post',
+                    body: formData
+                }).then((response) => response.json());
+                updateLocalStorage(formData);
+            }
+            fileReader.readAsDataURL(fileToLoad);
+        } else {
+            fetch("http://localhost/SEF/twitter-clone-backend/APIs/update_user.php", {
+                method: 'post',
+                body: formData
+            }).then((response) => response.json());
+            updateLocalStorage(formData);
+        }
+    } else {
+        // User selected file
+        let fileToLoad = bannerImageInput.files[0];
+        // New BLOB
+        let fileReader = new FileReader();
+        // Convert to base64 after load
+        fileReader.onload = function (fileLoadedEvent) {
+            let bannerImgBase64 = fileLoadedEvent.target.result;
+            formData.append("bannerPicture", bannerImgBase64);
+            if (profileImageInput.files.length > 0) {
+                let fileToLoad = profileImageInput[0];
+                let fileReader = new FileReader();
+                fileReader.onload = function (fileLoadedEvent) {
+                    let profileImgBase64 = fileLoadedEvent.target.result;
+                    formData.append("bannerPicture", profileImgBase64);
+                    fetch("http://localhost/SEF/twitter-clone-backend/APIs/update_user.php", {
+                        method: 'post',
+                        body: formData
+                    }).then((response) => response.json());
+                    updateLocalStorage(formData);
+                }
+                fileReader.readAsDataURL(fileToLoad);
+            } else {
+                fetch("http://localhost/SEF/twitter-clone-backend/APIs/update_user.php", {
+                    method: 'post',
+                    body: formData
+                }).then((response) => response.json());
+                updateLocalStorage(formData);
+            }
+        }
+        // Trigger load
+        fileReader.readAsDataURL(fileToLoad);
+    }
 }
 
 // Helper functions
@@ -600,4 +657,8 @@ function getCurrent() {
     const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     return date + ' ' + time;
+}
+
+function updateLocalStorage(formData) {
+
 }
