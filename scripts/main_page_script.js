@@ -166,7 +166,9 @@ function openPersonalLikesTab() {
 
 function uploadTweet() {
     let formData = new FormData();
-    const tweetText = tweetTextArea.value;
+    formData.append("tweetText", tweetTextArea.value);
+    formData.append("userId", localStorage.getItem("userId"));
+    formData.append("dateOfCreation", getCurrent());
     let tweetImgBase64 = "";
     if (tweetUploadedImage.files.length == 0) {
         tweetImgBase64 = "NA";
@@ -555,3 +557,9 @@ function getLikesCount(id) {
     return count;
 }
 
+function getCurrent() {
+    let today = new Date();
+    const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    return date + ' ' + time;
+}
