@@ -85,10 +85,12 @@ function openLogoutWrapper() {
 
 function openFollowingTab() {
     changePage("following");
+    populateFollowing(localStorage.getItem("userId"));
 }
 
 function openFollowersTab() {
     changePage("followers");
+    populateFollowers(localStorage.getItem("userId"));
 }
 
 function openEditProfileModal() {
@@ -202,6 +204,74 @@ function addUserBanner() {
         const profileBanner = document.getElementsByClassName("profile-banner");
         for (const banner of profileBanner) {
             banner.style.backgroundImage = `url(${localStorage.getItem("banner_picture_link")})`
+        }
+    }
+}
+
+function populateFollowing(userId) {
+    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_following.php?userId=" + userId)
+        .then((response) => response.json())
+        .then((data) => addFollowing(data.following));
+}
+
+function populateFollowers(userId) {
+    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_followers.php?userId=" + userId)
+        .then((response) => response.json())
+        .then((data) => addFollowers(data.followers));
+}
+
+function addFollowing(followingUsers) {
+    followingTab.innerHTML = "";
+    for (const u of followingUsers) {
+        if (u.profile_picture_link == "NA") {
+            followingTab.innerHTML += `
+            <div class="other-user-wrapper grey-background">
+                <div class="small-round-profile-picture">
+                </div>
+            <div class="other-user-info">
+                <p class="bold-text"> ${u.name} </p>
+                <p class="grey-text"> @${u.username} </p>
+            </div>
+        </div>`;
+        } else {
+            followingTab.innerHTML += `
+            <div class="other-user-wrapper grey-background">
+                <div class="small-round-profile-picture">
+                    <img src="${pp}" alt"pp">
+                </div>
+            <div class="other-user-info">
+                <p class="bold-text"> ${u.name} </p>
+                <p class="grey-text"> @${u.username} </p>
+            </div>
+        </div>`;
+        }
+    }
+}
+
+function addFollowers(followerUsers) {
+    followersTab.innerHTML = "";
+    for (const u of followerUsers) {
+        if (u.profile_picture_link == "NA") {
+            followersTab.innerHTML += `
+            <div class="other-user-wrapper grey-background">
+                <div class="small-round-profile-picture">
+                </div>
+            <div class="other-user-info">
+                <p class="bold-text"> ${u.name} </p>
+                <p class="grey-text"> @${u.username} </p>
+            </div>
+        </div>`;
+        } else {
+            followersTab.innerHTML += `
+            <div class="other-user-wrapper grey-background">
+                <div class="small-round-profile-picture">
+                    <img src="${u.profile_picture_link}" alt"pp">
+                </div>
+            <div class="other-user-info">
+                <p class="bold-text"> ${u.name} </p>
+                <p class="grey-text"> @${u.username} </p>
+            </div>
+        </div>`;
         }
     }
 }
