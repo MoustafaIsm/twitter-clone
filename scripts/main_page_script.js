@@ -50,6 +50,12 @@ const tweetTextArea = document.getElementById("tweet-text");
 const tweetError = document.getElementById("tweet-error");
 const tweetUploadedImage = document.getElementById("tweet-image");
 
+const saveBtn = document.getElementById("save-btn");
+const nameInput = document.getElementById("name-input");
+const bioInput = document.getElementById("bio-input");
+const locationInput = document.getElementById("location-input");
+const websiteInput = document.getElementById("website-input");
+
 // Modal related stuff
 const editProfileModal = document.getElementById("edit-profile-modal");
 if (typeof editProfileModal.showModal !== "function") {
@@ -84,6 +90,8 @@ personalMediaTab.addEventListener("click", openPersonalMediaTab);
 personalLikesTab.addEventListener("click", openPersonalLikesTab);
 
 uploadTweetBtn.addEventListener("click", uploadTweet);
+
+saveBtn.addEventListener("click", updateUserInfo);
 
 /** Functions **/
 
@@ -195,6 +203,26 @@ function uploadTweet() {
         fileReader.readAsDataURL(fileToLoad);
     }
 
+}
+
+function updateUserInfo() {
+    let formData = new FormData();
+    if (nameInput.value == "")
+        formData.append("name", "NA");
+    else
+        formData.append("name", nameInput.value);
+    if (bioInput.value == "")
+        formData.append("bio", "NA");
+    else
+        formData.append("bio", bioInput.value);
+    if (locationInput.value == "")
+        formData.append("location", "NA");
+    else
+        formData.append("location", locationInput.value);
+    if (websiteInput.value == "")
+        formData.append("website", "NA");
+    else
+        formData.append("website", websiteInput.value);
 }
 
 // Helper functions
