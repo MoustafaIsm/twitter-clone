@@ -93,6 +93,7 @@ signin_quit.addEventListener('click', () => {
 	document.body.style.userSelect = 'auto';
 	signin_input.value = '';
 	signin_pass.value = '';
+	valid_account.style.display = 'none';
 });
 
 signup_link.addEventListener('click', () => {
@@ -320,6 +321,11 @@ signupForm.addEventListener('submit', (e) => {
 				signup_modal_password.close();
 				invalid_email.innerHTML = 'This email already has an account';
 				invalid_email.style.display = 'block';
+			} else {
+				const signupDone = new FormData(signinForm);
+				signupDone.set('email', email_input.value);
+				signupDone.set('password', password_input.value);
+				checkUser(signupDone);
 			}
 		})
 		.catch((error) => {
@@ -331,10 +337,14 @@ signin_next.addEventListener('click', (e) => {
 	e.preventDefault;
 
 	const signinData = new FormData(signinForm);
+	/* checkUser(signinData); */
+	console.log(signinData[email]);
+});
 
+function checkUser(data) {
 	fetch('http://localhost/twitter-clone-backend/APIs/signin.php', {
 		method: 'POST',
-		body: signinData
+		body: data
 	})
 		.then((response) => {
 			return response.json();
@@ -358,4 +368,4 @@ signin_next.addEventListener('click', (e) => {
 				window.location.href = 'test.html';
 			}
 		});
-});
+}
