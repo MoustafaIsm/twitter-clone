@@ -277,7 +277,7 @@ function populatePersonalLikes(userId) {
     personalLikes.innerHTML = "";
     fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_liked_tweets.php?userId=" + userId)
         .then((response) => response.json())
-        .then((data) => addPersonalLikes(data.tweets, personalLikes));
+        .then((data) => addPersonalLikes(data.liked, personalLikes));
 }
 
 function populateFollowing(userId) {
@@ -360,7 +360,49 @@ function addPersonalMedia(tweets, container) {
 }
 
 function addPersonalLikes(tweets, container) {
-
+    for (const tweet of tweets) {
+        let imgHolder = "";
+        let ppHolder = "";
+        if (tweet.tweet_image_link != "NA") {
+            imgHolder = `
+                <!-- Tweet Image -->
+                <div class="tweet-img-wrapper">
+                    <img src="${tweet.tweet_image_link}" alt="">
+                </div>
+            `;
+        }
+        if (tweet.profile_picture_link != "NA") {
+            ppHolder = `
+                <img src="${tweet.profile_picture_link}" alt="profile-picture">    
+            `;
+        }
+        container.innerHTML += `
+            <div class="feed-wrapper">
+            <div>
+                <div class="small-round-profile-picture">${ppHolder}</div>
+            </div>
+            <!-- Tweet content -->
+            <div class="tweet-content">
+                <!-- Username nad name -->
+                <div class="user-info">
+                    <p class="bold-text"> ${tweet.name} </p>
+                    <p class="grey-text"> @${tweet.username} </p>
+                    <p class="grey-text"> . ${tweet.date_time_of_creation}</p>
+                </div>
+                <!-- Tweet text -->
+                <div class="tweet-text-wrapper">
+                    <p>${tweet.tweet_text}</p>
+                </div>
+                ${imgHolder}
+                <!-- Likes -->
+                <div class="tweet-likes-wrapper">
+                    <span class="material-symbols-outlined"> favorite </span>
+                    <p class="likes-number"> 123 </p>
+                </div>
+            </div>
+        </div>
+    `;
+    }
 }
 
 function addFollowing(followingUsers) {
