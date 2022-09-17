@@ -181,6 +181,7 @@ function addUserInfo() {
 function addUserDetails() {
     document.getElementById("user-name-display").textContent = localStorage.getItem("name");
     document.getElementById("username-display").textContent = "@" + localStorage.getItem("username");
+    document.getElementById("user-joined-date").innerHTML = `<span class="material-symbols-outlined">calendar_month</span>${localStorage.getItem("date_of_registration")}`;
     fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_followers.php?userId=" + localStorage.getItem("userId"))
         .then((response) => response.json())
         .then((data) => followers.textContent = data.count + " Followers");
