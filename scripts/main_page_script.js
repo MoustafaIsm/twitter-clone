@@ -71,6 +71,7 @@ function openProfilePage() {
     changePageTitle("profile");
     changePage("profile");
     addUserInfo();
+    populatePersonalTweets(localStorage.getItem("userId"));
 }
 
 function openHomePage() {
@@ -208,6 +209,13 @@ function addUserBanner() {
     }
 }
 
+function populatePersonalTweets(userId) {
+    const personalTweets = document.getElementById("personal-tweets");
+    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_tweets_noMedia.php?userId=" + userId)
+        .then((response) => response.json())
+        .then((data) => addPersonalTweets(data.tweets, personalTweets));
+}
+
 function populateFollowing(userId) {
     fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_following.php?userId=" + userId)
         .then((response) => response.json())
@@ -215,9 +223,40 @@ function populateFollowing(userId) {
 }
 
 function populateFollowers(userId) {
-    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_followers.php?userId=" + userId)
+    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_tweets_noMedia.php" + userId)
         .then((response) => response.json())
         .then((data) => addFollowers(data.followers));
+}
+
+function addPersonalTweets(tweets, container) {
+    for (const tweet of tweets) {
+        container.innerHTML += `<div class="feed-wrapper">
+        <!-- Picture -->
+        <div>
+            <div class="small-round-profile-picture">
+                <img src="${localStorage.getItem("profile_picture_link")}" alt="profile-picture">
+            </div>
+        </div>
+        <!-- Tweet content -->
+        <div class="tweet-content">
+            <!-- Username nad name -->
+            <div class="user-info">
+                <p class="bold-text"> ${localStorage.getItem("name")} </p>
+                <p class="grey-text"> @${localStorage.getItem("username")} </p>
+                <p class="grey-text"> . ${tweet.date_time_of_creation}</p>
+            </div>
+            <!-- Tweet text -->
+            <div class="tweet-text-wrapper">
+                <p> ${tweet.tweet_text} </p>
+            </div>
+            <!-- Likes -->
+            <div class="tweet-likes-wrapper">
+                <span class="material-symbols-outlined"> favorite </span>
+                <p class="likes-number"> 123 </p>
+            </div>
+        </div>
+    </div>`;
+    }
 }
 
 function addFollowing(followingUsers) {
