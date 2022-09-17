@@ -47,6 +47,8 @@ const personalLikesTab = document.getElementById("personal-likes-tab");
 
 const uploadTweetBtn = document.getElementById("upload-tweet");
 const tweetTextArea = document.getElementById("tweet-text");
+const tweetError = document.getElementById("tweet-error");
+const tweetUploadedImage = document.getElementById("tweet-image");
 
 // Modal related stuff
 const editProfileModal = document.getElementById("edit-profile-modal");
@@ -163,13 +165,24 @@ function openPersonalLikesTab() {
 }
 
 function uploadTweet() {
+    let formData = new FormData();
     const tweetText = tweetTextArea.value;
-    let accepted = checkTweetText(tweetText);
-    if (accepted) {
-
+    let tweetImgBase64 = "";
+    if (tweetUploadedImage.files.length == 0) {
+        tweetImgBase64 = "NA";
     } else {
-
+        // User selected file
+        let fileToLoad = tweetUploadedImage.files[0];
+        // New BLOB
+        let fileReader = new FileReader();
+        // Convert to base64 after load
+        fileReader.onload = function (fileLoadedEvent) {
+            tweetImgBase64 = fileLoadedEvent.target.result;
+        }
+        // Trigger load
+        fileReader.readAsDataURL(fileToLoad);
     }
+
 }
 
 // Helper functions
@@ -542,6 +555,3 @@ function getLikesCount(id) {
     return count;
 }
 
-function checkTweetText(text) {
-    return text.lenght < 280 ? true : false;
-}

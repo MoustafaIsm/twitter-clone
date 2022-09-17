@@ -82,12 +82,14 @@
                     <form>
                         <!-- Tweet text -->
                         <div class="tweet-text-wrapper">
-                            <textarea cols="" rows="7" placeholder="What's on your mind ?" id="tweet-text"></textarea>
+                            <textarea cols="" rows="7" placeholder="What's on your mind ?" id="tweet-text"
+                                maxlength="280"></textarea>
+                            <p id="tweet-error"></p>
                         </div>
                         <!-- Upload image and tweet button -->
                         <div class="upload-tweet-wrapper">
-                            <label for="image"><span class="material-symbols-outlined">image</span></label>
-                            <input type="file" id="image" name="image" accept="image/*" class="hide">
+                            <label for="tweet-image"><span class="material-symbols-outlined">image</span></label>
+                            <input type="file" id="tweet-image" name="image" accept="image/*" class="hide">
                             <button type="button" class="btn btn-blue" id="upload-tweet">Tweet</button>
                         </div>
                     </form>
