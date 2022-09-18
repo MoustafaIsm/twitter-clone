@@ -380,12 +380,14 @@ function changePage(page) {
         feeds.classList.add("hide");
         tweetWriting.classList.add("hide");
         followingFollowers.classList.add("hide");
+        blockedUsersContainer.classList.add("hide");
         otherUserProfile.classList.add("hide");
     } else if (page == "home") {
         profile.classList.add("hide");
         feeds.classList.remove("hide");
         tweetWriting.classList.remove("hide");
         followingFollowers.classList.add("hide");
+        blockedUsersContainer.classList.add("hide");
         otherUserProfile.classList.add("hide");
     } else if (page == "following") {
         profile.classList.add("hide");
@@ -397,6 +399,7 @@ function changePage(page) {
         followingTabBtn.classList.add("active-tab");
         followersTabBtn.classList.remove("active-tab");
         otherUserProfile.classList.add("hide");
+        blockedUsersContainer.classList.add("hide");
     } else if (page == "followers") {
         profile.classList.add("hide");
         feeds.classList.add("hide");
@@ -407,6 +410,7 @@ function changePage(page) {
         followingTabBtn.classList.remove("active-tab");
         followersTabBtn.classList.add("active-tab");
         otherUserProfile.classList.add("hide");
+        blockedUsersContainer.classList.add("hide");
     } else {
         profile.classList.add("hide");
         feeds.classList.add("hide");
@@ -893,10 +897,10 @@ function showTweetOwner(userId) {
     otherUserProfile.classList.remove("hide");
     fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_by_id.php?userId=" + userId)
         .then((response) => response.json())
-        .then((data) => setProfileData(data.user, userId));
+        .then((data) => setProfileData(data.user, userId, "follower"));
 }
 
-function setProfileData(u, id) {
+function setProfileData(u, id, type) {
     otherUserDetails.innerHTML = `
     <p class="bold-text"> ${u[0].name} </p>
     <p class="grey-text">@${u[0].username}</p>
@@ -924,6 +928,20 @@ function setProfileData(u, id) {
         fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_block.php?userId=" + localStorage.getItem("userId") + "&blockId=" + id)
             .then((response) => response.json());
     });
+
+    const followUnfollowBtn = document.getElementById("follow-unfollow-btn");
+    if (type == "follower") {
+        followUnfollowBtn.textContent = "Unfollow";
+        followUnfollowBtn.addEventListener("click", () => {
+            fetch("http://localhost/SEF/twitter-clone-backend/APIs/remove_following.php?userId=" + localStorage.getItem("userId") + "&followingUserId=" + id)
+                .then((response) => response.json());
+        });
+    } else {
+        followUnfollowBtn.addEventListener("click", () => {
+            fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_following.php?userId=" + localStorage.getItem("userId") + "&followingUserId=" + id)
+                .then((response) => response.json());
+        });
+    }
 
     otherTweet.innerHTML = "";
     otherMedia.innerHTML = "";
