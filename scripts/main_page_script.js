@@ -302,7 +302,6 @@ function logoutUser() {
 function showBlockedUsersConstainer() {
     changePage("blocked");
     populateBlockedUsers(localStorage.getItem("userId"));
-
 }
 
 // Helper functions
