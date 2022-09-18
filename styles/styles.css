@@ -350,6 +350,9 @@ img {
     position: absolute;
     top: 70%;
     margin-left: 2%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .profile-picture > img {

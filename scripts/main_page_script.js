@@ -373,7 +373,8 @@ function addUserDetails() {
 function addUserProfilePicture() {
     const profilePicture = document.getElementsByClassName("profile-picture");
     for (const pic of profilePicture) {
-        pic.innerHTML = `<img src="${localStorage.getItem("profile_picture_link")}" alt="profile-picture">`;
+        // pic.innerHTML = `<img src="${localStorage.getItem("profile_picture_link")}" alt="profile-picture">`;
+        pic.style.backgroundImage = `url("${localStorage.getItem("profile_picture_link")}")`
     }
 }
 
