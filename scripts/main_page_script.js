@@ -455,7 +455,7 @@ function addFeeds(feeds, container) {
                 <div class="user-info">
                     <p class="bold-text"> ${tweet.name} </p>
                     <p class="grey-text"> @${tweet.username} </p>
-                    <p class="grey-text"> . ${tweet.date_time_of_creation}</p>
+                    <p class="grey-text"> . ${tweet.date_time_of_creation.split(".")[0]}</p>
                 </div>
                 <!-- Tweet text -->
                 <div class="tweet-text-wrapper">
@@ -488,7 +488,7 @@ function addPersonalTweets(tweets, container) {
             <div class="user-info">
                 <p class="bold-text"> ${localStorage.getItem("name")} </p>
                 <p class="grey-text"> @${localStorage.getItem("username")} </p>
-                <p class="grey-text"> . ${tweet.date_time_of_creation}</p>
+                <p class="grey-text"> . ${tweet.date_time_of_creation.split(".")[0]}</p>
             </div>
             <!-- Tweet text -->
             <div class="tweet-text-wrapper">
@@ -519,7 +519,7 @@ function addPersonalMedia(tweets, container) {
             <div class="user-info">
                 <p class="bold-text"> ${localStorage.getItem("name")} </p>
                 <p class="grey-text"> @${localStorage.getItem("username")} </p>
-                <p class="grey-text"> . ${tweet.date_time_of_creation}</p>
+                <p class="grey-text"> . ${tweet.date_time_of_creation.split(".")[0]}</p>
             </div>
             <!-- Tweet text -->
             <div class="tweet-text-wrapper">
@@ -567,7 +567,7 @@ function addPersonalLikes(tweets, container) {
                 <div class="user-info">
                     <p class="bold-text"> ${tweet.name} </p>
                     <p class="grey-text"> @${tweet.username} </p>
-                    <p class="grey-text"> . ${tweet.date_time_of_creation}</p>
+                    <p class="grey-text"> . ${tweet.date_time_of_creation.split(".")[0]}</p>
                 </div>
                 <!-- Tweet text -->
                 <div class="tweet-text-wrapper">
