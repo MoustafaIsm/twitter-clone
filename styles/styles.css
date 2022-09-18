@@ -17,9 +17,9 @@ button {
 /* Page banner */
 .background {
 	width: 54vw;
-	/* height: 48vw; */
 	min-height: 95vh;
 	object-fit: cover;
+	position: relative;
 }
 
 /* Header */
@@ -27,6 +27,7 @@ button {
 	padding-left: 2.4vw;
 }
 
+/* Twitter icon */
 .icon {
 	width: 42px;
 	margin: 5vh 0 0 0;
@@ -63,6 +64,7 @@ button {
 	transition: 300ms;
 }
 
+/* Signup button hover */
 #signup:hover {
 	background-color: #1e8ad2;
 }
@@ -78,6 +80,7 @@ button {
 	text-align: justify;
 }
 
+/* Hyperlinks inside the text */
 .hyperlink {
 	color: #1d9bf0;
 	text-decoration: none;
@@ -100,6 +103,7 @@ button {
 	margin: 2vh 0 0 0;
 }
 
+/* Signin button hover */
 .sign-in:hover {
 	background-color: #e6f0f7;
 }
@@ -143,10 +147,12 @@ button {
 	user-select: none;
 }
 
+/* Quit icon hover effect */
 .modal-quit:hover {
 	background-color: rgb(223, 223, 223);
 }
 
+/* Form inside the modal */
 .modal-form {
 	display: flex;
 	flex-direction: column;
@@ -154,6 +160,7 @@ button {
 	width: 75%;
 }
 
+/* Input and label */
 .container {
 	position: relative;
 }
@@ -168,12 +175,14 @@ button {
 	transition: 200ms ease-in-out;
 }
 
+/* Focus effect for label */
 input:focus ~ .label {
 	top: 19px;
 	font-size: 12px;
 	color: #1d9bf0;
 }
 
+/* When the input is valid, keep the label effect after losing focus */
 input:not(:focus):valid ~ .label {
 	top: 19px;
 	font-size: 12px;
@@ -185,6 +194,7 @@ input:not(:focus):valid ~ .label {
 	color: #1d9bf0;
 }
 
+/* Label for date of birth selects */
 .select-label {
 	position: absolute;
 	top: 10px;
@@ -197,6 +207,7 @@ input:not(:focus):valid ~ .label {
 	margin-bottom: 20px;
 }
 
+/* Inputs */
 #name_input,
 #email_input {
 	margin-bottom: 30px !important;
@@ -217,6 +228,7 @@ input:not(:focus):valid ~ .label {
 	outline-color: #1d9bf0;
 }
 
+/* Inputs shadow effect on focus */
 #name_input:focus,
 #email_input:focus,
 #password_input:focus,
@@ -227,11 +239,12 @@ input:not(:focus):valid ~ .label {
 	box-shadow: 0 0 1px 1px #1d9bf0;
 }
 
-.red {
+/* .red {
 	outline-color: red;
 	box-shadow: 0 0 1px 1px red;
-}
+} */
 
+/* Warning text when name or email are invalid */
 #invalid_name,
 #invalid_email {
 	display: none;
@@ -253,6 +266,7 @@ input:not(:focus):valid ~ .label {
 	margin: 10px 0 20px;
 }
 
+/* Date of birth select flex container*/
 .select {
 	display: flex;
 	gap: 12px;
@@ -283,6 +297,7 @@ input:not(:focus):valid ~ .label {
 	width: 100%;
 }
 
+/* Label focus effects for select */
 .container-1,
 .container-2,
 .container-3 {
@@ -316,17 +331,19 @@ input:not(:focus):valid ~ .label {
 	transition: 300ms;
 }
 
+/* Signup password modal section without submit button*/
 .first-section {
 	height: 500px;
 	vertical-align: baseline;
 	width: 75%;
 }
 
+/* Section with submit button */
 .second-section {
 	text-align: center;
 	width: 75%;
 }
-
+/* Password signup modal table */
 .pass-table {
 	width: 100%;
 }
@@ -353,6 +370,7 @@ input:not(:focus):valid ~ .label {
 	margin: 30px 0 50px;
 }
 
+/* Email input */
 .signin-input {
 	margin-top: 10px;
 }
@@ -377,6 +395,7 @@ input:not(:focus):valid ~ .label {
 	color: rgb(83, 100, 113);
 }
 
+/* Hyperlink to move to signup modal immediately */
 #signup_link {
 	color: rgb(29, 155, 240);
 	cursor: pointer;
@@ -386,6 +405,7 @@ input:not(:focus):valid ~ .label {
 	text-decoration: underline;
 }
 
+/* Warning message when email or password are invalid */
 #valid_account {
 	display: none;
 	font-size: 15px;
@@ -413,6 +433,7 @@ input:not(:focus):valid ~ .label {
 	padding: 6px 10px;
 }
 
+/* Hover effect for all hyperlinks */
 a:hover {
 	text-decoration: underline;
 }
@@ -421,10 +442,12 @@ a:hover {
 	padding: 6px 10px;
 }
 
+/* Image replace for the banner image on small screens */
 .media {
 	display: none;
 }
 
+/* Media queries */
 @media screen and (max-width: 1300px) {
 	.background {
 		width: 48vw;
@@ -445,7 +468,7 @@ a:hover {
 	}
 
 	.title {
-		width: 45vw;
+		width: 55vw;
 		margin-left: 19vw;
 		margin-bottom: 4vw;
 	}
@@ -457,12 +480,12 @@ a:hover {
 	.media {
 		display: block;
 		width: 100%;
-		height: 250px;
+		max-height: 400px;
 		object-fit: cover;
 	}
 }
 
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 600px) {
 	.title {
 		margin-left: 20px;
 		width: 400px;
@@ -474,5 +497,8 @@ a:hover {
 
 	.title h2 {
 		font-size: 25px;
+	}
+	.media {
+		max-height: 250px;
 	}
 }

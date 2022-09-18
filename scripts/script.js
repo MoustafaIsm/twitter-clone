@@ -15,10 +15,12 @@ const invalid_name = document.getElementById('invalid_name');
 const invalid_email = document.getElementById('invalid_email');
 const valid_account = document.getElementById('valid_account');
 
+// Date of birth selects
 const day = document.getElementById('day');
 const year = document.getElementById('year');
 const month = document.getElementById('month');
 
+// Inputs
 const name_input = document.getElementById('name_input');
 const email_input = document.getElementById('email_input');
 const email_label = document.getElementById('email_label');
@@ -27,10 +29,14 @@ const password_input = document.getElementById('password_input');
 const signin_input = document.getElementById('signin_input');
 const signin_pass = document.getElementById('signin_input_pass');
 
+// Forms
 const signupForm = document.getElementById('signupForm');
 const signinForm = document.getElementById('signinForm');
 
+// Email regex
 const valid_email_form = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+// Inputs checks
 let nameValid;
 let emailValid;
 let monthValid;
@@ -40,6 +46,7 @@ let passwordValid;
 let signinInputValid;
 let signinPassValid;
 
+// Create select day options
 for (let i = 1; i < 32; i++) {
 	const option = document.createElement('option');
 	option.value = i;
@@ -47,6 +54,7 @@ for (let i = 1; i < 32; i++) {
 	day.appendChild(option);
 }
 
+// Create select year options
 for (let i = 2022; i > 1901; i--) {
 	const option = document.createElement('option');
 	option.value = i;
@@ -54,12 +62,14 @@ for (let i = 2022; i > 1901; i--) {
 	year.appendChild(option);
 }
 
+// Open signup modal
 signup.addEventListener('click', () => {
 	signup_modal.showModal();
 	document.body.style.overflow = 'hidden';
 	document.body.style.userSelect = 'none';
 });
 
+// Close signup modal and delete the values inside
 quit.addEventListener('click', () => {
 	signup_modal.close();
 	document.body.style.overflow = 'auto';
@@ -71,23 +81,27 @@ quit.addEventListener('click', () => {
 	year.value = '';
 });
 
+// Open signup password modal
 signup_next.addEventListener('click', () => {
 	signup_modal.close();
 	signup_modal_password.showModal();
 });
 
+// Go back to signup modal
 back.addEventListener('click', () => {
 	signup_modal_password.close();
 	signup_modal.showModal();
 	password_input.value = '';
 });
 
+// Open signin modal
 signin.addEventListener('click', () => {
 	signin_modal.showModal();
 	document.body.style.overflow = 'hidden';
 	document.body.style.userSelect = 'none';
 });
 
+// Close signin modal and delete the values inside
 signin_quit.addEventListener('click', () => {
 	signin_modal.close();
 	document.body.style.overflow = 'auto';
@@ -97,11 +111,13 @@ signin_quit.addEventListener('click', () => {
 	valid_account.style.display = 'none';
 });
 
+// Open signup modal from signin modal
 signup_link.addEventListener('click', () => {
 	signin_modal.close();
 	signup_modal.showModal();
 });
 
+// Focus effect for email label in signin and signup modals
 email_input.addEventListener('focusout', () => {
 	emailFocusOut(email_input.value, email_label);
 });
@@ -134,6 +150,7 @@ function emailFocusOut(input, label) {
 	}
 }
 
+// Enable modal buttons only when all inputs are filled with values
 name_input.addEventListener('keyup', enableNextInput);
 email_input.addEventListener('keyup', enableNextEmail);
 month.addEventListener('change', enableNext);
@@ -154,6 +171,7 @@ password_input.addEventListener('keyup', () => {
 signin_input.addEventListener('keyup', enableSignin);
 signin_pass.addEventListener('keyup', enableSignin);
 
+// Hover effects for modal buttons when activated
 signup_next.addEventListener('mouseenter', () => {
 	if (!signup_next.disabled) {
 		signup_next.style.opacity = 0.9;
@@ -190,6 +208,7 @@ signin_next.addEventListener('mouseleave', () => {
 	}
 });
 
+// Functions to check is an input is filled or not
 function check_name(name) {
 	if (name.value) {
 		nameValid = true;
@@ -198,6 +217,7 @@ function check_name(name) {
 	}
 }
 
+// Check if email matches the email regex
 function check_email(email) {
 	if (email.match(valid_email_form)) {
 		emailValid = true;
@@ -230,6 +250,7 @@ function checkYear(yearValue) {
 	}
 }
 
+// Check if password has less than 8 characters
 function checkPassword(password) {
 	if (password.value.length >= 8) {
 		passwordValid = true;
@@ -253,7 +274,7 @@ function checkUserPassword(password) {
 		signinPassValid = false;
 	}
 }
-
+// Enable signup next button
 function signupNext(name, email, month, day, year) {
 	check_name(name);
 	check_email(email);
@@ -270,7 +291,7 @@ function signupNext(name, email, month, day, year) {
 		enabled = false;
 	}
 }
-
+// Enable signin next button
 function signinNext(username, password) {
 	checkUsername(username);
 	checkUserPassword(password);
@@ -291,19 +312,17 @@ function enableSignin() {
 	signinNext(signin_input, signin_pass);
 }
 
+// Display warning text when user deletes input name
 function enableNextInput() {
 	signupNext(name_input, email_input.value, month, day, year);
 	if (nameValid == false) {
-		/* name_input.style.outlineColor = 'red';
-		name_label.style.color = 'red'; */
 		invalid_name.style.display = 'block';
 	} else {
-		/* name_input.style.removeProperty('outlineColor');
-		name_label.style.removeProperty('color'); */
 		invalid_name.style.removeProperty('display');
 	}
 }
 
+// Display warning text when user inserts an invalid email
 function enableNextEmail() {
 	signupNext(name_input, email_input.value, month, day, year);
 	if (emailValid == false) {
@@ -314,6 +333,7 @@ function enableNextEmail() {
 	}
 }
 
+// Check if signup email is in the database, if not add the new data to users table in the database and move to the main page
 signupForm.addEventListener('submit', (e) => {
 	e.preventDefault();
 
@@ -348,6 +368,7 @@ signupForm.addEventListener('submit', (e) => {
 		});
 });
 
+// Check if signin email and password are correct, if yes move to the main page of the user
 signin_next.addEventListener('click', (e) => {
 	e.preventDefault;
 
