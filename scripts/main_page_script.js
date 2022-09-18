@@ -380,11 +380,13 @@ function changePage(page) {
         feeds.classList.add("hide");
         tweetWriting.classList.add("hide");
         followingFollowers.classList.add("hide");
+        otherUserProfile.classList.add("hide");
     } else if (page == "home") {
         profile.classList.add("hide");
         feeds.classList.remove("hide");
         tweetWriting.classList.remove("hide");
         followingFollowers.classList.add("hide");
+        otherUserProfile.classList.add("hide");
     } else if (page == "following") {
         profile.classList.add("hide");
         feeds.classList.add("hide");
@@ -394,6 +396,7 @@ function changePage(page) {
         followersTab.classList.add("hide");
         followingTabBtn.classList.add("active-tab");
         followersTabBtn.classList.remove("active-tab");
+        otherUserProfile.classList.add("hide");
     } else if (page == "followers") {
         profile.classList.add("hide");
         feeds.classList.add("hide");
@@ -403,12 +406,14 @@ function changePage(page) {
         followersTab.classList.remove("hide");
         followingTabBtn.classList.remove("active-tab");
         followersTabBtn.classList.add("active-tab");
+        otherUserProfile.classList.add("hide");
     } else {
         profile.classList.add("hide");
         feeds.classList.add("hide");
         tweetWriting.classList.add("hide");
         followingFollowers.classList.add("hide");
         blockedUsersContainer.classList.remove("hide");
+        otherUserProfile.classList.add("hide");
     }
 }
 
@@ -573,7 +578,7 @@ function addFeeds(feeds, container) {
             }
         });
     }
-    const tweets = document.getElementById("feed-wrapper");
+    const tweets = document.getElementsByClassName("feed-wrapper");
     for (const t of tweets) {
         t.addEventListener("click", () => {
             showTweetOwner(t.id);
@@ -882,5 +887,8 @@ function getValue(type) {
 }
 
 function showTweetOwner(userId) {
-
+    tweetWriting.classList.add("hide");
+    feeds.classList.add("hide");
+    profile.classList.add("hide");
+    otherUserProfile.classList.remove("hide");
 }
