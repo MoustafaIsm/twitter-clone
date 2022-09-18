@@ -497,7 +497,7 @@ function addFeeds(feeds, container) {
                 ${imgHolder}
                 <!-- Likes -->
                 <div class="tweet-likes-wrapper">
-                    <span class="material-symbols-outlined"> favorite </span>
+                    <span class="material-symbols-outlined like-btn" id="${tweet.tweet_id}"> favorite </span>
                     <p class="likes-number" id="${tweet.tweet_id}"> 123 </p>
                 </div>
             </div>
@@ -508,6 +508,13 @@ function addFeeds(feeds, container) {
         fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likesNumber.id)
             .then((response) => response.json())
             .then((data) => likesNumber.innerHTML = data.likes_count);
+    }
+    const likeBtns = document.getElementsByClassName("like-btn");
+    for (const likebtn of likeBtns) {
+        likebtn.addEventListener("click", () => {
+            fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_like.php?userId=" + localStorage.getItem("userId") + "&tweetId=" + likebtn.id)
+                .then((response) => response.json());
+        });
     }
 }
 
@@ -534,7 +541,7 @@ function addPersonalTweets(tweets, container) {
             </div>
             <!-- Likes -->
             <div class="tweet-likes-wrapper">
-                <span class="material-symbols-outlined"> favorite </span>
+                <span class="material-symbols-outlined like-btn" id="${tweet.id}"> favorite </span>
                 <p class="likes-number" id="${tweet.id}"> 123 </p>
             </div>
         </div>
@@ -545,6 +552,13 @@ function addPersonalTweets(tweets, container) {
         fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likesNumber.id)
             .then((response) => response.json())
             .then((data) => likesNumber.innerHTML = data.likes_count);
+    }
+    const likeBtns = document.getElementsByClassName("like-btn");
+    for (const likebtn of likeBtns) {
+        likebtn.addEventListener("click", () => {
+            fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_like.php?userId=" + localStorage.getItem("userId") + "&tweetId=" + likebtn.id)
+                .then((response) => response.json());
+        });
     }
 }
 
@@ -575,7 +589,7 @@ function addPersonalMedia(tweets, container) {
             </div>
             <!-- Likes -->
             <div class="tweet-likes-wrapper">
-                <span class="material-symbols-outlined"> favorite </span>
+                <span class="material-symbols-outlined like-btn" id="${tweet.id}"> favorite </span>
                 <p class="likes-number" id="${tweet.id}"> 123 </p>
             </div>
         </div>
@@ -586,6 +600,13 @@ function addPersonalMedia(tweets, container) {
         fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likesNumber.id)
             .then((response) => response.json())
             .then((data) => likesNumber.innerHTML = data.likes_count);
+    }
+    const likeBtns = document.getElementsByClassName("like-btn");
+    for (const likebtn of likeBtns) {
+        likebtn.addEventListener("click", () => {
+            fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_like.php?userId=" + localStorage.getItem("userId") + "&tweetId=" + likebtn.id)
+                .then((response) => response.json());
+        });
     }
 }
 
