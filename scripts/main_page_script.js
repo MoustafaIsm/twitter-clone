@@ -117,6 +117,39 @@ const otherTweet = document.getElementById("other-tweet");
 const otherMedia = document.getElementById("other-tweet");
 const otherLikes = document.getElementById("other-likes");
 
+otherTweetsTab.addEventListener("click", () => {
+    otherTweet.classList.remove("hide");
+    otherTweetsTab.classList.add("active-tab");
+
+    otherMedia.classList.add("hide");
+    otherMediaTab.classList.remove("active-tab");
+
+    otherLikes.classList.add("hide");
+    otherLikesTab.classList.remove("active-tab");
+});
+
+otherMediaTab.addEventListener("click", () => {
+    otherTweet.classList.add("hide");
+    otherTweetsTab.classList.remove("active-tab");
+
+    otherMedia.classList.remove("hide");
+    otherMediaTab.classList.add("active-tab");
+
+    otherLikes.classList.add("hide");
+    otherLikesTab.classList.remove("active-tab");
+});
+
+otherLikesTab.addEventListener("click", () => {
+    otherTweet.classList.add("hide");
+    otherTweetsTab.classList.remove("active-tab");
+
+    otherMedia.classList.add("hide");
+    otherMediaTab.classList.remove("active-tab");
+
+    otherLikes.classList.remove("hide");
+    otherLikesTab.classList.add("active-tab");
+});
+
 /** Functions **/
 
 // Eventlisteners function
