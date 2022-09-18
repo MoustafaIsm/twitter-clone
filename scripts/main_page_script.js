@@ -65,6 +65,17 @@ const viewBlockedBtn = document.getElementById("view-blocked-btn");
 const blockedUsersContainer = document.getElementById("blocked-users-container");
 const blockedUsers = document.getElementById("blocked-users");
 
+const otherUserProfile = document.getElementById("other-user-profile");
+const otherUserBanner = document.getElementById("other-user-banner");
+const otherUserPicture = document.getElementById("other-user-picture");
+const otherUserDetails = document.getElementById("other-user-details");
+const otherTweetsTab = document.getElementById("other-tweets-tab");
+const otherMediaTab = document.getElementById("other-media-tab");
+const otherLikesTab = document.getElementById("other-likes-tab");
+const otherTweet = document.getElementById("other-tweet");
+const otherMedia = document.getElementById("other-media");
+const otherLikes = document.getElementById("other-likes");
+
 // Modal related stuff
 const editProfileModal = document.getElementById("edit-profile-modal");
 if (typeof editProfileModal.showModal !== "function") {
@@ -105,17 +116,6 @@ saveBtn.addEventListener("click", updateUserInfo);
 logoutBtn.addEventListener("click", logoutUser);
 
 viewBlockedBtn.addEventListener("click", showBlockedUsersConstainer);
-// Stuuf related to the other  user profile
-const otherUserProfile = document.getElementById("other-user-profile");
-const otherUserBanner = document.getElementById("other-user-banner");
-const otherUserPicture = document.getElementById("other-user-picture");
-const otherUserDetails = document.getElementById("other-user-details");
-const otherTweetsTab = document.getElementById("other-tweets-tab");
-const otherMediaTab = document.getElementById("other-media-tab");
-const otherLikesTab = document.getElementById("other-likes-tab");
-const otherTweet = document.getElementById("other-tweet");
-const otherMedia = document.getElementById("other-media");
-const otherLikes = document.getElementById("other-likes");
 
 otherTweetsTab.addEventListener("click", () => {
     otherTweet.classList.remove("hide");
@@ -918,6 +918,12 @@ function setProfileData(u, id) {
     if (u[0].profile_picture_link != "NA") {
         otherUserPicture.innerHTML = `<img src="${u[0].profile_picture_link}">`;
     }
+
+    const blockBtn = document.getElementById("block-btn");
+    blockBtn.addEventListener("click", () => {
+        fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_block.php?userId=" + localStorage.getItem("userId") + "&blockId=" + id)
+            .then((response) => response.json());
+    });
 
     otherTweet.innerHTML = "";
     otherMedia.innerHTML = "";

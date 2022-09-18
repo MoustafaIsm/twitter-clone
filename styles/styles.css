@@ -748,12 +748,12 @@ img {
 }
 
 .btn-blue {
-    background-color:  rgb(29, 155, 240);
-    color: white;
+    background-color:  rgb(29, 155, 240) !important;
+    color: white !important;
 }
 
 .btn-blue:hover {
-    background-color:  rgb(25, 125, 193);
+    background-color:  rgb(25, 125, 193) !important;
 }
 
 .small-round-profile-picture {
