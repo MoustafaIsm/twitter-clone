@@ -646,7 +646,6 @@ function addPersonalTweets(tweets, container) {
             <div class="user-info">
                 <p class="bold-text"> ${localStorage.getItem("name")} </p>
                 <p class="grey-text"> @${localStorage.getItem("username")} </p>
-                <p class="grey-text"> . ${tweet.date_time_of_creation.split(".")[0]}</p>
             </div>
             <!-- Tweet text -->
             <div class="tweet-text-wrapper">
@@ -654,8 +653,9 @@ function addPersonalTweets(tweets, container) {
             </div>
             <!-- Likes -->
             <div class="tweet-likes-wrapper">
-                <span class="material-symbols-outlined like-btn" id="${tweet.id}"> favorite </span>
-                <p class="likes-number" id="${tweet.id}"> 123 </p>
+                <div><span class="material-symbols-outlined like-btn" id="${tweet.id}"> favorite </span>
+                <p class="likes-number" id="${tweet.id}"> 123 </p></div>
+                <p class="grey-text">${tweet.date_time_of_creation.split(".")[0]}</p>
             </div>
         </div>
     </div>`;
@@ -698,7 +698,6 @@ function addPersonalMedia(tweets, container) {
             <div class="user-info">
                 <p class="bold-text"> ${localStorage.getItem("name")} </p>
                 <p class="grey-text"> @${localStorage.getItem("username")} </p>
-                <p class="grey-text"> . ${tweet.date_time_of_creation.split(".")[0]}</p>
             </div>
             <!-- Tweet text -->
             <div class="tweet-text-wrapper">
@@ -710,8 +709,9 @@ function addPersonalMedia(tweets, container) {
             </div>
             <!-- Likes -->
             <div class="tweet-likes-wrapper">
-                <span class="material-symbols-outlined like-btn" id="${tweet.id}"> favorite </span>
-                <p class="likes-number" id="${tweet.id}"> 123 </p>
+                <div><span class="material-symbols-outlined like-btn" id="${tweet.id}"> favorite </span>
+                <p class="likes-number" id="${tweet.id}"> 123 </p></div>
+                <p class="grey-text">${tweet.date_time_of_creation.split(".")[0]}</p>
             </div>
         </div>
     </div>`;
@@ -766,7 +766,6 @@ function addPersonalLikes(tweets, container) {
                 <div class="user-info">
                     <p class="bold-text"> ${tweet.name} </p>
                     <p class="grey-text"> @${tweet.username} </p>
-                    <p class="grey-text"> . ${tweet.date_time_of_creation.split(".")[0]}</p>
                 </div>
                 <!-- Tweet text -->
                 <div class="tweet-text-wrapper">
@@ -775,8 +774,9 @@ function addPersonalLikes(tweets, container) {
                 ${imgHolder}
                 <!-- Likes -->
                 <div class="tweet-likes-wrapper">
-                    <span class="material-symbols-outlined"> favorite </span>
-                    <p class="likes-number" id="${tweet.tweet_id}"> 123 </p>
+                    <div><span class="material-symbols-outlined"> favorite </span>
+                    <p class="likes-number" id="${tweet.tweet_id}"> 123 </p></div>
+                    <p class="grey-text">${tweet.date_time_of_creation.split(".")[0]}</p>
                 </div>
             </div>
         </div>`;

@@ -276,6 +276,7 @@ img {
 
 .feed-wrapper {
     display: flex;
+    padding-bottom: 10px;
     border-bottom: 1px solid #D9D9D9;
 }
 
@@ -283,7 +284,7 @@ img {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    padding-top: 30px;
+    padding-top: 20px;
 }
 
 .user-info {
@@ -293,11 +294,11 @@ img {
 }
 
 .user-info > p {
-    padding: 0% 1%;
+    padding-right: 1%;
 }
 
 .tweet-text-wrapper {
-    padding-top: 3%;
+    padding-top: 1%;
     width: 90%;
 }
 
@@ -311,6 +312,7 @@ img {
 
 .tweet-img-wrapper > img {
     width: 100%;
+    border-radius: inherit;
 }
 
 .tweet-likes-wrapper {
