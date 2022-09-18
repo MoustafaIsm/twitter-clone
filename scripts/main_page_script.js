@@ -302,6 +302,7 @@ function logoutUser() {
 function showBlockedUsersConstainer() {
     changePage("blocked");
     populateBlockedUsers(localStorage.getItem("userId"));
+
 }
 
 // Helper functions
@@ -685,7 +686,7 @@ function addBlockedUsers(users, container) {
                 <p class="bold-text"> ${u.name} </p>
                 <p class="grey-text"> @${u.username} </p>
             </div>
-            <div class="unblock-btn-wrapper"><button type="button" class="bold-text grey-background unblock-btn"> Unbclock </button></div>
+            <div class="unblock-btn-wrapper"><button type="button" class="bold-text grey-background unblock-btn" value="${u.id}"> Unbclock </button></div>
         </div>`;
         } else {
             container.innerHTML += `
@@ -697,7 +698,16 @@ function addBlockedUsers(users, container) {
                 <p class="bold-text"> ${u.name} </p>
                 <p class="grey-text"> @${u.username} </p>
             </div>
+            <div class="unblock-btn-wrapper"><button type="button" class="bold-text grey-background unblock-btn" value="${u.id}"> Unbclock </button></div>
         </div>`;
+        }
+        const unblockBtns = document.getElementsByClassName("unblock-btn");
+        for (const btn of unblockBtns) {
+            btn.addEventListener("click", () => {
+                fetch("http://localhost/SEF/twitter-clone-backend/APIs/remove_blocked_user.php?userId=" + localStorage.getItem("userId") + "&blockedUserId=" + btn.value)
+                    .then((response) => response.json())
+                    .then((data) => console.log(data.result));
+            });
         }
     }
 }
