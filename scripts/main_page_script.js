@@ -480,6 +480,7 @@ function addUserInfo() {
 function addUserDetails() {
     document.getElementById("user-name-display").textContent = localStorage.getItem("name");
     document.getElementById("username-display").textContent = "@" + localStorage.getItem("username");
+    document.getElementById("bio-display").textContent = localStorage.getItem("bio");
     document.getElementById("user-joined-date").innerHTML = `<span class="material-symbols-outlined">calendar_month</span>${localStorage.getItem("date_of_registration")}`;
     fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_followers.php?userId=" + localStorage.getItem("userId"))
         .then((response) => response.json())
@@ -664,14 +665,25 @@ function addPersonalTweets(tweets, container) {
     for (const likesNumber of likesNumbers) {
         fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likesNumber.id)
             .then((response) => response.json())
-            .then((data) => likesNumber.innerHTML = data.likes_count);
+            .then((data) => {
+                likesNumber.innerHTML = data.likes_count;
+                likesNumber.id = "likes-number-" + likesNumber.id;
+            });
     }
     const likeBtns = document.getElementsByClassName("like-btn");
     for (const likebtn of likeBtns) {
         likebtn.addEventListener("click", () => {
             likebtn.style.color = "rgb(29, 155, 240)";
             fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_like.php?userId=" + localStorage.getItem("userId") + "&tweetId=" + likebtn.id)
-                .then((response) => response.json())
+                .then((response) => {
+                    response.json();
+                    const likes = document.getElementById("likes-number-" + likebtn.id);
+                    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likebtn.id)
+                        .then((response) => response.json())
+                        .then((data) => {
+                            likes.innerHTML = data.likes_count;
+                        });
+                })
                 .catch((error) => console.log(error));
         });
     }
@@ -714,14 +726,25 @@ function addPersonalMedia(tweets, container) {
     for (const likesNumber of likesNumbers) {
         fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likesNumber.id)
             .then((response) => response.json())
-            .then((data) => likesNumber.innerHTML = data.likes_count);
+            .then((data) => {
+                likesNumber.innerHTML = data.likes_count;
+                likesNumber.id = "likes-number-" + likesNumber.id;
+            });
     }
     const likeBtns = document.getElementsByClassName("like-btn");
     for (const likebtn of likeBtns) {
         likebtn.addEventListener("click", () => {
             likebtn.style.color = "rgb(29, 155, 240)";
             fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_like.php?userId=" + localStorage.getItem("userId") + "&tweetId=" + likebtn.id)
-                .then((response) => response.json())
+                .then((response) => {
+                    response.json();
+                    const likes = document.getElementById("likes-number-" + likebtn.id);
+                    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likebtn.id)
+                        .then((response) => response.json())
+                        .then((data) => {
+                            likes.innerHTML = data.likes_count;
+                        });
+                })
                 .catch((error) => console.log(error));
         });
     }
@@ -794,7 +817,7 @@ function addFollowing(followingUsers) {
             followingTab.innerHTML += `
             <div class="other-user-wrapper grey-background">
                 <div class="small-round-profile-picture">
-                    <img src="${pp}" alt"pp">
+                    <img src="${u.profile_picture_link}" alt"pp">
                 </div>
             <div class="other-user-info">
                 <p class="bold-text"> ${u.name} </p>
