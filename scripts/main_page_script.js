@@ -105,6 +105,7 @@ saveBtn.addEventListener("click", updateUserInfo);
 logoutBtn.addEventListener("click", logoutUser);
 
 viewBlockedBtn.addEventListener("click", showBlockedUsersConstainer);
+// 
 
 /** Functions **/
 
