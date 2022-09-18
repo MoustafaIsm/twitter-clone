@@ -162,14 +162,14 @@ otherLikesTab.addEventListener("click", () => {
 search.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         searchResult.innerHTML = "";
-        searchUsers(searchResult);
+        searchUsers(search, searchResult);
     }
 });
 
 searchInPage.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         searchResultInpage.innerHTML = "";
-        searchUsers(searchResultInpage);
+        searchUsers(searchInPage, searchResultInpage);
     }
 });
 
@@ -583,8 +583,8 @@ function addFeeds(feeds, container) {
                 <div class="user-info">
                     <p class="bold-text"> ${tweet.name} </p>
                     <p class="grey-text grey-background username-text" id="${tweet.id}"> @${tweet.username} </p>
-                    <p class="grey-text"> . ${tweet.date_time_of_creation.split(".")[0]}</p>
                 </div>
+                <div></div>
                 <!-- Tweet text -->
                 <div class="tweet-text-wrapper">
                     <p>${tweet.tweet_text}</p>
@@ -592,8 +592,11 @@ function addFeeds(feeds, container) {
                 ${imgHolder}
                 <!-- Likes -->
                 <div class="tweet-likes-wrapper">
+                    <div>
                     <span class="material-symbols-outlined like-btn" id="${tweet.tweet_id}"> favorite </span>
                     <p class="likes-number" id="${tweet.tweet_id}"> 123 </p>
+                    </div>
+                    <p class="grey-text">${tweet.date_time_of_creation.split(".")[0]}</p>
                 </div>
             </div>
         </div>`;
@@ -1134,8 +1137,8 @@ function addOtherLikes(tweets, container, u) {
     }
 }
 
-function searchUsers(container) {
-    fetch('http://localhost/SEF/twitter-clone-backend/APIs/get_user_by_username.php?username=' + search.value)
+function searchUsers(input, container) {
+    fetch('http://localhost/SEF/twitter-clone-backend/APIs/get_user_by_username.php?username=' + input.value)
         .then((response) => response.json())
         .then((data) => {
             for (const u of data.searchResults) {

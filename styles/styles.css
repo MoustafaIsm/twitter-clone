@@ -313,19 +313,23 @@ img {
 
 .tweet-likes-wrapper {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     width: 90%;
 }
 
-.tweet-likes-wrapper > span {
+.tweet-likes-wrapper > div:first-child {
+    display: flex;
+}
+
+.tweet-likes-wrapper  span {
     padding: 1%;
     border-radius: 50px;
 }
 
-.tweet-likes-wrapper > span:hover {
+.tweet-likes-wrapper span:hover {
     cursor: pointer;
-    border: 1px solid rgb(29, 155, 240);
+    color: rgb(29, 155, 240);
 }
 
 /* Profile */
@@ -745,6 +749,10 @@ img {
 
 .search-result-wrapper {
     margin-top: 70px;
+}
+
+#search-result-page {
+    margin-top: 20px !important;
 }
 
 .searched-user {
