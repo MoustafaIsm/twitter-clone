@@ -114,7 +114,7 @@ const otherTweetsTab = document.getElementById("other-tweets-tab");
 const otherMediaTab = document.getElementById("other-media-tab");
 const otherLikesTab = document.getElementById("other-likes-tab");
 const otherTweet = document.getElementById("other-tweet");
-const otherMedia = document.getElementById("other-tweet");
+const otherMedia = document.getElementById("other-media");
 const otherLikes = document.getElementById("other-likes");
 
 otherTweetsTab.addEventListener("click", () => {
