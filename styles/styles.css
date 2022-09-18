@@ -723,6 +723,10 @@ img {
     width: 100%;
 }
 
+.search-bar-inpage-wrapper form {
+    width: 100%;
+}
+
 .search-bar-wrapper input {
     border: none;
     outline: none;
@@ -748,7 +752,9 @@ img {
     align-items: center;
 }
 
-
+#search-nav-btn {
+    display: none;
+}
 
 /* Utilities */
 .bold-text {
@@ -807,6 +813,7 @@ img {
 /* Media Query */
 
 @media screen and (max-width: 1290px) {
+    
     .nav-bar-wrapper {
         width: 20vw;
     }
@@ -869,6 +876,10 @@ img {
 
     .page-contents {
         flex-grow: 1;
+    }
+
+    #search-nav-btn {
+        display: block;
     }
 }
 

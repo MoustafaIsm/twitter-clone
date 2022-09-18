@@ -19,6 +19,7 @@ const editProfileBtn = document.getElementById("edit-profile-btn");
 const closeModalBtn = document.getElementById("close-modal");
 const moreBtn = document.getElementById("more-btn");
 const logoutWrapper = document.getElementById("logout-wrapper");
+const searchNavBtn = document.getElementById("search-nav-btn");
 
 const homeTitle = document.getElementById("home-title");
 const profileTitle = document.getElementById("profile-title");
@@ -27,6 +28,7 @@ const tweetWriting = document.getElementById("tweet-writing");
 const feeds = document.getElementById("feeds");
 const profile = document.getElementById("profile");
 const followingFollowers = document.getElementById("following-followers");
+const searchPage = document.getElementById("search-page");
 
 const following = document.getElementById("following");
 const followingTabBtn = document.getElementById("following-tab-btn");
@@ -95,6 +97,7 @@ window.onload = () => {
 profileNavBtn.addEventListener("click", openProfilePage);
 homeNavBtn.addEventListener("click", openHomePage);
 backBtn.addEventListener("click", openHomePage);
+searchNavBtn.addEventListener("click", openSearchPage);
 
 moreBtn.addEventListener("click", openLogoutWrapper);
 
@@ -176,6 +179,16 @@ function openHomePage() {
     changePageTitle("home");
     changePage("home");
     populateFeeds(localStorage.getItem("userId"));
+}
+
+function openSearchPage() {
+    searchPage.classList.remove("hide");
+    profile.classList.add("hide");
+    feeds.classList.add("hide");
+    tweetWriting.classList.add("hide");
+    followingFollowers.classList.add("hide");
+    blockedUsersContainer.classList.add("hide");
+    otherUserProfile.classList.add("hide");
 }
 
 function openLogoutWrapper() {
@@ -392,6 +405,7 @@ function changePage(page) {
         followingFollowers.classList.add("hide");
         blockedUsersContainer.classList.add("hide");
         otherUserProfile.classList.add("hide");
+        searchPage.classList.add("hide");
     } else if (page == "home") {
         profile.classList.add("hide");
         feeds.classList.remove("hide");
@@ -399,6 +413,7 @@ function changePage(page) {
         followingFollowers.classList.add("hide");
         blockedUsersContainer.classList.add("hide");
         otherUserProfile.classList.add("hide");
+        searchPage.classList.add("hide");
     } else if (page == "following") {
         profile.classList.add("hide");
         feeds.classList.add("hide");
@@ -410,6 +425,7 @@ function changePage(page) {
         followersTabBtn.classList.remove("active-tab");
         otherUserProfile.classList.add("hide");
         blockedUsersContainer.classList.add("hide");
+        searchPage.classList.add("hide");
     } else if (page == "followers") {
         profile.classList.add("hide");
         feeds.classList.add("hide");
@@ -421,6 +437,7 @@ function changePage(page) {
         followersTabBtn.classList.add("active-tab");
         otherUserProfile.classList.add("hide");
         blockedUsersContainer.classList.add("hide");
+        searchPage.classList.add("hide");
     } else {
         profile.classList.add("hide");
         feeds.classList.add("hide");
@@ -428,6 +445,7 @@ function changePage(page) {
         followingFollowers.classList.add("hide");
         blockedUsersContainer.classList.remove("hide");
         otherUserProfile.classList.add("hide");
+        searchPage.classList.add("hide");
     }
 }
 
