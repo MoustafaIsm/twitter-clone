@@ -57,6 +57,7 @@ const locationInput = document.getElementById("location-input");
 const websiteInput = document.getElementById("website-input");
 const profileImageInput = document.getElementById("profile-image");
 const bannerImageInput = document.getElementById("banner-image");
+const personalDateOfBirth = document.getElementById("personal-date-of-birth");
 
 // Modal related stuff
 const editProfileModal = document.getElementById("edit-profile-modal");
@@ -130,6 +131,7 @@ function openFollowersTab() {
 function openEditProfileModal() {
     if (typeof editProfileModal.showModal === "function") {
         editProfileModal.showModal();
+        personalDateOfBirth.innerHTML = `<p>${localStorage.getItem("date_of_birth")}</p>`;
     }
 
 }
@@ -373,7 +375,6 @@ function addUserDetails() {
 function addUserProfilePicture() {
     const profilePicture = document.getElementsByClassName("profile-picture");
     for (const pic of profilePicture) {
-        // pic.innerHTML = `<img src="${localStorage.getItem("profile_picture_link")}" alt="profile-picture">`;
         pic.style.backgroundImage = `url("${localStorage.getItem("profile_picture_link")}")`
     }
 }
