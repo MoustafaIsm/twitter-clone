@@ -1,16 +1,3 @@
-// Temporary items before merging with the signin-signup branch
-localStorage.setItem("userId", 2);
-localStorage.setItem("username", "moustafaism123");
-localStorage.setItem("email", "moustafa@gmail.com");
-localStorage.setItem("name", "moustafaIsmail013");
-localStorage.setItem("password", 12341234);
-localStorage.setItem("date_of_birth", "2001-01-01");
-localStorage.setItem("date_of_registration", "2022-02-03");
-localStorage.setItem("bio", "lebanese student");
-localStorage.setItem("location", "lebanon");
-localStorage.setItem("profile_picture_link", "http://localhost/SEF/twitter-clone-data/images/profile/2/6325962684131.jpeg");
-localStorage.setItem("banner_picture_link", "http://localhost/SEF/twitter-clone-data/images/profile/2/6325962684131.jpeg");
-localStorage.setItem("website", "NA");
 // Variables
 const homeNavBtn = document.getElementById("home-nav-btn");
 const profileNavBtn = document.getElementById("profile-nav-btn");
@@ -20,6 +7,8 @@ const closeModalBtn = document.getElementById("close-modal");
 const moreBtn = document.getElementById("more-btn");
 const logoutWrapper = document.getElementById("logout-wrapper");
 const searchNavBtn = document.getElementById("search-nav-btn");
+
+const tweetNavBtn = document.getElementById("tweet-nav-btn");
 
 const homeTitle = document.getElementById("home-title");
 const profileTitle = document.getElementById("profile-title");
@@ -91,9 +80,11 @@ if (typeof editProfileModal.showModal !== "function") {
 }
 
 // Stuff to do on page load
+updateLocalStorage();
 window.onload = () => {
     setupMiniProfile();
     populateFeeds(localStorage.getItem("userId"));
+
 };
 
 // Event listeners
@@ -101,6 +92,7 @@ profileNavBtn.addEventListener("click", openProfilePage);
 homeNavBtn.addEventListener("click", openHomePage);
 backBtn.addEventListener("click", openHomePage);
 searchNavBtn.addEventListener("click", openSearchPage);
+tweetNavBtn.addEventListener("click", openHomePage);
 
 moreBtn.addEventListener("click", openLogoutWrapper);
 
@@ -321,11 +313,11 @@ function updateUserInfo() {
         formData.append("website", websiteInput.value);
     if (bannerImageInput.files.length == 0) {
         if (profileImageInput.files.length > 0) {
-            let fileToLoad = profileImageInput[0];
+            let fileToLoad = profileImageInput.files[0];
             let fileReader = new FileReader();
             fileReader.onload = function (fileLoadedEvent) {
                 let profileImgBase64 = fileLoadedEvent.target.result;
-                formData.append("bannerPicture", profileImgBase64);
+                formData.append("profilePicture", profileImgBase64);
                 fetch("http://localhost/SEF/twitter-clone-backend/APIs/update_user.php", {
                     method: 'post',
                     body: formData
@@ -350,18 +342,18 @@ function updateUserInfo() {
             let bannerImgBase64 = fileLoadedEvent.target.result;
             formData.append("bannerPicture", bannerImgBase64);
             if (profileImageInput.files.length > 0) {
-                let fileToLoad = profileImageInput[0];
+                let fileToLoad1 = profileImageInput.files[0];
                 let fileReader = new FileReader();
                 fileReader.onload = function (fileLoadedEvent) {
                     let profileImgBase64 = fileLoadedEvent.target.result;
-                    formData.append("bannerPicture", profileImgBase64);
+                    formData.append("profilePicture", profileImgBase64);
                     fetch("http://localhost/SEF/twitter-clone-backend/APIs/update_user.php", {
                         method: 'post',
                         body: formData
                     }).then((response) => response.json());
                     updateLocalStorage();
                 }
-                fileReader.readAsDataURL(fileToLoad);
+                fileReader.readAsDataURL(fileToLoad1);
             } else {
                 fetch("http://localhost/SEF/twitter-clone-backend/APIs/update_user.php", {
                     method: 'post',
@@ -462,17 +454,21 @@ function changePage(page) {
 function setupMiniProfile() {
     const miniProfiles = document.getElementsByClassName("mini-user-info");
     const writeTweetProfile = document.getElementById("write-tweet-profile-img");
+    let ppHolder = ""
+    if (localStorage.getItem("profile_picture_link") != "NA") {
+        ppHolder = `<img src="${localStorage.getItem("profile_picture_link")}" alt="profile-picture">`;
+    }
     for (const prof of miniProfiles) {
         prof.innerHTML = `
         <div class="small-round-profile-picture">
-            <img src="${localStorage.getItem("profile_picture_link")}" alt="profile-picture">
+            ${ppHolder}
         </div>
         <div>
             <p class="bold-text"> ${localStorage.getItem("name")} </p>
             <p class="grey-text"> @${localStorage.getItem("username")}  </p>
         </div>`;
     }
-    writeTweetProfile.innerHTML = `<img src="${localStorage.getItem("profile_picture_link")}" alt="profile-picture">`;
+    writeTweetProfile.innerHTML = ppHolder;
 }
 
 function addUserInfo() {
@@ -593,8 +589,8 @@ function addFeeds(feeds, container) {
                 <!-- Likes -->
                 <div class="tweet-likes-wrapper">
                     <div>
-                    <span class="material-symbols-outlined like-btn" id="${tweet.tweet_id}"> favorite </span>
-                    <p class="likes-number" id="${tweet.tweet_id}"> 123 </p>
+                        <span class="material-symbols-outlined like-btn" id="${tweet.tweet_id}"> favorite </span>
+                        <p class="likes-number" id="${tweet.tweet_id}"> 123 </p>
                     </div>
                     <p class="grey-text">${tweet.date_time_of_creation.split(".")[0]}</p>
                 </div>
@@ -605,14 +601,25 @@ function addFeeds(feeds, container) {
     for (const likesNumber of likesNumbers) {
         fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likesNumber.id)
             .then((response) => response.json())
-            .then((data) => likesNumber.innerHTML = data.likes_count);
+            .then((data) => {
+                likesNumber.innerHTML = data.likes_count;
+                likesNumber.id = "likes-number-" + likesNumber.id;
+            });
     }
     const likeBtns = document.getElementsByClassName("like-btn");
     for (const likebtn of likeBtns) {
         likebtn.addEventListener("click", () => {
             likebtn.style.color = "rgb(29, 155, 240)";
             fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_like.php?userId=" + localStorage.getItem("userId") + "&tweetId=" + likebtn.id)
-                .then((response) => response.json())
+                .then((response) => {
+                    response.json();
+                    const likes = document.getElementById("likes-number-" + likebtn.id);
+                    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likebtn.id)
+                        .then((response) => response.json())
+                        .then((data) => {
+                            likes.innerHTML = data.likes_count;
+                        });
+                })
                 .catch((error) => console.log(error));
         });
     }
@@ -888,7 +895,7 @@ function updateLocalStorage() {
         .then((response) => response.json())
         .then((data) => {
             console.log(data.user);
-            // updateValuesOfLocalStorage(data.user);
+            updateValuesOfLocalStorage(data.user[0]);
         });
 }
 
@@ -913,9 +920,15 @@ function getValue(type) {
 }
 
 function showTweetOwner(userId, type) {
-    tweetWriting.classList.add("hide");
-    feeds.classList.add("hide");
     profile.classList.add("hide");
+    feeds.classList.add("hide");
+    tweetWriting.classList.add("hide");
+    followingFollowers.classList.add("hide");
+    followingTab.classList.add("hide");
+    followersTab.classList.add("hide");
+    followingTabBtn.classList.add("active-tab");
+    followersTabBtn.classList.add("active-tab");
+    blockedUsersContainer.classList.add("hide");
     searchPage.classList.add("hide");
     otherUserProfile.classList.remove("hide");
     fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_by_id.php?userId=" + userId)
@@ -1146,8 +1159,10 @@ function searchUsers(input, container) {
                             .then((response) => response.json())
                             .then((data) => {
                                 let followingIds = [];
-                                for (const u of data.following) {
-                                    followingIds.push(u.id);
+                                if (data.count > 0) {
+                                    for (const u of data.following) {
+                                        followingIds.push(u.id);
+                                    }
                                 }
                                 const follower = checkIfFollowing(followingIds, singleResult.id);
                                 console.log("followingIds: " + followingIds +

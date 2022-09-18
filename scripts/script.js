@@ -343,7 +343,7 @@ signupForm.addEventListener('submit', (e) => {
 	signupData.append('month', month.value);
 	signupData.append('day', day.value);
 	signupData.append('year', year.value);
-	fetch('http://localhost/twitter-clone-backend/APIs/signup.php', {
+	fetch('http://localhost/SEF/twitter-clone-backend/APIs/signup.php', {
 		method: 'POST',
 		body: signupData
 	})
@@ -377,7 +377,7 @@ signin_next.addEventListener('click', (e) => {
 });
 
 function checkUser(data) {
-	fetch('http://localhost/twitter-clone-backend/APIs/signin.php', {
+	fetch('http://localhost/SEF/twitter-clone-backend/APIs/signin.php', {
 		method: 'POST',
 		body: data
 	})
@@ -393,6 +393,7 @@ function checkUser(data) {
 					valid_account.innerHTML = 'Wrong password!';
 					valid_account.style.display = 'block';
 				} else {
+					localStorage.setItem('userId', ResponseJson[0].id);
 					localStorage.setItem('username', ResponseJson[0].username);
 					localStorage.setItem('email', ResponseJson[0].email);
 					localStorage.setItem('name', ResponseJson[0].name);
@@ -405,7 +406,7 @@ function checkUser(data) {
 					localStorage.setItem('banner_picture_link', ResponseJson[0].banner_picture_link);
 					localStorage.setItem('website', ResponseJson[0].website);
 
-					window.location.href = 'test.html';
+					window.location.href = 'main.html';
 				}
 			}
 		});
