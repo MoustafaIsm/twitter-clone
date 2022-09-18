@@ -678,13 +678,14 @@ function addBlockedUsers(users, container) {
     for (const u of users) {
         if (u.profile_picture_link == "NA") {
             container.innerHTML += `
-            <div class="other-user-wrapper grey-background">
+            <div class="other-user-wrapper">
                 <div class="small-round-profile-picture">
                 </div>
             <div class="other-user-info">
                 <p class="bold-text"> ${u.name} </p>
                 <p class="grey-text"> @${u.username} </p>
             </div>
+            <div class="unblock-btn-wrapper"><button type="button" class="bold-text grey-background unblock-btn"> Unbclock </button></div>
         </div>`;
         } else {
             container.innerHTML += `

@@ -610,6 +610,7 @@ img {
 .other-user-wrapper {
     display: flex;
     align-items: center;
+    border-bottom: 1px solid #dadedf;
 }
 
 .other-user-info {
@@ -619,6 +620,23 @@ img {
 
 .blocked-users-wrapper {
     margin-top: 50px;
+}
+
+.unblock-btn-wrapper {
+    width: auto;
+    margin-left: 40%;
+}
+
+.unblock-btn {
+    width: auto;
+    height: 25%;
+    background-color: #ffffff;
+    padding: 3% 10%;
+    border: none;
+    border: 2px solid #575757;
+    border-radius: 20px;
+    color: black;
+    align-self: flex-end;
 }
 
 
