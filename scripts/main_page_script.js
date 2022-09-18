@@ -301,6 +301,7 @@ function logoutUser() {
 
 function showBlockedUsersConstainer() {
     changePage("blocked");
+    populateBlockedUsers(localStorage.getItem("userId"));
 }
 
 // Helper functions
@@ -451,6 +452,13 @@ function populateFollowers(userId) {
     fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_followers.php?userId=" + userId)
         .then((response) => response.json())
         .then((data) => addFollowers(data.followers));
+}
+
+function populateBlockedUsers(userId) {
+    blockedUsers.innerHTML = ``;
+    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_blocked_users.php?userId=" + userId)
+        .then((response) => response.json())
+        .then((data) => addBlockedUsers(data.blocked_users, blockedUsers));
 }
 
 function addFeeds(feeds, container) {
@@ -653,6 +661,33 @@ function addFollowers(followerUsers) {
         </div>`;
         } else {
             followersTab.innerHTML += `
+            <div class="other-user-wrapper grey-background">
+                <div class="small-round-profile-picture">
+                    <img src="${u.profile_picture_link}" alt"pp">
+                </div>
+            <div class="other-user-info">
+                <p class="bold-text"> ${u.name} </p>
+                <p class="grey-text"> @${u.username} </p>
+            </div>
+        </div>`;
+        }
+    }
+}
+
+function addBlockedUsers(users, container) {
+    for (const u of users) {
+        if (u.profile_picture_link == "NA") {
+            container.innerHTML += `
+            <div class="other-user-wrapper grey-background">
+                <div class="small-round-profile-picture">
+                </div>
+            <div class="other-user-info">
+                <p class="bold-text"> ${u.name} </p>
+                <p class="grey-text"> @${u.username} </p>
+            </div>
+        </div>`;
+        } else {
+            container.innerHTML += `
             <div class="other-user-wrapper grey-background">
                 <div class="small-round-profile-picture">
                     <img src="${u.profile_picture_link}" alt"pp">

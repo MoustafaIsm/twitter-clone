@@ -617,6 +617,10 @@ img {
     flex-direction: column;
 }
 
+.blocked-users-wrapper {
+    margin-top: 50px;
+}
+
 
 /* Suggestions */
 .suggestions {
