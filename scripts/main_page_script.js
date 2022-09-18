@@ -61,6 +61,10 @@ const personalDateOfBirth = document.getElementById("personal-date-of-birth");
 
 const logoutBtn = document.getElementById("logout-btn");
 
+const viewBlockedBtn = document.getElementById("view-blocked-btn");
+const blockedUsersContainer = document.getElementById("blocked-users-container");
+const blockedUsers = document.getElementById("blocked-users");
+
 // Modal related stuff
 const editProfileModal = document.getElementById("edit-profile-modal");
 if (typeof editProfileModal.showModal !== "function") {
@@ -99,6 +103,8 @@ uploadTweetBtn.addEventListener("click", uploadTweet);
 saveBtn.addEventListener("click", updateUserInfo);
 
 logoutBtn.addEventListener("click", logoutUser);
+
+viewBlockedBtn.addEventListener("click", showBlockedUsersConstainer);
 
 /** Functions **/
 
@@ -293,6 +299,10 @@ function logoutUser() {
     window.location.href = "index.html";
 }
 
+function showBlockedUsersConstainer() {
+    changePage("blocked");
+}
+
 // Helper functions
 function changeNavBtnsStyle(page) {
     if (page == "profile") {
@@ -335,7 +345,7 @@ function changePage(page) {
         followersTab.classList.add("hide");
         followingTabBtn.classList.add("active-tab");
         followersTabBtn.classList.remove("active-tab");
-    } else {
+    } else if (page == "followers") {
         profile.classList.add("hide");
         feeds.classList.add("hide");
         tweetWriting.classList.add("hide");
@@ -344,6 +354,12 @@ function changePage(page) {
         followersTab.classList.remove("hide");
         followingTabBtn.classList.remove("active-tab");
         followersTabBtn.classList.add("active-tab");
+    } else {
+        profile.classList.add("hide");
+        feeds.classList.add("hide");
+        tweetWriting.classList.add("hide");
+        followingFollowers.classList.add("hide");
+        blockedUsersContainer.classList.remove("hide");
     }
 }
 
