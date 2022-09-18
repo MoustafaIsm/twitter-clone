@@ -253,7 +253,7 @@ function updateUserInfo() {
                     method: 'post',
                     body: formData
                 }).then((response) => response.json());
-                updateLocalStorage(formData);
+                updateLocalStorage();
             }
             fileReader.readAsDataURL(fileToLoad);
         } else {
@@ -261,7 +261,7 @@ function updateUserInfo() {
                 method: 'post',
                 body: formData
             }).then((response) => response.json());
-            updateLocalStorage(formData);
+            updateLocalStorage();
         }
     } else {
         // User selected file
@@ -282,7 +282,7 @@ function updateUserInfo() {
                         method: 'post',
                         body: formData
                     }).then((response) => response.json());
-                    updateLocalStorage(formData);
+                    updateLocalStorage();
                 }
                 fileReader.readAsDataURL(fileToLoad);
             } else {
@@ -290,7 +290,7 @@ function updateUserInfo() {
                     method: 'post',
                     body: formData
                 }).then((response) => response.json());
-                updateLocalStorage(formData);
+                updateLocalStorage();
             }
         }
         // Trigger load
@@ -520,6 +520,12 @@ function addFeeds(feeds, container) {
             fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_like.php?userId=" + localStorage.getItem("userId") + "&tweetId=" + likebtn.id)
                 .then((response) => response.json())
                 .catch((error) => console.log(error));
+            const likesNumbers = document.getElementsByClassName("likes-number");
+            for (const likesNumber of likesNumbers) {
+                fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likebtn.id)
+                    .then((response) => response.json())
+                    .then((data) => likesNumber.innerHTML = data.likes_count);
+            }
         });
     }
 }
@@ -566,6 +572,12 @@ function addPersonalTweets(tweets, container) {
             fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_like.php?userId=" + localStorage.getItem("userId") + "&tweetId=" + likebtn.id)
                 .then((response) => response.json())
                 .catch((error) => console.log(error));
+            const likesNumbers = document.getElementsByClassName("likes-number");
+            for (const likesNumber of likesNumbers) {
+                fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likebtn.id)
+                    .then((response) => response.json())
+                    .then((data) => likesNumber.innerHTML = data.likes_count);
+            }
         });
     }
 }
@@ -616,6 +628,12 @@ function addPersonalMedia(tweets, container) {
             fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_like.php?userId=" + localStorage.getItem("userId") + "&tweetId=" + likebtn.id)
                 .then((response) => response.json())
                 .catch((error) => console.log(error));
+            const likesNumbers = document.getElementsByClassName("likes-number");
+            for (const likesNumber of likesNumbers) {
+                fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likebtn.id)
+                    .then((response) => response.json())
+                    .then((data) => likesNumber.innerHTML = data.likes_count);
+            }
         });
     }
 }
@@ -783,8 +801,29 @@ function getCurrent() {
     return date + ' ' + time;
 }
 
-function updateLocalStorage(formData) {
+function updateLocalStorage() {
+    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_by_id.php?userId=" + localStorage.getItem("userId"))
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data.user);
+            // updateValuesOfLocalStorage(data.user);
+        });
+}
 
+function updateValuesOfLocalStorage(user) {
+    localStorage.clear();
+    localStorage.setItem("userId", user.id);
+    localStorage.setItem("username", user.username);
+    localStorage.setItem("email", user.email);
+    localStorage.setItem("name", user.name);
+    localStorage.setItem("password", user.password);
+    localStorage.setItem("date_of_birth", user.date_of_birth);
+    localStorage.setItem("date_of_registration", user.date_of_registration);
+    localStorage.setItem("bio", user.bio);
+    localStorage.setItem("location", user.location);
+    localStorage.setItem("profile_picture_link", user.profile_picture_link);
+    localStorage.setItem("banner_picture_link", user.banner_picture_link);
+    localStorage.setItem("website", user.website);
 }
 
 function getValue(type) {
