@@ -16,7 +16,7 @@
     <div class="body">
 
         <!-- Side Navigation Bar -->
-        <section class="container nav-bar-wrapper">
+        <section class="nav-bar-wrapper">
             <nav class="nav-bar">
                 <!-- Logo -->
                 <div class="logo">
@@ -61,7 +61,7 @@
         </section>
 
         <!-- Page contents -->
-        <section class="container page-contents">
+        <section class="page-contents">
             <!-- Page title -->
             <section class="page-title-wrapper">
                 <p id="home-title"> Home </p>
@@ -328,17 +328,17 @@
             </section>
         </section>
 
-        <!-- Suggestions -->
-        <section class="container suggestions">
+        <!-- Search -->
+        <section class="search-wrapper">
             <!-- Search bar -->
             <div class="search-bar-wrapper">
                 <div><span class="material-symbols-outlined">search</span></div>
-                <form>
-                    <input type="text" placeholder="Search twitter">
+                <form onsubmit="return false">
+                    <input type="text" placeholder="Search twitter" id="search">
                 </form>
             </div>
-            <!-- Suggested people -->
-            <div>
+            <!-- Searched people -->
+            <div class="search-result-wrapper" id="search-result">
 
             </div>
         </section>

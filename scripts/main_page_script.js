@@ -76,6 +76,9 @@ const otherTweet = document.getElementById("other-tweet");
 const otherMedia = document.getElementById("other-media");
 const otherLikes = document.getElementById("other-likes");
 
+const search = document.getElementById("search");
+const searchResult = document.getElementById("search-result");
+
 // Modal related stuff
 const editProfileModal = document.getElementById("edit-profile-modal");
 if (typeof editProfileModal.showModal !== "function") {
@@ -148,6 +151,13 @@ otherLikesTab.addEventListener("click", () => {
 
     otherLikes.classList.remove("hide");
     otherLikesTab.classList.add("active-tab");
+});
+
+search.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        searchResult.innerHTML = "";
+        searchUsers();
+    }
 });
 
 /** Functions **/
@@ -1093,3 +1103,25 @@ function addOtherLikes(tweets, container, u) {
             .then((data) => likesNumber.innerHTML = data.likes_count);
     }
 }
+
+function searchUsers() {
+    fetch('http://localhost/SEF/twitter-clone-backend/APIs/get_user_by_username.php?username=' + search.value)
+        .then((response) => response.json())
+        .then((data) => {
+
+            for (const u of data.searchResults) {
+                let ppHolder = "";
+                if (u.profile_picture_link != "NA")
+                    ppHolder = `<img src="${u.profile_picture_link}">`;
+                searchResult.innerHTML += `
+                <div class="searched-user">
+                    <div class="small-round-profile-picture">${ppHolder}</div>
+                    <div>
+                        <p class="bold-text">${u.name}</p>
+                        <p class="grey-text">@${u.username}</p>
+                    </div>
+                </div>`;
+            }
+        });
+}
+

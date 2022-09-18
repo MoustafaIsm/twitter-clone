@@ -681,7 +681,7 @@ img {
 
 
 /* Suggestions */
-.suggestions {
+.search-wrapper {
     width: 25vw;
     padding: 1%;
     display: flex;
@@ -718,6 +718,17 @@ img {
 
 .search-bar-wrapper input::placeholder {
 }
+
+.search-result-wrapper {
+    margin-top: 70px;
+}
+
+.searched-user {
+    display: flex;
+    align-items: center;
+}
+
+
 
 /* Utilities */
 .bold-text {
@@ -832,7 +843,7 @@ img {
 }
 
 @media screen and (max-width: 1000px) {
-    .suggestions {
+    .search-wrapper {
         display: none;
     }
 
