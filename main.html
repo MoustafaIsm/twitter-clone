@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home / Twitter</title>
+    <link rel="stylesheet" href="styles/main_page_styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,500,1,0" />
+</head>
+
+<body>
+    <div class="body">
+
+        <!-- Side Navigation Bar -->
+        <section class="nav-bar-wrapper">
+            <nav class="nav-bar">
+                <!-- Logo -->
+                <div class="logo">
+                    <div class="logo-wrapper"></div>
+                </div>
+                <!-- Navigation Bar Buttons -->
+                <div class="nav-btns">
+                    <ul class="nav-btns-list">
+                        <li class="nav-btn nav-btn-active grey-background" id="home-nav-btn">
+                            <div><span class="material-symbols-outlined">home</span></div>
+                            <div class="nav-btn-text">
+                                <p> Home </p>
+                            </div>
+                        </li>
+                        <li class="nav-btn grey-background" id="profile-nav-btn">
+                            <div><span class="material-symbols-outlined">person</span></div>
+                            <div class="nav-btn-text">
+                                <p> Profile </p>
+                            </div>
+                        </li>
+                        <li class="nav-btn grey-background" id="search-nav-btn">
+                            <div><span class="material-symbols-outlined">search</span></div>
+                            <div class="nav-btn-text">
+                                <p> Seach </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Navigation Bar Tweet Button -->
+                <div class="nav-bar-tweet">
+                    <button class="btn btn-blue"> Tweet </button>
+                </div>
+                <!-- Navigation Bar Mini Profile -->
+                <div class="mini-profile">
+                    <div class="mini-user-info"></div>
+                    <div class="more-wrapper">
+                        <span class="material-symbols-outlined grey-background more-btn" id="more-btn">more_horiz</span>
+                        <!-- Logout -->
+                        <div class="logout-wrapper hide" id="logout-wrapper">
+                            <div class="mini-user-info"></div>
+                            <button type="button" class="bold-text grey-background" id="view-blocked-btn"> View Blocked
+                            </button>
+                            <button type="button" class="bold-text grey-background" id="logout-btn"> Logout </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+        <!-- Page contents -->
+        <section class="page-contents">
+            <!-- Page title -->
+            <section class="page-title-wrapper">
+                <p id="home-title"> Home </p>
+                <div class="profile-title hide" id="profile-title">
+                    <span class="material-symbols-outlined grey-background" id="back-btn">
+                        arrow_back
+                    </span>
+                    <p> Profile </p>
+                </div>
+            </section>
+            <!-- Write a tweet -->
+            <section class="write-tweet-wrapper " id="tweet-writing">
+                <!-- Profile picture -->
+                <div class="small-round-profile-picture" id="write-tweet-profile-img">
+                </div>
+                <!-- Tweet -->
+                <div class="tweet-wrapper">
+                    <form>
+                        <!-- Tweet text -->
+                        <div class="tweet-text-wrapper">
+                            <textarea cols="" rows="7" placeholder="What's on your mind ?" id="tweet-text"
+                                maxlength="280"></textarea>
+                            <p id="tweet-error"></p>
+                        </div>
+                        <!-- Upload image and tweet button -->
+                        <div class="upload-tweet-wrapper">
+                            <label for="tweet-image"><span class="material-symbols-outlined">image</span></label>
+                            <input type="file" id="tweet-image" name="image" accept="image/*" class="hide">
+                            <button type="button" class="btn btn-blue" id="upload-tweet">Tweet</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <!-- Feeds -->
+            <section class="feeds " id="feeds">
+                <div class="feed-wrapper">
+                    <!-- Picture -->
+                    <div>
+                        <div class="small-round-profile-picture">
+
+                        </div>
+                    </div>
+                    <!-- Tweet content -->
+                    <div class="tweet-content">
+                        <!-- Username nad name -->
+                        <div class="user-info">
+                            <p class="bold-text"> Name </p>
+                            <p class="grey-text"> @UserName </p>
+                            <p class="grey-text"> . time</p>
+                        </div>
+                        <!-- Tweet text -->
+                        <div class="tweet-text-wrapper">
+                            <p>tweet tweet tweet tweet tweet tweet tweet tweet tweet tweet tweet tweet tweet tweet tweet
+                                tweet tweet tweet tweet tweet tweet tweet tweet tweet tweet tweet tweet tweet tweet
+                                tweet tweet tweet tweet tweet tweet tweet </p>
+                        </div>
+                        <!-- Tweet Image -->
+                        <div class="tweet-img-wrapper">
+
+                        </div>
+                        <!-- Likes -->
+                        <div class="tweet-likes-wrapper">
+                            <span class="material-symbols-outlined"> favorite </span>
+                            <p class="likes-number"> 123 </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Profile -->
+            <section class="profile-wrapper hide" id="profile">
+                <!-- Banner -->
+                <div class="profile-banner">
+                    <!-- Profile Picture -->
+                    <div class="profile-picture">
+
+                    </div>
+                </div>
+                <!-- Profile information and edit -->
+                <div class="profile-info">
+                    <div class="user-details" id="user-details">
+                        <p class="bold-text" id="user-name-display">Full Name</p>
+                        <p class="grey-text" id="username-display">@Username</p>
+                        <p class="grey-text date-wrapper" id="user-joined-date"></p>
+                        <div class="following-followers-info-wrapper">
+                            <p id="following">0 Following</p>
+                            <p id="followers">0 Followers</p>
+                        </div>
+                    </div>
+                    <div class="edit-profile-btn-wrapper">
+                        <button type="button" class="grey-background" id="edit-profile-btn"> Edit profile </button>
+                    </div>
+                </div>
+                <!-- Edit profile modal -->
+                <dialog class="edit-profile-modal" id="edit-profile-modal">
+                    <div>
+                        <!-- Header -->
+                        <div class="modal-header">
+                            <div>
+                                <span class="material-symbols-outlined grey-background" id="close-modal">close</span>
+                                <p class="bold-text"> Edit profile </p>
+                            </div>
+                            <div class="save-btn-wrapper">
+                                <button type="button" class="save-btn" id="save-btn"> Save </button>
+                            </div>
+                        </div>
+                        <!-- Pictures -->
+                        <div>
+                            <div class="profile-banner edit-profile-banner">
+                                <div>
+                                    <label for="banner-image">
+                                        <span class="material-symbols-outlined">photo_camera</span>
+                                    </label>
+                                    <input type="file" id="banner-image" name="image" accept="image/*" class="hide">
+                                </div>
+
+                                <!-- Profile Picture -->
+                                <div class="profile-picture edit-profile-picture">
+                                    <label for="profile-image">
+                                        <span class="material-symbols-outlined">photo_camera</span>
+                                    </label>
+                                    <input type="file" id="profile-image" name="image" accept="image/*" class="hide">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Form -->
+                        <form>
+                            <div class="edit-profile-form">
+                                <div class="input-wrapper">
+                                    <input type="text" class="edit-profile-input" id="name-input" required>
+                                    <label for="name-input" class="label"> Name </label>
+                                </div>
+                                <div class="input-wrapper">
+                                    <textarea rows="3" class="edit-profile-input" id="bio-input" required></textarea>
+                                    <label for="bio-input" class="label"> Bio </label>
+                                </div>
+
+                                <div class="input-wrapper">
+                                    <input type="text" class="edit-profile-input" id="location-input" required>
+                                    <label for="location-input" class="label"> Location </label>
+                                </div>
+                                <div class="input-wrapper">
+                                    <input type="text" class="edit-profile-input" id="website-input" required>
+                                    <label for="website-input" class="label"> Website </label>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Date of birth -->
+                        <div class="date-of-birth-wrapper">
+                            <p class="grey-text"> Date of birth: </p>
+                            <div id="personal-date-of-birth">
+                                <p>Day/</p>
+                                <p>Month/</p>
+                                <p>year</p>
+                            </div>
+                        </div>
+                    </div>
+                </dialog>
+                <!-- Navigation tabs -->
+                <div class="nav-tabs">
+                    <!-- Tweets -->
+                    <div class="tab active-tab grey-background grey-text" id="personal-tweets-tab">
+                        <p> Tweets </p>
+                    </div>
+                    <!-- Media -->
+                    <div class="tab grey-background grey-text" id="personal-media-tab">
+                        <p> Media </p>
+                    </div>
+                    <!-- Likes -->
+                    <div class="tab grey-background grey-text" id="personal-likes-tab">
+                        <p> Likes </p>
+                    </div>
+                </div>
+                <!-- Tabs contents -->
+                <!-- Tweets -->
+                <div id="personal-tweets">
+
+                </div>
+                <!-- Media -->
+                <div class="hide" id="personal-media">
+
+                </div>
+                <!-- Likes -->
+                <div class="hide" id="personal-likes">
+
+                </div>
+            </section>
+            <!-- Following and followers -->
+            <section class="following-followers-wrapper hide" id="following-followers">
+                <div class="following-followers-tabs">
+                    <!-- Following -->
+                    <div class="tab active-tab grey-background grey-text" id="following-tab-btn">
+                        <p> Following </p>
+                    </div>
+                    <!-- Followers -->
+                    <div class="tab grey-background grey-text" id="followers-tab-btn">
+                        <p> Followers </p>
+                    </div>
+                </div>
+
+                <!-- Following users -->
+                <div class="following-wrapper" id="following-tab">
+                </div>
+                <!-- Followers users -->
+                <div class="followers-wrapper hide" id="followers-tab">
+
+                </div>
+
+            </section>
+            <!-- Blocked users -->
+            <section class="blocked-users-wrapper hide" id="blocked-users-container">
+                <div class="blocked-wrapper" id="blocked-users">
+
+                </div>
+            </section>
+            <!-- Other profile -->
+            <section class="other-prfile-wrapper hide" id="other-user-profile">
+                <!-- Banner -->
+                <div class="other-profile-banner" id="other-user-banner">
+                    <!-- Profile Picture -->
+                    <div class="other-profile-picture" id="other-user-picture">
+
+                    </div>
+                </div>
+                <!-- Profile information and edit -->
+                <div class="other-profile-info">
+                    <div class="user-details" id="other-user-details">
+
+                    </div>
+                    <div class="edit-profile-btn-wrapper">
+                        <button type="button" class="btn btn-blue" id="follow-unfollow-btn"> Follow </button>
+                    </div>
+                    <div class="edit-profile-btn-wrapper">
+                        <button type="button" class="grey-background" id="block-btn"> Block </button>
+                    </div>
+                </div>
+                <!-- Navigation tabs -->
+                <div class="nav-tabs">
+                    <!-- Tweets -->
+                    <div class="tab active-tab grey-background grey-text" id="other-tweets-tab">
+                        <p> Tweets </p>
+                    </div>
+                    <!-- Media -->
+                    <div class="tab grey-background grey-text" id="other-media-tab">
+                        <p> Media </p>
+                    </div>
+                    <!-- Likes -->
+                    <div class="tab grey-background grey-text" id="other-likes-tab">
+                        <p> Likes </p>
+                    </div>
+                </div>
+                <!-- Tabs contents -->
+                <!-- Tweets -->
+                <div id="other-tweet">
+
+                </div>
+                <!-- Media -->
+                <div class="hide" id="other-media">
+
+                </div>
+                <!-- Likes -->
+                <div class="hide" id="other-likes">
+
+                </div>
+            </section>
+            <!-- Search page -->
+            <section class="search-page-wrapper hide" id="search-page">
+                <!-- Search bar -->
+                <div class="search-bar-inpage-wrapper">
+                    <div><span class="material-symbols-outlined">search</span></div>
+                    <form onsubmit="return false">
+                        <input type="text" placeholder="Search twitter" id="search-inpage">
+                    </form>
+                </div>
+                <!-- Searched people -->
+                <div class="search-result-wrapper" id="search-result-page">
+
+                </div>
+            </section>
+        </section>
+
+        <!-- Search -->
+        <section class="search-wrapper">
+            <!-- Search bar -->
+            <div class="search-bar-wrapper">
+                <div><span class="material-symbols-outlined">search</span></div>
+                <form onsubmit="return false">
+                    <input type="text" placeholder="Search twitter" id="search">
+                </form>
+            </div>
+            <!-- Searched people -->
+            <div class="search-result-wrapper" id="search-result">
+
+            </div>
+        </section>
+
+    </div>
+    <script src="./scripts/main_page_script.js"></script>
+</body>
+
+</html>
