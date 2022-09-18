@@ -59,6 +59,8 @@ const profileImageInput = document.getElementById("profile-image");
 const bannerImageInput = document.getElementById("banner-image");
 const personalDateOfBirth = document.getElementById("personal-date-of-birth");
 
+const logoutBtn = document.getElementById("logout-btn");
+
 // Modal related stuff
 const editProfileModal = document.getElementById("edit-profile-modal");
 if (typeof editProfileModal.showModal !== "function") {
@@ -95,6 +97,8 @@ personalLikesTab.addEventListener("click", openPersonalLikesTab);
 uploadTweetBtn.addEventListener("click", uploadTweet);
 
 saveBtn.addEventListener("click", updateUserInfo);
+
+logoutBtn.addEventListener("click", logoutUser);
 
 /** Functions **/
 
@@ -282,6 +286,11 @@ function updateUserInfo() {
         // Trigger load
         fileReader.readAsDataURL(fileToLoad);
     }
+}
+
+function logoutUser() {
+    localStorage.clear();
+    window.location.href = "index.html";
 }
 
 // Helper functions
