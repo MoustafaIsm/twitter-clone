@@ -535,7 +535,7 @@ function addFeeds(feeds, container) {
             ppHolder = `<img src="${tweet.profile_picture_link}" alt="profile-picture">`;
         }
         container.innerHTML += `
-            <div class="feed-wrapper grey-background" id="${tweet.id}">
+            <div class="feed-wrapper">
             <div>
                 <div class="small-round-profile-picture">${ppHolder}</div>
             </div>
@@ -544,7 +544,7 @@ function addFeeds(feeds, container) {
                 <!-- Username nad name -->
                 <div class="user-info">
                     <p class="bold-text"> ${tweet.name} </p>
-                    <p class="grey-text"> @${tweet.username} </p>
+                    <p class="grey-text grey-background username-text" id="${tweet.id}"> @${tweet.username} </p>
                     <p class="grey-text"> . ${tweet.date_time_of_creation.split(".")[0]}</p>
                 </div>
                 <!-- Tweet text -->
@@ -582,10 +582,10 @@ function addFeeds(feeds, container) {
             }
         });
     }
-    const tweets = document.getElementsByClassName("feed-wrapper");
+    const tweets = document.getElementsByClassName("username-text");
     for (const t of tweets) {
         t.addEventListener("click", () => {
-            showTweetOwner(t.id);
+            showTweetOwner(t.id, "follower");
         });
     }
 }
@@ -890,14 +890,14 @@ function getValue(type) {
     return localStorage.getItem(type) == "NA" ? "" : localStorage.getItem(type);
 }
 
-function showTweetOwner(userId) {
+function showTweetOwner(userId, type) {
     tweetWriting.classList.add("hide");
     feeds.classList.add("hide");
     profile.classList.add("hide");
     otherUserProfile.classList.remove("hide");
     fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_by_id.php?userId=" + userId)
         .then((response) => response.json())
-        .then((data) => setProfileData(data.user, userId, "follower"));
+        .then((data) => setProfileData(data.user, userId, type));
 }
 
 function setProfileData(u, id, type) {
