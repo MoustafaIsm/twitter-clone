@@ -445,6 +445,11 @@ img {
     border-radius: inherit;
 }
 
+.other-profile-info {
+    display: flex;
+    justify-content: space-between;
+}
+
 /* Modal */
 .edit-profile-modal {
     width: 600px;

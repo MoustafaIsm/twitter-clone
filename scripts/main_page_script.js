@@ -105,7 +105,17 @@ saveBtn.addEventListener("click", updateUserInfo);
 logoutBtn.addEventListener("click", logoutUser);
 
 viewBlockedBtn.addEventListener("click", showBlockedUsersConstainer);
-// 
+// Stuuf related to the other  user profile
+const otherUserProfile = document.getElementById("other-user-profile");
+const otherUserBanner = document.getElementById("other-user-banner");
+const otherUserPicture = document.getElementById("other-user-picture");
+const otherUserDetails = document.getElementById("other-user-details");
+const otherTweetsTab = document.getElementById("other-tweets-tab");
+const otherMediaTab = document.getElementById("other-media-tab");
+const otherLikesTab = document.getElementById("other-likes-tab");
+const otherTweet = document.getElementById("other-tweet");
+const otherMedia = document.getElementById("other-tweet");
+const otherLikes = document.getElementById("other-likes");
 
 /** Functions **/
 
