@@ -969,6 +969,8 @@ function setProfileData(u, id, type) {
     blockBtn.addEventListener("click", () => {
         fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_block.php?userId=" + localStorage.getItem("userId") + "&blockId=" + id)
             .then((response) => response.json());
+        openHomePage();
+
     });
 
     const followUnfollowBtn = document.getElementById("follow-unfollow-btn");
@@ -977,15 +979,16 @@ function setProfileData(u, id, type) {
         followUnfollowBtn.addEventListener("click", () => {
             fetch("http://localhost/SEF/twitter-clone-backend/APIs/remove_following.php?userId=" + localStorage.getItem("userId") + "&followingUserId=" + id)
                 .then((response) => response.json());
+            openHomePage();
         });
     } else {
         followUnfollowBtn.textContent = "Follow";
         followUnfollowBtn.addEventListener("click", () => {
             fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_following.php?userId=" + localStorage.getItem("userId") + "&followingUserId=" + id)
                 .then((response) => response.json());
+            openHomePage();
         });
     }
-
     otherTweet.innerHTML = "";
     otherMedia.innerHTML = "";
     otherLikes.innerHTML = "";
