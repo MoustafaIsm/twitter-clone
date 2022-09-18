@@ -81,6 +81,9 @@ const otherLikes = document.getElementById("other-likes");
 const search = document.getElementById("search");
 const searchResult = document.getElementById("search-result");
 
+const searchInPage = document.getElementById("search-inpage");
+const searchResultInpage = document.getElementById("search-result-page");
+
 // Modal related stuff
 const editProfileModal = document.getElementById("edit-profile-modal");
 if (typeof editProfileModal.showModal !== "function") {
@@ -159,7 +162,14 @@ otherLikesTab.addEventListener("click", () => {
 search.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         searchResult.innerHTML = "";
-        searchUsers();
+        searchUsers(searchResult);
+    }
+});
+
+searchInPage.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        searchResultInpage.innerHTML = "";
+        searchUsers(searchResultInpage);
     }
 });
 
@@ -922,6 +932,7 @@ function showTweetOwner(userId, type) {
     tweetWriting.classList.add("hide");
     feeds.classList.add("hide");
     profile.classList.add("hide");
+    searchPage.classList.add("hide");
     otherUserProfile.classList.remove("hide");
     fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_by_id.php?userId=" + userId)
         .then((response) => response.json())
@@ -965,6 +976,7 @@ function setProfileData(u, id, type) {
                 .then((response) => response.json());
         });
     } else {
+        followUnfollowBtn.textContent = "Follow";
         followUnfollowBtn.addEventListener("click", () => {
             fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_following.php?userId=" + localStorage.getItem("userId") + "&followingUserId=" + id)
                 .then((response) => response.json());
@@ -1122,17 +1134,16 @@ function addOtherLikes(tweets, container, u) {
     }
 }
 
-function searchUsers() {
+function searchUsers(container) {
     fetch('http://localhost/SEF/twitter-clone-backend/APIs/get_user_by_username.php?username=' + search.value)
         .then((response) => response.json())
         .then((data) => {
-
             for (const u of data.searchResults) {
                 let ppHolder = "";
                 if (u.profile_picture_link != "NA")
                     ppHolder = `<img src="${u.profile_picture_link}">`;
-                searchResult.innerHTML += `
-                <div class="searched-user">
+                container.innerHTML += `
+                <div class="searched-user grey-background" id="${u.id}">
                     <div class="small-round-profile-picture">${ppHolder}</div>
                     <div>
                         <p class="bold-text">${u.name}</p>
@@ -1140,6 +1151,37 @@ function searchUsers() {
                     </div>
                 </div>`;
             }
+            const resultUsers = document.getElementsByClassName("searched-user");
+            for (const singleResult of resultUsers) {
+                if (singleResult.id != localStorage.getItem("userId")) {
+                    singleResult.addEventListener("click", () => {
+                        fetch('http://localhost/SEF/twitter-clone-backend/APIs/get_user_following.php?userId=' + localStorage.getItem("userId"))
+                            .then((response) => response.json())
+                            .then((data) => {
+                                let followingIds = [];
+                                for (const u of data.following) {
+                                    followingIds.push(u.id);
+                                }
+                                const follower = checkIfFollowing(followingIds, singleResult.id);
+                                console.log("followingIds: " + followingIds +
+                                    "\nUserId: " + singleResult.id +
+                                    "\nContains? : " + follower);
+                                if (follower) {
+                                    showTweetOwner(singleResult.id, "follower");
+                                } else {
+                                    showTweetOwner(singleResult.id, "notFollower");
+                                }
+                            });
+                    });
+                }
+            }
         });
+}
+
+function checkIfFollowing(array, element) {
+    for (let i = 0; i < array.length; i++) {
+        return array[i] == element;
+    }
+    return false;
 }
 

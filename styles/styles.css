@@ -750,6 +750,7 @@ img {
 .searched-user {
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 #search-nav-btn {
