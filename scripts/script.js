@@ -22,6 +22,7 @@ const month = document.getElementById('month');
 const name_input = document.getElementById('name_input');
 const email_input = document.getElementById('email_input');
 const email_label = document.getElementById('email_label');
+const signinEmailLabel = document.getElementById('signinEmailLabel');
 const password_input = document.getElementById('password_input');
 const signin_input = document.getElementById('signin_input');
 const signin_pass = document.getElementById('signin_input_pass');
@@ -102,22 +103,36 @@ signup_link.addEventListener('click', () => {
 });
 
 email_input.addEventListener('focusout', () => {
-	if (email_input.value != '' && email_input.value != null) {
-		email_label.style.top = '19px';
-		email_label.style.fontSize = '12px';
-		email_label.style.color = 'rgb(83, 100, 113)';
-	} else {
-		email_label.style.top = '30px';
-		email_label.style.fontSize = '17px';
-		email_label.style.color = 'rgb(83, 100, 113)';
-	}
+	emailFocusOut(email_input.value, email_label);
+});
+email_input.addEventListener('focus', () => {
+	emailFocus(email_label);
 });
 
-email_input.addEventListener('focus', () => {
-	email_label.style.top = '19px';
-	email_label.style.fontSize = '12px';
-	email_label.style.color = '#1d9bf0';
+signin_input.addEventListener('focusout', () => {
+	emailFocusOut(signin_input.value, signinEmailLabel);
 });
+signin_input.addEventListener('focus', () => {
+	emailFocus(signinEmailLabel);
+});
+
+function emailFocus(label) {
+	label.style.top = '19px';
+	label.style.fontSize = '12px';
+	label.style.color = '#1d9bf0';
+}
+
+function emailFocusOut(input, label) {
+	if (input != '' && input != null) {
+		label.style.top = '19px';
+		label.style.fontSize = '12px';
+		label.style.color = 'rgb(83, 100, 113)';
+	} else {
+		label.style.top = '30px';
+		label.style.fontSize = '17px';
+		label.style.color = 'rgb(83, 100, 113)';
+	}
+}
 
 name_input.addEventListener('keyup', enableNextInput);
 email_input.addEventListener('keyup', enableNextEmail);
@@ -337,8 +352,7 @@ signin_next.addEventListener('click', (e) => {
 	e.preventDefault;
 
 	const signinData = new FormData(signinForm);
-	/* checkUser(signinData); */
-	console.log(signinData[email]);
+	checkUser(signinData);
 });
 
 function checkUser(data) {
@@ -350,22 +364,28 @@ function checkUser(data) {
 			return response.json();
 		})
 		.then((ResponseJson) => {
-			if (ResponseJson.length == 0) {
+			if (ResponseJson.email == false) {
+				valid_account.innerHTML = 'Sorry, we could not find your account';
 				valid_account.style.display = 'block';
 			} else {
-				localStorage.setItem('username', ResponseJson[0].username);
-				localStorage.setItem('email', ResponseJson[0].email);
-				localStorage.setItem('name', ResponseJson[0].name);
-				localStorage.setItem('password', ResponseJson[0].password);
-				localStorage.setItem('date_of_birth', ResponseJson[0].date_of_birth);
-				localStorage.setItem('date_of_registration', ResponseJson[0].date_of_registration);
-				localStorage.setItem('bio', ResponseJson[0].bio);
-				localStorage.setItem('location', ResponseJson[0].location);
-				localStorage.setItem('profile_picture_link', ResponseJson[0].profile_picture_link);
-				localStorage.setItem('banner_picture_link', ResponseJson[0].banner_picture_link);
-				localStorage.setItem('website', ResponseJson[0].website);
+				if (ResponseJson.password == false) {
+					valid_account.innerHTML = 'Wrong password!';
+					valid_account.style.display = 'block';
+				} else {
+					localStorage.setItem('username', ResponseJson[0].username);
+					localStorage.setItem('email', ResponseJson[0].email);
+					localStorage.setItem('name', ResponseJson[0].name);
+					localStorage.setItem('password', ResponseJson[0].password);
+					localStorage.setItem('date_of_birth', ResponseJson[0].date_of_birth);
+					localStorage.setItem('date_of_registration', ResponseJson[0].date_of_registration);
+					localStorage.setItem('bio', ResponseJson[0].bio);
+					localStorage.setItem('location', ResponseJson[0].location);
+					localStorage.setItem('profile_picture_link', ResponseJson[0].profile_picture_link);
+					localStorage.setItem('banner_picture_link', ResponseJson[0].banner_picture_link);
+					localStorage.setItem('website', ResponseJson[0].website);
 
-				window.location.href = 'test.html';
+					window.location.href = 'test.html';
+				}
 			}
 		});
 }
