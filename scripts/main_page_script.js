@@ -526,7 +526,7 @@ function addFeeds(feeds, container) {
             ppHolder = `<img src="${tweet.profile_picture_link}" alt="profile-picture">`;
         }
         container.innerHTML += `
-            <div class="feed-wrapper grey-background">
+            <div class="feed-wrapper grey-background" id="${tweet.id}">
             <div>
                 <div class="small-round-profile-picture">${ppHolder}</div>
             </div>
@@ -564,12 +564,19 @@ function addFeeds(feeds, container) {
             fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_like.php?userId=" + localStorage.getItem("userId") + "&tweetId=" + likebtn.id)
                 .then((response) => response.json())
                 .catch((error) => console.log(error));
+            // Update likes
             const likesNumbers = document.getElementsByClassName("likes-number");
             for (const likesNumber of likesNumbers) {
                 fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likebtn.id)
                     .then((response) => response.json())
                     .then((data) => likesNumber.innerHTML = data.likes_count);
             }
+        });
+    }
+    const tweets = document.getElementById("feed-wrapper");
+    for (const t of tweets) {
+        t.addEventListener("click", () => {
+            showTweetOwner(t.id);
         });
     }
 }
@@ -872,4 +879,8 @@ function updateValuesOfLocalStorage(user) {
 
 function getValue(type) {
     return localStorage.getItem(type) == "NA" ? "" : localStorage.getItem(type);
+}
+
+function showTweetOwner(userId) {
+
 }
