@@ -73,7 +73,7 @@
                 </div>
             </section>
             <!-- Write a tweet -->
-            <section class="write-tweet-wrapper " id="tweet-writing">
+            <section class="write-tweet-wrapper hide" id="tweet-writing">
                 <!-- Profile picture -->
                 <div class="small-round-profile-picture" id="write-tweet-profile-img">
                 </div>
@@ -96,7 +96,7 @@
                 </div>
             </section>
             <!-- Feeds -->
-            <section class="feeds " id="feeds">
+            <section class="feeds hide" id="feeds">
                 <div class="feed-wrapper">
                     <!-- Picture -->
                     <div>
@@ -323,6 +323,20 @@
                 </div>
                 <!-- Likes -->
                 <div class="hide" id="other-likes">
+
+                </div>
+            </section>
+            <!-- Search page -->
+            <section class="search-page-wrapper">
+                <!-- Search bar -->
+                <div class="search-bar-inpage-wrapper">
+                    <div><span class="material-symbols-outlined">search</span></div>
+                    <form onsubmit="return false">
+                        <input type="text" placeholder="Search twitter" id="search-inpage">
+                    </form>
+                </div>
+                <!-- Searched people -->
+                <div class="search-result-wrapper" id="search-result-page">
 
                 </div>
             </section>
