@@ -924,14 +924,148 @@ function setProfileData(u, id) {
     otherLikes.innerHTML = "";
     fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_tweets_noMedia.php?userId=" + id)
         .then((response) => response.json())
-        .then((data) => addOtherTweets(data.tweets, otherTweet));
+        .then((data) => addOtherTweets(data.tweets, otherTweet, u[0]));
 
     fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_tweets_media.php?userId=" + id)
         .then((response) => response.json())
-        .then((data) => addOtherMedia(data.tweets, otherMedia));
+        .then((data) => addOtherMedia(data.tweets, otherMedia, u[0]));
 
     fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_liked_tweets.php?userId=" + id)
         .then((response) => response.json())
-        .then((data) => addOtherLikes(data.liked, otherLikes));
+        .then((data) => addOtherLikes(data.liked, otherLikes, u[0]));
 
+}
+
+function addOtherTweets(tweets, container, u) {
+    for (const tweet of tweets) {
+        let ppHolder = "";
+        if (u.profile_picture_link != "NA")
+            ppHolder = `<img src="${u.profile_picture_link}" alt="profile-picture">`;
+        container.innerHTML += `<div class="feed-wrapper">
+        <!-- Picture -->
+        <div>
+            <div class="small-round-profile-picture">
+                ${ppHolder}
+            </div>
+        </div>
+        <!-- Tweet content -->
+        <div class="tweet-content">
+            <!-- Username nad name -->
+            <div class="user-info">
+                <p class="bold-text"> ${u.name} </p>
+                <p class="grey-text"> @${u.username} </p>
+                <p class="grey-text"> . ${tweet.date_time_of_creation.split(".")[0]}</p>
+            </div>
+            <!-- Tweet text -->
+            <div class="tweet-text-wrapper">
+                <p> ${tweet.tweet_text} </p>
+            </div>
+            <!-- Likes -->
+            <div class="tweet-likes-wrapper">
+                <span class="material-symbols-outlined like-btn" id="${tweet.id}"> favorite </span>
+                <p class="likes-number" id="${tweet.id}"> 123 </p>
+            </div>
+        </div>
+    </div>`;
+    }
+    const likesNumbers = document.getElementsByClassName("likes-number");
+    for (const likesNumber of likesNumbers) {
+        fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likesNumber.id)
+            .then((response) => response.json())
+
+    }
+}
+
+function addOtherMedia(tweets, container, u) {
+    for (const tweet of tweets) {
+        let ppHolder = "";
+        if (u.profile_picture_link != "NA")
+            ppHolder = `<img src="${u.profile_picture_link}" alt="profile-picture">`;
+        container.innerHTML += `
+        <div class="feed-wrapper">
+        <div>
+            <div class="small-round-profile-picture">
+                ${ppHolder}
+            </div>
+        </div>
+        <!-- Tweet content -->
+        <div class="tweet-content">
+            <!-- Username nad name -->
+            <div class="user-info">
+                <p class="bold-text"> ${u.name} </p>
+                <p class="grey-text"> @${u.username} </p>
+                <p class="grey-text"> . ${tweet.date_time_of_creation.split(".")[0]}</p>
+            </div>
+            <!-- Tweet text -->
+            <div class="tweet-text-wrapper">
+                <p>${tweet.tweet_text}</p>
+            </div>
+            <!-- Tweet Image -->
+            <div class="tweet-img-wrapper">
+                <img src="${tweet.tweet_image_link}" alt="">
+            </div>
+            <!-- Likes -->
+            <div class="tweet-likes-wrapper">
+                <span class="material-symbols-outlined like-btn" id="${tweet.id}"> favorite </span>
+                <p class="likes-number" id="${tweet.id}"> 123 </p>
+            </div>
+        </div>
+    </div>`;
+    }
+    const likesNumbers = document.getElementsByClassName("likes-number");
+    for (const likesNumber of likesNumbers) {
+        fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likesNumber.id)
+            .then((response) => response.json())
+            .then((data) => likesNumber.innerHTML = data.likes_count);
+    }
+}
+
+function addOtherLikes(tweets, container, u) {
+    for (const tweet of tweets) {
+        let imgHolder = "";
+        let ppHolder = "";
+        // check if the tweet has image
+        if (tweet.tweet_image_link != "NA") {
+            imgHolder = `
+                <!-- Tweet Image -->
+                <div class="tweet-img-wrapper">
+                    <img src="${tweet.tweet_image_link}" alt="">
+                </div>`;
+        }
+        // check if the user of the tweet has profile picture
+        if (tweet.profile_picture_link != "NA") {
+            ppHolder = `<img src="${tweet.profile_picture_link}" alt="profile-picture">`;
+        }
+        container.innerHTML += `
+            <div class="feed-wrapper">
+            <div>
+                <div class="small-round-profile-picture">${ppHolder}</div>
+            </div>
+            <!-- Tweet content -->
+            <div class="tweet-content">
+                <!-- Username nad name -->
+                <div class="user-info">
+                    <p class="bold-text"> ${tweet.name} </p>
+                    <p class="grey-text"> @${tweet.username} </p>
+                    <p class="grey-text"> . ${tweet.date_time_of_creation.split(".")[0]}</p>
+                </div>
+                <!-- Tweet text -->
+                <div class="tweet-text-wrapper">
+                    <p>${tweet.tweet_text}</p>
+                </div>
+                ${imgHolder}
+                <!-- Likes -->
+                <div class="tweet-likes-wrapper">
+                    <span class="material-symbols-outlined"> favorite </span>
+                    <p class="likes-number" id="${tweet.tweet_id}"> 123 </p>
+                </div>
+            </div>
+        </div>`;
+    }
+    const likesNumbers = document.getElementsByClassName("likes-number");
+    for (const likesNumber of likesNumbers) {
+        fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likesNumber.id)
+            .then((response) => response.json())
+            .then((data) => likesNumber.innerHTML = data.likes_count);
+    }
 }
