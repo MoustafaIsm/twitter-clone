@@ -482,7 +482,7 @@ function addFeeds(feeds, container) {
             ppHolder = `<img src="${tweet.profile_picture_link}" alt="profile-picture">`;
         }
         container.innerHTML += `
-            <div class="feed-wrapper">
+            <div class="feed-wrapper grey-background">
             <div>
                 <div class="small-round-profile-picture">${ppHolder}</div>
             </div>
