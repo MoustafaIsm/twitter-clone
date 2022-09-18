@@ -498,11 +498,16 @@ function addFeeds(feeds, container) {
                 <!-- Likes -->
                 <div class="tweet-likes-wrapper">
                     <span class="material-symbols-outlined"> favorite </span>
-                    <p class="likes-number"> 123 </p>
+                    <p class="likes-number" id="${tweet.tweet_id}"> 123 </p>
                 </div>
             </div>
-        </div>
-    `;
+        </div>`;
+    }
+    const likesNumbers = document.getElementsByClassName("likes-number");
+    for (const likesNumber of likesNumbers) {
+        fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likesNumber.id)
+            .then((response) => response.json())
+            .then((data) => likesNumber.innerHTML = data.likes_count);
     }
 }
 
