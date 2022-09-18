@@ -512,8 +512,10 @@ function addFeeds(feeds, container) {
     const likeBtns = document.getElementsByClassName("like-btn");
     for (const likebtn of likeBtns) {
         likebtn.addEventListener("click", () => {
+            likebtn.style.color = "rgb(29, 155, 240)";
             fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_like.php?userId=" + localStorage.getItem("userId") + "&tweetId=" + likebtn.id)
-                .then((response) => response.json());
+                .then((response) => response.json())
+                .catch((error) => console.log(error));
         });
     }
 }
@@ -556,8 +558,10 @@ function addPersonalTweets(tweets, container) {
     const likeBtns = document.getElementsByClassName("like-btn");
     for (const likebtn of likeBtns) {
         likebtn.addEventListener("click", () => {
+            likebtn.style.color = "rgb(29, 155, 240)";
             fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_like.php?userId=" + localStorage.getItem("userId") + "&tweetId=" + likebtn.id)
-                .then((response) => response.json());
+                .then((response) => response.json())
+                .catch((error) => console.log(error));
         });
     }
 }
@@ -604,8 +608,10 @@ function addPersonalMedia(tweets, container) {
     const likeBtns = document.getElementsByClassName("like-btn");
     for (const likebtn of likeBtns) {
         likebtn.addEventListener("click", () => {
+            likebtn.style.color = "rgb(29, 155, 240)";
             fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_like.php?userId=" + localStorage.getItem("userId") + "&tweetId=" + likebtn.id)
-                .then((response) => response.json());
+                .then((response) => response.json())
+                .catch((error) => console.log(error));
         });
     }
 }
