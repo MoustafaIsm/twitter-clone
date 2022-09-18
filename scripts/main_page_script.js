@@ -614,13 +614,6 @@ function addFeeds(feeds, container) {
             fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_like.php?userId=" + localStorage.getItem("userId") + "&tweetId=" + likebtn.id)
                 .then((response) => response.json())
                 .catch((error) => console.log(error));
-            // Update likes
-            const likesNumbers = document.getElementsByClassName("likes-number");
-            for (const likesNumber of likesNumbers) {
-                fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likebtn.id)
-                    .then((response) => response.json())
-                    .then((data) => likesNumber.innerHTML = data.likes_count);
-            }
         });
     }
     const tweets = document.getElementsByClassName("username-text");
@@ -673,12 +666,6 @@ function addPersonalTweets(tweets, container) {
             fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_like.php?userId=" + localStorage.getItem("userId") + "&tweetId=" + likebtn.id)
                 .then((response) => response.json())
                 .catch((error) => console.log(error));
-            const likesNumbers = document.getElementsByClassName("likes-number");
-            for (const likesNumber of likesNumbers) {
-                fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likebtn.id)
-                    .then((response) => response.json())
-                    .then((data) => likesNumber.innerHTML = data.likes_count);
-            }
         });
     }
 }
@@ -729,12 +716,6 @@ function addPersonalMedia(tweets, container) {
             fetch("http://localhost/SEF/twitter-clone-backend/APIs/add_like.php?userId=" + localStorage.getItem("userId") + "&tweetId=" + likebtn.id)
                 .then((response) => response.json())
                 .catch((error) => console.log(error));
-            const likesNumbers = document.getElementsByClassName("likes-number");
-            for (const likesNumber of likesNumbers) {
-                fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_tweet_likes_count.php?tweetId=" + likebtn.id)
-                    .then((response) => response.json())
-                    .then((data) => likesNumber.innerHTML = data.likes_count);
-            }
         });
     }
 }
