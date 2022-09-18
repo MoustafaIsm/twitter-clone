@@ -136,7 +136,7 @@ img {
 }
 
 .logout-wrapper {
-    box-shadow: 0px 0px 10px 0.5px #969696;
+    box-shadow: 0px 0px 7px 0.2px #bfbfbf;
     border-radius: 10px;
     background-color: white;
     display: flex;
@@ -144,14 +144,15 @@ img {
     position: absolute;
     right: 20%;
     bottom: 200%;
-    width: 200px;
-    height: 150px;
+    width: 300px;
+    height: 200px;
     z-index: 5;
     padding: 2% 0%;
 }
 
 .logout-wrapper > div {
     margin: 2% 2%;
+	border-bottom: solid 1.5px rgb(245, 245, 245);
 }
 
 .logout-wrapper > div > div:last-child {
@@ -160,14 +161,15 @@ img {
 
 .logout-wrapper > button {
     width: 100%;
-    height: 25%;
-    background-color: #ffffff;
-    padding: 3% 10%;
-    border: none;
-    border: 2px solid #575757;
-    border-radius: 20px;
-    color: black;
-    align-self: center;
+	height: 25%;
+	font-size: 15px;
+	font-weight: 500;
+	background-color: #ffffff;
+	padding: 3% 10%;
+	border: none;
+	color: black;
+	align-self: center;
+	text-align: start;
 }
 
 /* Page Contents */
@@ -352,15 +354,16 @@ img {
 
 .profile-picture {
     width: 133px;
-    height: 133px;
-    border-radius: 150px;
-    background-color: #939393;
-    position: absolute;
-    top: 70%;
-    margin-left: 2%;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+	height: 133px;
+	border-radius: 50%;
+	border: solid 4px white;
+	background-color: #939393;
+	position: absolute;
+	top: 70%;
+	margin-left: 2%;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 .profile-picture > img {
