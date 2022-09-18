@@ -891,4 +891,47 @@ function showTweetOwner(userId) {
     feeds.classList.add("hide");
     profile.classList.add("hide");
     otherUserProfile.classList.remove("hide");
+    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_by_id.php?userId=" + userId)
+        .then((response) => response.json())
+        .then((data) => setProfileData(data.user, userId));
+}
+
+function setProfileData(u, id) {
+    otherUserDetails.innerHTML = `
+    <p class="bold-text"> ${u[0].name} </p>
+    <p class="grey-text">@${u[0].username}</p>
+    <p class="grey-text date-wrapper"><span class="material-symbols-outlined">calendar_month</span>${u[0].date_of_registration}</p>
+    <div class="following-followers-info-wrapper">
+        <p id="other-following">0 Following</p>
+        <p id="other-followers">0 Followers</p>
+    </div>`;
+    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_followers.php?userId=" + id)
+        .then((response) => response.json())
+        .then((data) => document.getElementById("other-followers").textContent = data.count + " Followers");
+    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_following.php?userId=" + id)
+        .then((response) => response.json())
+        .then((data) => document.getElementById("other-following").textContent = data.count + " Following");
+
+    if (u[0].banner_picture_link != "NA") {
+        otherUserBanner.style.backgroundImage = `url(${u[0].banner_picture_link})`;
+    }
+    if (u[0].profile_picture_link != "NA") {
+        otherUserPicture.innerHTML = `<img src="${u[0].profile_picture_link}">`;
+    }
+
+    otherTweet.innerHTML = "";
+    otherMedia.innerHTML = "";
+    otherLikes.innerHTML = "";
+    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_tweets_noMedia.php?userId=" + id)
+        .then((response) => response.json())
+        .then((data) => addOtherTweets(data.tweets, otherTweet));
+
+    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_tweets_media.php?userId=" + id)
+        .then((response) => response.json())
+        .then((data) => addOtherMedia(data.tweets, otherMedia));
+
+    fetch("http://localhost/SEF/twitter-clone-backend/APIs/get_user_liked_tweets.php?userId=" + id)
+        .then((response) => response.json())
+        .then((data) => addOtherLikes(data.liked, otherLikes));
+
 }
