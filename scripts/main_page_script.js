@@ -141,6 +141,10 @@ function openFollowersTab() {
 function openEditProfileModal() {
     if (typeof editProfileModal.showModal === "function") {
         editProfileModal.showModal();
+        nameInput.value = localStorage.getItem("name");
+        bioInput.value = getValue("bio");
+        locationInput.value = getValue("location");
+        websiteInput.value = getValue("website");
         personalDateOfBirth.innerHTML = `<p>${localStorage.getItem("date_of_birth")}</p>`;
     }
 
@@ -781,4 +785,8 @@ function getCurrent() {
 
 function updateLocalStorage(formData) {
 
+}
+
+function getValue(type) {
+    return localStorage.getItem(type) == "NA" ? "" : localStorage.getItem(type);
 }
