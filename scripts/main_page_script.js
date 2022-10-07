@@ -977,9 +977,13 @@ function setProfileData(u, id, type) {
 
     if (u[0].banner_picture_link != "NA") {
         otherUserBanner.style.backgroundImage = `url(${u[0].banner_picture_link})`;
+    } else {
+        otherUserBanner.style.backgroundImage = "";
     }
     if (u[0].profile_picture_link != "NA") {
         otherUserPicture.innerHTML = `<img src="${u[0].profile_picture_link}">`;
+    } else {
+        otherUserPicture.innerHTML = "";
     }
 
     const blockBtn = document.getElementById("block-btn");
@@ -1188,9 +1192,6 @@ function searchUsers(input, container) {
                                     }
                                 }
                                 const follower = checkIfFollowing(followingIds, singleResult.id);
-                                console.log("followingIds: " + followingIds +
-                                    "\nUserId: " + singleResult.id +
-                                    "\nContains? : " + follower);
                                 if (follower) {
                                     showTweetOwner(singleResult.id, "follower");
                                 } else {
